@@ -1,0 +1,239 @@
+{
+  "modules": [
+    {
+      "id": "96dd5992-4b69-418f-8e29-a19de00601b2",
+      "type": "Disconnect",
+      "branches": [],
+      "parameters": [],
+      "metadata": {
+        "position": {
+          "x": 1102,
+          "y": 735
+        }
+      }
+    },
+    {
+      "id": "eaafb307-fb23-47ab-8b13-f0ec1dd9fd61",
+      "type": "Transfer",
+      "branches": [
+        {
+          "condition": "Error",
+          "transition": "96dd5992-4b69-418f-8e29-a19de00601b2"
+        }
+      ],
+      "parameters": [
+        {
+          "name": "ContactFlowId",
+          "value": "arn:aws:connect:eu-west-2:260148551992:instance/acfcd22b-ea7c-4be1-bf41-a109717c3bcd/contact-flow/2a00909d-71ef-4410-9e3a-2ddbf4ad09ad",
+          "resourceName": "covapp_question_v"
+        }
+      ],
+      "metadata": {
+        "position": {
+          "x": 1098,
+          "y": 259
+        },
+        "useDynamic": false,
+        "ContactFlow": {
+          "id": "arn:aws:connect:eu-west-2:260148551992:instance/acfcd22b-ea7c-4be1-bf41-a109717c3bcd/contact-flow/2a00909d-71ef-4410-9e3a-2ddbf4ad09ad",
+          "text": "covapp_question_v"
+        }
+      },
+      "target": "Flow"
+    },
+    {
+      "id": "dec76ab0-917d-4217-904e-c43dc4a6232a",
+      "type": "SetAttributes",
+      "branches": [
+        {
+          "condition": "Success",
+          "transition": "eaafb307-fb23-47ab-8b13-f0ec1dd9fd61"
+        },
+        {
+          "condition": "Error",
+          "transition": "7cb14448-8443-49ae-9184-30fe625b44f7"
+        }
+      ],
+      "parameters": [
+        {
+          "name": "Attribute",
+          "value": "1",
+          "key": "accommodation",
+          "namespace": null
+        }
+      ],
+      "metadata": {
+        "position": {
+          "x": 677,
+          "y": 32
+        }
+      }
+    },
+    {
+      "id": "f4a606e7-8f18-4800-a496-b2cba852c930",
+      "type": "SetAttributes",
+      "branches": [
+        {
+          "condition": "Success",
+          "transition": "eaafb307-fb23-47ab-8b13-f0ec1dd9fd61"
+        },
+        {
+          "condition": "Error",
+          "transition": "7cb14448-8443-49ae-9184-30fe625b44f7"
+        }
+      ],
+      "parameters": [
+        {
+          "name": "Attribute",
+          "value": "2",
+          "key": "accommodation",
+          "namespace": null
+        }
+      ],
+      "metadata": {
+        "position": {
+          "x": 683,
+          "y": 283
+        }
+      }
+    },
+    {
+      "id": "7cb14448-8443-49ae-9184-30fe625b44f7",
+      "type": "PlayPrompt",
+      "branches": [
+        {
+          "condition": "Success",
+          "transition": "96dd5992-4b69-418f-8e29-a19de00601b2"
+        }
+      ],
+      "parameters": [
+        {
+          "name": "Text",
+          "value": "Irgendetwas ist schief gelaufen. Es tut uns Leid. Bitte versuchen Sie es später noch einmal.",
+          "namespace": null
+        },
+        {
+          "name": "TextToSpeechType",
+          "value": "text"
+        }
+      ],
+      "metadata": {
+        "position": {
+          "x": 513,
+          "y": 681
+        },
+        "useDynamic": false
+      }
+    },
+    {
+      "id": "de362590-1eda-466a-bc44-cf64d4924439",
+      "type": "PlayPrompt",
+      "branches": [
+        {
+          "condition": "Success",
+          "transition": "89d95473-c3d8-44e8-8010-7a98d423dcbd"
+        }
+      ],
+      "parameters": [
+        {
+          "name": "Text",
+          "value": "Die Frage wird nun wiederholt.",
+          "namespace": null
+        },
+        {
+          "name": "TextToSpeechType",
+          "value": "text"
+        }
+      ],
+      "metadata": {
+        "position": {
+          "x": 513,
+          "y": 498
+        },
+        "useDynamic": false
+      }
+    },
+    {
+      "id": "89d95473-c3d8-44e8-8010-7a98d423dcbd",
+      "type": "GetUserInput",
+      "branches": [
+        {
+          "condition": "Evaluate",
+          "conditionType": "Equals",
+          "conditionValue": "1",
+          "transition": "dec76ab0-917d-4217-904e-c43dc4a6232a"
+        },
+        {
+          "condition": "Evaluate",
+          "conditionType": "Equals",
+          "conditionValue": "2",
+          "transition": "f4a606e7-8f18-4800-a496-b2cba852c930"
+        },
+        {
+          "condition": "Timeout",
+          "transition": "de362590-1eda-466a-bc44-cf64d4924439"
+        },
+        {
+          "condition": "NoMatch",
+          "transition": "de362590-1eda-466a-bc44-cf64d4924439"
+        },
+        {
+          "condition": "Error",
+          "transition": "7cb14448-8443-49ae-9184-30fe625b44f7"
+        }
+      ],
+      "parameters": [
+        {
+          "name": "Text",
+          "value": "Wie ist Ihre aktuelle Wohnsituation?\nWählen Sie bitte die 1, wenn Sie alleine wohnen.\nDrücken Sie bitte die 2, wenn Sie zusammen mit der Familie, in einer WG oder betreuten Gemeinschaftseinrichtung wohnen",
+          "namespace": null
+        },
+        {
+          "name": "TextToSpeechType",
+          "value": "text"
+        },
+        {
+          "name": "Timeout",
+          "value": "5"
+        },
+        {
+          "name": "MaxDigits",
+          "value": "1"
+        }
+      ],
+      "metadata": {
+        "position": {
+          "x": 246,
+          "y": 210
+        },
+        "conditionMetadata": [
+          {
+            "id": "68babdb7-afd5-4174-a431-69654edfe13a",
+            "value": "1"
+          },
+          {
+            "id": "ef0f5486-827f-4c53-9ae4-9da0120e233f",
+            "value": "2"
+          }
+        ],
+        "useDynamic": false
+      },
+      "target": "Digits"
+    }
+  ],
+  "version": "1",
+  "type": "contactFlow",
+  "start": "89d95473-c3d8-44e8-8010-7a98d423dcbd",
+  "metadata": {
+    "entryPointPosition": {
+      "x": 20,
+      "y": 20
+    },
+    "snapToGrid": false,
+    "name": "covapp_question_b",
+    "description": "accommodation",
+    "type": "contactFlow",
+    "status": "published",
+    "hash": "19ab944d9f048f39f69987491e4f2fb33ff678d12fbbb1f4360da7973382900b"
+  }
+}

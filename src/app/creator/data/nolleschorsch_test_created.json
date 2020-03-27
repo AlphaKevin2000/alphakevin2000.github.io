@@ -1,0 +1,15 @@
+{
+  "modules": [],
+  "version": "1",
+  "metadata": {
+      "entryPointPosition": {
+          "x": 20,
+          "y": 20
+      },
+      "snapToGrid": true,
+      "name": "nolleschorsch_test_created",
+      "description": "Created without Webinterface",
+      "type": "contactFlow",
+      "status": "saved"
+  }
+}

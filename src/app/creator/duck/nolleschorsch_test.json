@@ -1,0 +1,18 @@
+{
+  "modules": [],
+  "version": "1",
+  "type": "contactFlow",
+  "start": "193965d3-a1a1-4c52-a7f8-60cbfeded0fc",
+  "metadata": {
+    "entryPointPosition": {
+      "x": 20,
+      "y": 20
+    },
+    "snapToGrid": true,
+    "name": "nolleschorsch_test",
+    "description": null,
+    "type": "contactFlow",
+    "status": "saved",
+    "hash": "90da851dfc8e1c57859c3d715ee5af1219577774907a40255252b86776cbe86b"
+  }
+}
