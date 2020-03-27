@@ -3,11 +3,13 @@ import {
   setQuestionnaireStrings,
   setQuestionnaireOrder,
   setLanguage,
-  setCreatedJSON
+  setCreatedJSON,
+  setCreatedAmazonConnectConfig
 } from "./actions"
 
 import { QUESTIONNAIRE_ORDER } from "./questionnaire_order"
 import { QUESTIONNAIRE } from "./questionnaire_strings"
+import connectTemplate from "./amzn_connect_template"
 
 // TODO: implement a real fetch from  https://covapp.charite.de/
 /* export const fetchData = () => {
@@ -78,6 +80,22 @@ export const createJSON = () => {
         return createRadionQuestion(question, strings)
       }
     })
-    dispatch(setCreatedJSON(JSON.stringify(data, null, 4)))
+    dispatch(setCreatedJSON(data))
+  }
+}
+
+export const fillTemplate = (template, data) => {
+  const question1 = data[0]
+  console.log({question1})
+  return template
+}
+
+export const createAmazonConnectConfig = () => {
+  return (dispatch, getState) => {
+    const template = connectTemplate
+    const state = getState()
+    const { chariteData } = state.creator
+    const config = fillTemplate(template, chariteData)
+    dispatch(setCreatedAmazonConnectConfig(config))
   }
 }

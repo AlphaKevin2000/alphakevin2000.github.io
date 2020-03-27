@@ -1,0 +1,160 @@
+{
+  "modules": [
+    {
+      "id": "8da4462d-56e1-4165-bdec-4bff89c0ed1b",
+      "type": "Disconnect",
+      "branches": [],
+      "parameters": [],
+      "metadata": {
+        "position": {
+          "x": 1180,
+          "y": 580
+        }
+      }
+    },
+    {
+      "id": "01e4e7d9-f568-437f-81f6-f409b43d8196",
+      "type": "SetLoggingBehavior",
+      "branches": [
+        {
+          "condition": "Success",
+          "transition": "bb644e2d-ef7a-48e7-b3da-2785962f255c"
+        }
+      ],
+      "parameters": [
+        {
+          "name": "LoggingBehavior",
+          "value": "Enable"
+        }
+      ],
+      "metadata": {
+        "position": {
+          "x": 160,
+          "y": 20
+        }
+      }
+    },
+    {
+      "id": "00fac4e8-059f-406b-8912-b7ba56f63fa8",
+      "type": "PlayPrompt",
+      "branches": [
+        {
+          "condition": "Success",
+          "transition": "8da4462d-56e1-4165-bdec-4bff89c0ed1b"
+        }
+      ],
+      "parameters": [
+        {
+          "name": "Text",
+          "value": "Irgendetwas ist schief gelaufen. Es tut uns Leid. Bitte versuchen Sie es später noch einmal.",
+          "namespace": null
+        },
+        {
+          "name": "TextToSpeechType",
+          "value": "text"
+        }
+      ],
+      "metadata": {
+        "position": {
+          "x": 880,
+          "y": 500
+        },
+        "useDynamic": false
+      }
+    },
+    {
+      "id": "465a08a1-0c61-43ca-a8b5-6998b89b5f24",
+      "type": "Transfer",
+      "branches": [
+        {
+          "condition": "Error",
+          "transition": "00fac4e8-059f-406b-8912-b7ba56f63fa8"
+        }
+      ],
+      "parameters": [
+        {
+          "name": "ContactFlowId",
+          "value": "arn:aws:connect:eu-west-2:260148551992:instance/acfcd22b-ea7c-4be1-bf41-a109717c3bcd/contact-flow/e082a04e-a7e5-429b-8c6e-3708db2c041f",
+          "resourceName": "covapp_question_b"
+        }
+      ],
+      "metadata": {
+        "position": {
+          "x": 740,
+          "y": 280
+        },
+        "useDynamic": false,
+        "ContactFlow": {
+          "id": "arn:aws:connect:eu-west-2:260148551992:instance/acfcd22b-ea7c-4be1-bf41-a109717c3bcd/contact-flow/e082a04e-a7e5-429b-8c6e-3708db2c041f",
+          "text": "covapp_question_b"
+        }
+      },
+      "target": "Flow"
+    },
+    {
+      "id": "bb644e2d-ef7a-48e7-b3da-2785962f255c",
+      "type": "SetVoice",
+      "branches": [
+        {
+          "condition": "Success",
+          "transition": "2822c6e8-1d4c-4700-a584-8a8608da1557"
+        }
+      ],
+      "parameters": [
+        {
+          "name": "GlobalVoice",
+          "value": "Vicki"
+        }
+      ],
+      "metadata": {
+        "position": {
+          "x": 160,
+          "y": 220
+        }
+      }
+    },
+    {
+      "id": "2822c6e8-1d4c-4700-a584-8a8608da1557",
+      "type": "PlayPrompt",
+      "branches": [
+        {
+          "condition": "Success",
+          "transition": "465a08a1-0c61-43ca-a8b5-6998b89b5f24"
+        }
+      ],
+      "parameters": [
+        {
+          "name": "Text",
+          "value": "Dieser Telefonservice ist eine von der Charité in Zusammenarbeit mit einem Team von freiwilligen des Heckatons der Bundesregierung entwickelte Dienstleistung, mit der Sie innerhalb weniger Minuten einen Fragenkatalog beantworten und daraus spezifische Handlungsempfehlungen erhalten. Sie erhalten nach Beantwortung der Fragen konkrete Handlungsempfehlungen. Ziel ist es, die Patientenströme in Krankenhäusern und Untersuchungsstellen zu optimieren.\n\nSie erhalten am Ende zwei Wörter, die Sie sich notieren. Durch Nennung dieser beiden Wörter können Praxen und Kliniken ihre individuelle Zusammenfassung der Antworten abfragen. Sie können frei entscheiden, wem Sie diese zwei Wörter anvertrauen.\n\nNehmen Sie sich etwa 10 Minuten Zeit.\n\nBitte beachten Sie, dass die Nutzung dieser Dienstleistung keine ärztliche Behandlung ersetzt und keine diagnostische Leistung erbringt. Wenn Sie sich daher aktuell schwer krank fühlen, suchen Sie bitte umgehend einen Arzt/Ärztin oder medizinische Hilfe auf.\n\nBeginnen wir nun mit den Fragen:",
+          "namespace": null
+        },
+        {
+          "name": "TextToSpeechType",
+          "value": "text"
+        }
+      ],
+      "metadata": {
+        "position": {
+          "x": 440,
+          "y": 280
+        },
+        "useDynamic": false
+      }
+    }
+  ],
+  "version": "1",
+  "type": "contactFlow",
+  "start": "01e4e7d9-f568-437f-81f6-f409b43d8196",
+  "metadata": {
+    "entryPointPosition": {
+      "x": 20,
+      "y": 20
+    },
+    "snapToGrid": true,
+    "name": "covapp_questionnaire",
+    "description": "Initial Point of questionnaire based in charite recommendation webapp",
+    "type": "contactFlow",
+    "status": "published",
+    "hash": "70305ad6d9ad91e43a27693870475e798d1c6d36b69eb1bf03f06590b7e6dc8e"
+  }
+}

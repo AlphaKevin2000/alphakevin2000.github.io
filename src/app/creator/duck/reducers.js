@@ -2,14 +2,16 @@ import {
   SET_QUESTIONNAIRE_ORDER,
   SET_QUESTIONNAIRE_STRING_MAP,
   SET_LANGUAGE,
-  SET_CREATED_JSON
+  SET_CREATED_JSON,
+  SET_CREATED_AMAZON_CONNECT_CONFIG
 } from "./actions"
 
 export const initialState = {
   order: undefined,
-  stringMap: undefined,
+  stringMap: {'de': undefined, 'en': undefined},
   language: 'de',
-  data: []
+  chariteData: undefined,
+  connectConf: undefined
 }
 
 export default (state = initialState, action) => {
@@ -32,7 +34,12 @@ export default (state = initialState, action) => {
     case SET_CREATED_JSON:
       return {
         ...state,
-        data: action.payload.data
+        chariteData: action.payload.data
+      }
+    case SET_CREATED_AMAZON_CONNECT_CONFIG:
+      return {
+        ...state,
+        connectConf: action.payload.data
       }
     default:
       return state

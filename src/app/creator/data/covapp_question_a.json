@@ -1,0 +1,265 @@
+{
+  "modules": [
+    {
+      "id": "de362590-1eda-466a-bc44-cf64d4924439",
+      "type": "PlayPrompt",
+      "branches": [
+        {
+          "condition": "Success",
+          "transition": "89d95473-c3d8-44e8-8010-7a98d423dcbd"
+        }
+      ],
+      "parameters": [
+        {
+          "name": "Text",
+          "value": "Die Frage wird nun wiederholt.",
+          "namespace": null
+        },
+        {
+          "name": "TextToSpeechType",
+          "value": "text"
+        }
+      ],
+      "metadata": {
+        "position": {
+          "x": 562,
+          "y": 447
+        },
+        "useDynamic": false
+      }
+    },
+    {
+      "id": "dec76ab0-917d-4217-904e-c43dc4a6232a",
+      "type": "SetAttributes",
+      "branches": [
+        {
+          "condition": "Success",
+          "transition": "89d95473-c3d8-44e8-8010-7a98d423dcbd"
+        },
+        {
+          "condition": "Error",
+          "transition": "7cb14448-8443-49ae-9184-30fe625b44f7"
+        }
+      ],
+      "parameters": [
+        {
+          "name": "Attribute",
+          "value": "Stored customer input",
+          "key": "age",
+          "namespace": "System"
+        }
+      ],
+      "metadata": {
+        "position": {
+          "x": 661,
+          "y": 19
+        }
+      }
+    },
+    {
+      "id": "7cb14448-8443-49ae-9184-30fe625b44f7",
+      "type": "PlayPrompt",
+      "branches": [
+        {
+          "condition": "Success",
+          "transition": "96dd5992-4b69-418f-8e29-a19de00601b2"
+        }
+      ],
+      "parameters": [
+        {
+          "name": "Text",
+          "value": "Irgendetwas ist schief gelaufen. Es tut uns Leid. Bitte versuchen Sie es später noch einmal.",
+          "namespace": null
+        },
+        {
+          "name": "TextToSpeechType",
+          "value": "text"
+        }
+      ],
+      "metadata": {
+        "position": {
+          "x": 513,
+          "y": 681
+        },
+        "useDynamic": false
+      }
+    },
+    {
+      "id": "62c64ff3-0039-4475-9970-92bb719240ad",
+      "type": "StoreUserInput",
+      "branches": [
+        {
+          "condition": "Success",
+          "transition": "dec76ab0-917d-4217-904e-c43dc4a6232a"
+        },
+        {
+          "condition": "Error",
+          "transition": "7cb14448-8443-49ae-9184-30fe625b44f7"
+        }
+      ],
+      "parameters": [
+        {
+          "name": "Text",
+          "value": "Bitte geben Sie als erstes ihr aktuelles Alter über die Telefontastatur ein.",
+          "namespace": null
+        },
+        {
+          "name": "TextToSpeechType",
+          "value": "text"
+        },
+        {
+          "name": "CustomerInputType",
+          "value": "Custom"
+        },
+        {
+          "name": "Timeout",
+          "value": "5"
+        },
+        {
+          "name": "MaxDigits",
+          "value": 2
+        },
+        {
+          "name": "EncryptEntry",
+          "value": false
+        }
+      ],
+      "metadata": {
+        "position": {
+          "x": 248,
+          "y": 13
+        },
+        "useDynamic": false,
+        "useDynamicForEncryptionKeys": true,
+        "useDynamicForTerminatorDigits": false,
+        "countryCodePrefix": "+1"
+      }
+    },
+    {
+      "id": "96dd5992-4b69-418f-8e29-a19de00601b2",
+      "type": "Disconnect",
+      "branches": [],
+      "parameters": [],
+      "metadata": {
+        "position": {
+          "x": 1102,
+          "y": 735
+        }
+      }
+    },
+    {
+      "id": "89d95473-c3d8-44e8-8010-7a98d423dcbd",
+      "type": "GetUserInput",
+      "branches": [
+        {
+          "condition": "Evaluate",
+          "conditionType": "Equals",
+          "conditionValue": "1",
+          "transition": "eaafb307-fb23-47ab-8b13-f0ec1dd9fd61"
+        },
+        {
+          "condition": "Evaluate",
+          "conditionType": "Equals",
+          "conditionValue": "2",
+          "transition": "62c64ff3-0039-4475-9970-92bb719240ad"
+        },
+        {
+          "condition": "Timeout",
+          "transition": "de362590-1eda-466a-bc44-cf64d4924439"
+        },
+        {
+          "condition": "NoMatch",
+          "transition": "de362590-1eda-466a-bc44-cf64d4924439"
+        },
+        {
+          "condition": "Error",
+          "transition": "7cb14448-8443-49ae-9184-30fe625b44f7"
+        }
+      ],
+      "parameters": [
+        {
+          "name": "Text",
+          "value": "Sie haben $.Attributes.age als ihr aktuelles Alter angegeben. Drücken Sie die 1, wenn das korrekt ist. Drücken Sie bitte die 2 wenn Sie ihr Alter erneut eingeben möchten.",
+          "namespace": null
+        },
+        {
+          "name": "TextToSpeechType",
+          "value": "text"
+        },
+        {
+          "name": "Timeout",
+          "value": "5"
+        },
+        {
+          "name": "MaxDigits",
+          "value": "1"
+        }
+      ],
+      "metadata": {
+        "position": {
+          "x": 246,
+          "y": 210
+        },
+        "conditionMetadata": [
+          {
+            "id": "5cae997e-6114-4d0e-806e-716e968b9dcb",
+            "value": "1"
+          },
+          {
+            "id": "30c7c24a-1f49-45a0-8770-7e38c833b7fa",
+            "value": "2"
+          }
+        ],
+        "useDynamic": false
+      },
+      "target": "Digits"
+    },
+    {
+      "id": "eaafb307-fb23-47ab-8b13-f0ec1dd9fd61",
+      "type": "Transfer",
+      "branches": [
+        {
+          "condition": "Error",
+          "transition": "96dd5992-4b69-418f-8e29-a19de00601b2"
+        }
+      ],
+      "parameters": [
+        {
+          "name": "ContactFlowId",
+          "value": "arn:aws:connect:eu-west-2:260148551992:instance/acfcd22b-ea7c-4be1-bf41-a109717c3bcd/contact-flow/e082a04e-a7e5-429b-8c6e-3708db2c041f",
+          "resourceName": "covapp_question_b"
+        }
+      ],
+      "metadata": {
+        "position": {
+          "x": 1098,
+          "y": 259
+        },
+        "useDynamic": false,
+        "ContactFlow": {
+          "id": "arn:aws:connect:eu-west-2:260148551992:instance/acfcd22b-ea7c-4be1-bf41-a109717c3bcd/contact-flow/e082a04e-a7e5-429b-8c6e-3708db2c041f",
+          "text": "covapp_question_b",
+          "arn": null,
+          "metricDetail": null,
+          "resourceId": null
+        }
+      },
+      "target": "Flow"
+    }
+  ],
+  "version": "1",
+  "type": "contactFlow",
+  "start": "62c64ff3-0039-4475-9970-92bb719240ad",
+  "metadata": {
+    "entryPointPosition": {
+      "x": 20,
+      "y": 20
+    },
+    "snapToGrid": false,
+    "name": "covapp_question_a",
+    "description": "age",
+    "type": "contactFlow",
+    "status": "published",
+    "hash": "62ae3f51cf01d9baa2eefbda60824de2f2599b2618f4e2d69f8dad1ea6063281"
+  }
+}

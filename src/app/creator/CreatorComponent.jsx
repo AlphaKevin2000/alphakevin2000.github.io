@@ -6,6 +6,9 @@ import Button from "react-bootstrap/Button"
 import Form from "react-bootstrap/Form"
 import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
+import Accordion from "react-bootstrap/Accordion"
+import Card from "react-bootstrap/Card"
+import AccordionToggle from "react-bootstrap/AccordionToggle"
 
 export const defaultProps = {
   availableLanguages: [
@@ -16,9 +19,25 @@ export const defaultProps = {
 
 export const CreatorComponent = props => {
 
-  const { order, stringMap, fetchDataMock, availableLanguages, handleLanguageChange, language, createJSON, data } = props
+  const {
+    order,
+    stringMap,
+    fetchDataMock,
+    availableLanguages,
+    handleLanguageChange,
+    language,
+    createJSON,
+    chariteData,
+    createAmazonConnectConfig,
+    connectConf
+  } = props
 
-  console.log(data)
+  const bla = {
+    stringMap: stringMap[language],
+    order: order,
+    chariteData: chariteData,
+    connectConf: connectConf
+  }
 
   return (
     <Container>
@@ -37,27 +56,29 @@ export const CreatorComponent = props => {
           <Button onClick={() => fetchDataMock('order')}>Get Questionnnaire Order</Button>
         </ButtonGroup>
         <ButtonGroup>
-          <Button onClick={createJSON}>create JSON</Button>
+          <Button disabled={!order || !stringMap} onClick={createJSON}>create JSON</Button>
+          <Button disabled={!order || !stringMap || !chariteData} onClick={createAmazonConnectConfig}>create Amazon Connect Config</Button>
         </ButtonGroup>
       </ButtonToolbar>
-      {/* <Row>
-        <Col>
-          <Form.Group controlId="controlTextarea1">
-            <Form.Label>StringMap textarea</Form.Label>
-            <Form.Control as="textarea" rows="50" value={stringMap && JSON.stringify(stringMap[language], null, 4)} disabled/>
-          </Form.Group>
-        </Col>
-        <Col>
-          <Form.Group controlId="ControlTextarea2">
-            <Form.Label>Order textarea</Form.Label>
-            <Form.Control as="textarea" rows="50" value={order && JSON.stringify(order, null, 4)}disabled/>
-          </Form.Group>
-        </Col>
-      </Row> */}
-      <Form.Group controlId="controlTextarea3">
-            <Form.Label>Generated JSON textarea</Form.Label>
-            <Form.Control as="textarea" rows="50" value={data} disabled/>
-          </Form.Group>
+      <Accordion>
+        {
+          Object.keys(bla).map((key, i) => 
+            <Card key={"Card" + i}>
+              <Accordion.Toggle as={Card.Header} eventKey={i}>
+                { "Show " + key + " JSON"}
+              </Accordion.Toggle>
+              <Accordion.Collapse eventKey={i}>
+                <Card.Body>
+                <Form.Group controlId={"controlTextarea" + i}>
+                  <Form.Label>{key}</Form.Label>
+                  <Form.Control as="textarea" rows="50" value={bla[key] && JSON.stringify(bla[key], null, 4)} disabled/>
+                </Form.Group>
+                </Card.Body>
+              </Accordion.Collapse>
+            </Card>
+          )
+        }
+      </Accordion>
     </Container>
   )
 }

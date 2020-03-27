@@ -2,6 +2,7 @@ export const SET_QUESTIONNAIRE_STRING_MAP = "SET_QUESTIONNAIRE_STRING_MAP"
 export const SET_QUESTIONNAIRE_ORDER = "SET_QUESTIONNAIRE_ORDER"
 export const SET_LANGUAGE = "SET_LANGUAGE"
 export const SET_CREATED_JSON = "SET_CREATED_JSON"
+export const SET_CREATED_AMAZON_CONNECT_CONFIG = "SET_CREATED_AMAZON_CONNECT_CONFIG"
 
 
 export const setQuestionnaireStrings = stringMap => ({
@@ -21,5 +22,10 @@ export const setLanguage = language => ({
 
 export const setCreatedJSON = data => ({
   type: SET_CREATED_JSON,
+  payload: { data }
+})
+
+export const setCreatedAmazonConnectConfig = data => ({
+  type: SET_CREATED_AMAZON_CONNECT_CONFIG,
   payload: { data }
 })

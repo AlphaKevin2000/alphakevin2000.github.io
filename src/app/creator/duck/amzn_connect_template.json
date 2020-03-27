@@ -1,0 +1,20 @@
+{
+  "modules": [
+
+  ],
+  "version": "1",
+  "type": "contactFlow",
+  "start": "01e4e7d9-f568-437f-81f6-f409b43d8196",
+  "metadata": {
+    "entryPointPosition": {
+      "x": 20,
+      "y": 20
+    },
+    "snapToGrid": true,
+    "name": "covapp_questionnaire",
+    "description": "Initial Point of questionnaire based in charite recommendation webapp",
+    "type": "contactFlow",
+    "status": "published",
+    "hash": "70305ad6d9ad91e43a27693870475e798d1c6d36b69eb1bf03f06590b7e6dc8e"
+  }
+}

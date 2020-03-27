@@ -1,18 +1,20 @@
 import { connect } from "react-redux"
 import CreatorComponent from "./CreatorComponent"
-import { fetchDataMock, handleLanguageChange, createJSON } from "./duck/operations"
+import { fetchDataMock, handleLanguageChange, createJSON, createAmazonConnectConfig } from "./duck/operations"
 
 export const mapStateToProps = (state, ownProps) => ({
   order: state.creator.order,
   stringMap: state.creator.stringMap,
   language: state.creator.language,
-  data: state.creator.data
+  chariteData: state.creator.chariteData,
+  connectConf: state.creator.connectConf
 })
 
 export const mapDispatchToProps = {
   fetchDataMock,
   handleLanguageChange,
-  createJSON  
+  createJSON,
+  createAmazonConnectConfig
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreatorComponent)
