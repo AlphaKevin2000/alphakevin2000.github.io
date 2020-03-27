@@ -1,4 +1,5 @@
 //import fetch from "cross-fetch"
+import { uuid } from "uuidv4"
 import {
   setQuestionnaireStrings,
   setQuestionnaireOrder,
@@ -84,18 +85,38 @@ export const createJSON = () => {
   }
 }
 
-export const fillTemplate = (template, data) => {
-  const question1 = data[0]
-  console.log({question1})
-  return template
+export const createEmptyContactFlow = question => {
+  return {
+    modules: [],
+    version: "1",
+    metadata: {
+      entryPointPosition: {
+        "x": 20,
+        "y": 20
+      },
+      snapToGrid: true,
+      name: "charite_" + question.id,
+      description: question.text,
+      type: "contactFlow",
+      status: "saved"
+    }
+  }
+}
+
+export const createContactFlow = question => {
+  const  contactFlow = createEmptyContactFlow(question)
+
+  console.log(question.hasOwnProperty("options"))
+
+  return contactFlow
 }
 
 export const createAmazonConnectConfig = () => {
   return (dispatch, getState) => {
-    const template = connectTemplate
+    //const template = createEmptyTemplate() //connectTemplate
     const state = getState()
     const { chariteData } = state.creator
-    const config = fillTemplate(template, chariteData)
-    dispatch(setCreatedAmazonConnectConfig(config))
+    const contactFlows = chariteData.map(question => createContactFlow(question))
+    dispatch(setCreatedAmazonConnectConfig(contactFlows))
   }
 }
