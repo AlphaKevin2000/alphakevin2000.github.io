@@ -1,0 +1,970 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Code coverage report for src/app/creator/duck/questionnaire_strings.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="..\..\..\..\prettify.css" />
+    <link rel="stylesheet" href="..\..\..\..\base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(..\..\..\..\sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+    
+<body>
+<div class='wrapper'>
+    <div class='pad1'>
+        <h1><a href="..\..\..\..\index.html">All files</a> / <a href="index.html">src/app/creator/duck</a> questionnaire_strings.js</h1>
+        <div class='clearfix'>
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Statements</span>
+                <span class='fraction'>0/3</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">100% </span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>0/0</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">100% </span>
+                <span class="quiet">Functions</span>
+                <span class='fraction'>0/0</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Lines</span>
+                <span class='fraction'>0/3</span>
+            </div>
+        
+            
+        </div>
+        <p class="quiet">
+            Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
+        </p>
+    </div>
+    <div class='status-line low'></div>
+    <pre><table class="coverage">
+<tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
+<a name='L2'></a><a href='#L2'>2</a>
+<a name='L3'></a><a href='#L3'>3</a>
+<a name='L4'></a><a href='#L4'>4</a>
+<a name='L5'></a><a href='#L5'>5</a>
+<a name='L6'></a><a href='#L6'>6</a>
+<a name='L7'></a><a href='#L7'>7</a>
+<a name='L8'></a><a href='#L8'>8</a>
+<a name='L9'></a><a href='#L9'>9</a>
+<a name='L10'></a><a href='#L10'>10</a>
+<a name='L11'></a><a href='#L11'>11</a>
+<a name='L12'></a><a href='#L12'>12</a>
+<a name='L13'></a><a href='#L13'>13</a>
+<a name='L14'></a><a href='#L14'>14</a>
+<a name='L15'></a><a href='#L15'>15</a>
+<a name='L16'></a><a href='#L16'>16</a>
+<a name='L17'></a><a href='#L17'>17</a>
+<a name='L18'></a><a href='#L18'>18</a>
+<a name='L19'></a><a href='#L19'>19</a>
+<a name='L20'></a><a href='#L20'>20</a>
+<a name='L21'></a><a href='#L21'>21</a>
+<a name='L22'></a><a href='#L22'>22</a>
+<a name='L23'></a><a href='#L23'>23</a>
+<a name='L24'></a><a href='#L24'>24</a>
+<a name='L25'></a><a href='#L25'>25</a>
+<a name='L26'></a><a href='#L26'>26</a>
+<a name='L27'></a><a href='#L27'>27</a>
+<a name='L28'></a><a href='#L28'>28</a>
+<a name='L29'></a><a href='#L29'>29</a>
+<a name='L30'></a><a href='#L30'>30</a>
+<a name='L31'></a><a href='#L31'>31</a>
+<a name='L32'></a><a href='#L32'>32</a>
+<a name='L33'></a><a href='#L33'>33</a>
+<a name='L34'></a><a href='#L34'>34</a>
+<a name='L35'></a><a href='#L35'>35</a>
+<a name='L36'></a><a href='#L36'>36</a>
+<a name='L37'></a><a href='#L37'>37</a>
+<a name='L38'></a><a href='#L38'>38</a>
+<a name='L39'></a><a href='#L39'>39</a>
+<a name='L40'></a><a href='#L40'>40</a>
+<a name='L41'></a><a href='#L41'>41</a>
+<a name='L42'></a><a href='#L42'>42</a>
+<a name='L43'></a><a href='#L43'>43</a>
+<a name='L44'></a><a href='#L44'>44</a>
+<a name='L45'></a><a href='#L45'>45</a>
+<a name='L46'></a><a href='#L46'>46</a>
+<a name='L47'></a><a href='#L47'>47</a>
+<a name='L48'></a><a href='#L48'>48</a>
+<a name='L49'></a><a href='#L49'>49</a>
+<a name='L50'></a><a href='#L50'>50</a>
+<a name='L51'></a><a href='#L51'>51</a>
+<a name='L52'></a><a href='#L52'>52</a>
+<a name='L53'></a><a href='#L53'>53</a>
+<a name='L54'></a><a href='#L54'>54</a>
+<a name='L55'></a><a href='#L55'>55</a>
+<a name='L56'></a><a href='#L56'>56</a>
+<a name='L57'></a><a href='#L57'>57</a>
+<a name='L58'></a><a href='#L58'>58</a>
+<a name='L59'></a><a href='#L59'>59</a>
+<a name='L60'></a><a href='#L60'>60</a>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a>
+<a name='L66'></a><a href='#L66'>66</a>
+<a name='L67'></a><a href='#L67'>67</a>
+<a name='L68'></a><a href='#L68'>68</a>
+<a name='L69'></a><a href='#L69'>69</a>
+<a name='L70'></a><a href='#L70'>70</a>
+<a name='L71'></a><a href='#L71'>71</a>
+<a name='L72'></a><a href='#L72'>72</a>
+<a name='L73'></a><a href='#L73'>73</a>
+<a name='L74'></a><a href='#L74'>74</a>
+<a name='L75'></a><a href='#L75'>75</a>
+<a name='L76'></a><a href='#L76'>76</a>
+<a name='L77'></a><a href='#L77'>77</a>
+<a name='L78'></a><a href='#L78'>78</a>
+<a name='L79'></a><a href='#L79'>79</a>
+<a name='L80'></a><a href='#L80'>80</a>
+<a name='L81'></a><a href='#L81'>81</a>
+<a name='L82'></a><a href='#L82'>82</a>
+<a name='L83'></a><a href='#L83'>83</a>
+<a name='L84'></a><a href='#L84'>84</a>
+<a name='L85'></a><a href='#L85'>85</a>
+<a name='L86'></a><a href='#L86'>86</a>
+<a name='L87'></a><a href='#L87'>87</a>
+<a name='L88'></a><a href='#L88'>88</a>
+<a name='L89'></a><a href='#L89'>89</a>
+<a name='L90'></a><a href='#L90'>90</a>
+<a name='L91'></a><a href='#L91'>91</a>
+<a name='L92'></a><a href='#L92'>92</a>
+<a name='L93'></a><a href='#L93'>93</a>
+<a name='L94'></a><a href='#L94'>94</a>
+<a name='L95'></a><a href='#L95'>95</a>
+<a name='L96'></a><a href='#L96'>96</a>
+<a name='L97'></a><a href='#L97'>97</a>
+<a name='L98'></a><a href='#L98'>98</a>
+<a name='L99'></a><a href='#L99'>99</a>
+<a name='L100'></a><a href='#L100'>100</a>
+<a name='L101'></a><a href='#L101'>101</a>
+<a name='L102'></a><a href='#L102'>102</a>
+<a name='L103'></a><a href='#L103'>103</a>
+<a name='L104'></a><a href='#L104'>104</a>
+<a name='L105'></a><a href='#L105'>105</a>
+<a name='L106'></a><a href='#L106'>106</a>
+<a name='L107'></a><a href='#L107'>107</a>
+<a name='L108'></a><a href='#L108'>108</a>
+<a name='L109'></a><a href='#L109'>109</a>
+<a name='L110'></a><a href='#L110'>110</a>
+<a name='L111'></a><a href='#L111'>111</a>
+<a name='L112'></a><a href='#L112'>112</a>
+<a name='L113'></a><a href='#L113'>113</a>
+<a name='L114'></a><a href='#L114'>114</a>
+<a name='L115'></a><a href='#L115'>115</a>
+<a name='L116'></a><a href='#L116'>116</a>
+<a name='L117'></a><a href='#L117'>117</a>
+<a name='L118'></a><a href='#L118'>118</a>
+<a name='L119'></a><a href='#L119'>119</a>
+<a name='L120'></a><a href='#L120'>120</a>
+<a name='L121'></a><a href='#L121'>121</a>
+<a name='L122'></a><a href='#L122'>122</a>
+<a name='L123'></a><a href='#L123'>123</a>
+<a name='L124'></a><a href='#L124'>124</a>
+<a name='L125'></a><a href='#L125'>125</a>
+<a name='L126'></a><a href='#L126'>126</a>
+<a name='L127'></a><a href='#L127'>127</a>
+<a name='L128'></a><a href='#L128'>128</a>
+<a name='L129'></a><a href='#L129'>129</a>
+<a name='L130'></a><a href='#L130'>130</a>
+<a name='L131'></a><a href='#L131'>131</a>
+<a name='L132'></a><a href='#L132'>132</a>
+<a name='L133'></a><a href='#L133'>133</a>
+<a name='L134'></a><a href='#L134'>134</a>
+<a name='L135'></a><a href='#L135'>135</a>
+<a name='L136'></a><a href='#L136'>136</a>
+<a name='L137'></a><a href='#L137'>137</a>
+<a name='L138'></a><a href='#L138'>138</a>
+<a name='L139'></a><a href='#L139'>139</a>
+<a name='L140'></a><a href='#L140'>140</a>
+<a name='L141'></a><a href='#L141'>141</a>
+<a name='L142'></a><a href='#L142'>142</a>
+<a name='L143'></a><a href='#L143'>143</a>
+<a name='L144'></a><a href='#L144'>144</a>
+<a name='L145'></a><a href='#L145'>145</a>
+<a name='L146'></a><a href='#L146'>146</a>
+<a name='L147'></a><a href='#L147'>147</a>
+<a name='L148'></a><a href='#L148'>148</a>
+<a name='L149'></a><a href='#L149'>149</a>
+<a name='L150'></a><a href='#L150'>150</a>
+<a name='L151'></a><a href='#L151'>151</a>
+<a name='L152'></a><a href='#L152'>152</a>
+<a name='L153'></a><a href='#L153'>153</a>
+<a name='L154'></a><a href='#L154'>154</a>
+<a name='L155'></a><a href='#L155'>155</a>
+<a name='L156'></a><a href='#L156'>156</a>
+<a name='L157'></a><a href='#L157'>157</a>
+<a name='L158'></a><a href='#L158'>158</a>
+<a name='L159'></a><a href='#L159'>159</a>
+<a name='L160'></a><a href='#L160'>160</a>
+<a name='L161'></a><a href='#L161'>161</a>
+<a name='L162'></a><a href='#L162'>162</a>
+<a name='L163'></a><a href='#L163'>163</a>
+<a name='L164'></a><a href='#L164'>164</a>
+<a name='L165'></a><a href='#L165'>165</a>
+<a name='L166'></a><a href='#L166'>166</a>
+<a name='L167'></a><a href='#L167'>167</a>
+<a name='L168'></a><a href='#L168'>168</a>
+<a name='L169'></a><a href='#L169'>169</a>
+<a name='L170'></a><a href='#L170'>170</a>
+<a name='L171'></a><a href='#L171'>171</a>
+<a name='L172'></a><a href='#L172'>172</a>
+<a name='L173'></a><a href='#L173'>173</a>
+<a name='L174'></a><a href='#L174'>174</a>
+<a name='L175'></a><a href='#L175'>175</a>
+<a name='L176'></a><a href='#L176'>176</a>
+<a name='L177'></a><a href='#L177'>177</a>
+<a name='L178'></a><a href='#L178'>178</a>
+<a name='L179'></a><a href='#L179'>179</a>
+<a name='L180'></a><a href='#L180'>180</a>
+<a name='L181'></a><a href='#L181'>181</a>
+<a name='L182'></a><a href='#L182'>182</a>
+<a name='L183'></a><a href='#L183'>183</a>
+<a name='L184'></a><a href='#L184'>184</a>
+<a name='L185'></a><a href='#L185'>185</a>
+<a name='L186'></a><a href='#L186'>186</a>
+<a name='L187'></a><a href='#L187'>187</a>
+<a name='L188'></a><a href='#L188'>188</a>
+<a name='L189'></a><a href='#L189'>189</a>
+<a name='L190'></a><a href='#L190'>190</a>
+<a name='L191'></a><a href='#L191'>191</a>
+<a name='L192'></a><a href='#L192'>192</a>
+<a name='L193'></a><a href='#L193'>193</a>
+<a name='L194'></a><a href='#L194'>194</a>
+<a name='L195'></a><a href='#L195'>195</a>
+<a name='L196'></a><a href='#L196'>196</a>
+<a name='L197'></a><a href='#L197'>197</a>
+<a name='L198'></a><a href='#L198'>198</a>
+<a name='L199'></a><a href='#L199'>199</a>
+<a name='L200'></a><a href='#L200'>200</a>
+<a name='L201'></a><a href='#L201'>201</a>
+<a name='L202'></a><a href='#L202'>202</a>
+<a name='L203'></a><a href='#L203'>203</a>
+<a name='L204'></a><a href='#L204'>204</a>
+<a name='L205'></a><a href='#L205'>205</a>
+<a name='L206'></a><a href='#L206'>206</a>
+<a name='L207'></a><a href='#L207'>207</a>
+<a name='L208'></a><a href='#L208'>208</a>
+<a name='L209'></a><a href='#L209'>209</a>
+<a name='L210'></a><a href='#L210'>210</a>
+<a name='L211'></a><a href='#L211'>211</a>
+<a name='L212'></a><a href='#L212'>212</a>
+<a name='L213'></a><a href='#L213'>213</a>
+<a name='L214'></a><a href='#L214'>214</a>
+<a name='L215'></a><a href='#L215'>215</a>
+<a name='L216'></a><a href='#L216'>216</a>
+<a name='L217'></a><a href='#L217'>217</a>
+<a name='L218'></a><a href='#L218'>218</a>
+<a name='L219'></a><a href='#L219'>219</a>
+<a name='L220'></a><a href='#L220'>220</a>
+<a name='L221'></a><a href='#L221'>221</a>
+<a name='L222'></a><a href='#L222'>222</a>
+<a name='L223'></a><a href='#L223'>223</a>
+<a name='L224'></a><a href='#L224'>224</a>
+<a name='L225'></a><a href='#L225'>225</a>
+<a name='L226'></a><a href='#L226'>226</a>
+<a name='L227'></a><a href='#L227'>227</a>
+<a name='L228'></a><a href='#L228'>228</a>
+<a name='L229'></a><a href='#L229'>229</a>
+<a name='L230'></a><a href='#L230'>230</a>
+<a name='L231'></a><a href='#L231'>231</a>
+<a name='L232'></a><a href='#L232'>232</a>
+<a name='L233'></a><a href='#L233'>233</a>
+<a name='L234'></a><a href='#L234'>234</a>
+<a name='L235'></a><a href='#L235'>235</a>
+<a name='L236'></a><a href='#L236'>236</a>
+<a name='L237'></a><a href='#L237'>237</a>
+<a name='L238'></a><a href='#L238'>238</a>
+<a name='L239'></a><a href='#L239'>239</a>
+<a name='L240'></a><a href='#L240'>240</a>
+<a name='L241'></a><a href='#L241'>241</a>
+<a name='L242'></a><a href='#L242'>242</a>
+<a name='L243'></a><a href='#L243'>243</a>
+<a name='L244'></a><a href='#L244'>244</a>
+<a name='L245'></a><a href='#L245'>245</a>
+<a name='L246'></a><a href='#L246'>246</a>
+<a name='L247'></a><a href='#L247'>247</a>
+<a name='L248'></a><a href='#L248'>248</a>
+<a name='L249'></a><a href='#L249'>249</a>
+<a name='L250'></a><a href='#L250'>250</a>
+<a name='L251'></a><a href='#L251'>251</a>
+<a name='L252'></a><a href='#L252'>252</a>
+<a name='L253'></a><a href='#L253'>253</a>
+<a name='L254'></a><a href='#L254'>254</a>
+<a name='L255'></a><a href='#L255'>255</a>
+<a name='L256'></a><a href='#L256'>256</a>
+<a name='L257'></a><a href='#L257'>257</a>
+<a name='L258'></a><a href='#L258'>258</a>
+<a name='L259'></a><a href='#L259'>259</a>
+<a name='L260'></a><a href='#L260'>260</a>
+<a name='L261'></a><a href='#L261'>261</a>
+<a name='L262'></a><a href='#L262'>262</a>
+<a name='L263'></a><a href='#L263'>263</a>
+<a name='L264'></a><a href='#L264'>264</a>
+<a name='L265'></a><a href='#L265'>265</a>
+<a name='L266'></a><a href='#L266'>266</a>
+<a name='L267'></a><a href='#L267'>267</a>
+<a name='L268'></a><a href='#L268'>268</a>
+<a name='L269'></a><a href='#L269'>269</a>
+<a name='L270'></a><a href='#L270'>270</a>
+<a name='L271'></a><a href='#L271'>271</a>
+<a name='L272'></a><a href='#L272'>272</a>
+<a name='L273'></a><a href='#L273'>273</a>
+<a name='L274'></a><a href='#L274'>274</a>
+<a name='L275'></a><a href='#L275'>275</a>
+<a name='L276'></a><a href='#L276'>276</a>
+<a name='L277'></a><a href='#L277'>277</a>
+<a name='L278'></a><a href='#L278'>278</a>
+<a name='L279'></a><a href='#L279'>279</a>
+<a name='L280'></a><a href='#L280'>280</a>
+<a name='L281'></a><a href='#L281'>281</a>
+<a name='L282'></a><a href='#L282'>282</a>
+<a name='L283'></a><a href='#L283'>283</a>
+<a name='L284'></a><a href='#L284'>284</a>
+<a name='L285'></a><a href='#L285'>285</a>
+<a name='L286'></a><a href='#L286'>286</a>
+<a name='L287'></a><a href='#L287'>287</a>
+<a name='L288'></a><a href='#L288'>288</a>
+<a name='L289'></a><a href='#L289'>289</a>
+<a name='L290'></a><a href='#L290'>290</a>
+<a name='L291'></a><a href='#L291'>291</a>
+<a name='L292'></a><a href='#L292'>292</a>
+<a name='L293'></a><a href='#L293'>293</a>
+<a name='L294'></a><a href='#L294'>294</a>
+<a name='L295'></a><a href='#L295'>295</a>
+<a name='L296'></a><a href='#L296'>296</a>
+<a name='L297'></a><a href='#L297'>297</a>
+<a name='L298'></a><a href='#L298'>298</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">export const QUESTIONNAIRE_EN = <span class="cstat-no" title="statement not covered" >{</span>
+  answer_no: "No",
+  answer_region_no: "I haven't been to any of the regions mentioned above",
+  answer_unknown: "I don't know",
+  answer_yes: "Yes",
+  app_root_all_rights_reserved: "All rights reserved.",
+  app_root_data_privacy_link: "Privacy policy",
+  app_root_faq_link: "FAQ",
+  app_root_imprint_link: "Imprint",
+  app_root_legal_link: "Legal",
+  button_continue: "Continue to questions",
+  button_delete_qr_code: "Fill out new questionnaire",
+  button_show_code: "Display previous QR code",
+  button_start_now: "Start questionnaire",
+  cookie_bar_accept: "Accept",
+  cookie_bar_data_privacy: "privacy policy",
+  cookie_bar_reject: "Reject",
+  cookie_bar_text: "With your consent, we will analyze your use of the CovApp for scientific research and to improve the CovApp for all users. If you consent to the transmission of analysis data, please click on “Accept”. You can use the CovApp without giving consent to analyze your use of the CovApp. For further information, please visit the",
+  cookie_bar_text_dnt: 'To offer you a better browsing experience, we use cookies. We respect your "Do not track" browser setting, analyzing is deactivated.',
+  data_privacy_content: '&lt;strong&gt;CovApp – Data Protection Notice (Status: 20.3.2020)&lt;/strong&gt;\n\n&lt;strong&gt;1. Data Controller&lt;/strong&gt;\n\nThe CovApp is a joint project of Charité - Universitätsmedizin Berlin (responsible for the provision and hosting of the CovApp) and the nonprofit D4L data4life gGmbH.\n\nThe organisation responsible for the processing of personal data is\n\nCharité - University Medicine Berlin\nCharitéplatz 1\n10117 Berlin\nGermany\nPhone: &lt;a href="tel:+493045050"&gt;+49 30 45050&lt;/a&gt;\nWebsite: &lt;a href="https://www.charite.de/" target="_blank"&gt;www.charite.de&lt;/a&gt;\n\nIf you have any questions regarding the processing of your personal data, as well as your rights regarding data protection, please contact\n\nPhone: &lt;a href="tel:+4930450580016"&gt;+49 30 450580-016&lt;/a&gt;\nEmail: &lt;a href="mailto:datenschutz@charite.de"&gt;datenschutz(at)charite.de&lt;/a&gt;\n\n&lt;strong&gt;2. Which data is collected and how is it processed?&lt;/strong&gt;\n\nThe CovApp is used to ask questions about current symptoms, your last trips and possible contacts. These data are not attributed by name.\n\nThe CovApp is a web application. The following data is automatically transferred to the Charité\'s web server, which is operated by D4L data4life gGmbH as a processor on behalf of the Charité, with a computer center in Frankfurt at the subcontractor Amazon Web Services (AWS):\n\n- IP address of the device used for the retrieval\n- Web address (URL) of the page from which the file was requested (referrer)\n- Date and time of the request\n- Data volume transferred\n- Description of the type of web browser used\n\nThe above-mentioned data is not stored after the app has been used, so that no conclusion can be drawn as to the identity of the user.\n\nThe answers to the questions answered in the app and the recommendations for action are stored exclusively locally on the terminal device you use (smartphone, tablet, or PC). This data will – if you wish – be summarized in a QR code. You can show this QR code when being tested for COVID-19, at a doctor\'s or hospital to facilitate the collection of the necessary anamnesis data.\n\nYou can delete the data stored by CovApp on your terminal device at any time by clicking "Delete answers" at the end of the questionnaire. \n\n&lt;strong&gt;3. For what purposes and on what legal basis are the data processed?&lt;/strong&gt;\n\nThe CovApp is intended to make it easier for users to assess for themselves whether there is a need for further clarification regarding a COVID-19 infection and offers concrete recommendations for action. The app thus serves to combat the current COVID-19 pandemic. The legal basis of the processing is Article 6.1. lit. d) and e), Art. 9. 2 c), h), i) of the General Data Protection Regulation in conjunction with § 14.1.3 of the Berlin Data Protection Act.\n\nIn all other respects, the Charité\'s data protection declaration applies, available at &lt;a href="https://www.charite.de/service/datenschutz/" target="_blank"&gt;https://www.charite.de/service/datenschutz/&lt;/a&gt;',
+  data_privacy_headline: "Privacy policy",
+  disclaimer_headline: "Disclaimer",
+  disclaimer_paragraph_1: "Dear users,\nThe coronavirus pandemic is changing, and in the future, we will only test people in Germany who meet the following criteria:\n&lt;ul&gt;&lt;li&gt;People who have had contact with infected individuals and have symptoms&lt;/li&gt;&lt;li&gt;People belonging to risk groups and those having pre-existing conditions that may intensify the severity of COVID-19 disease&lt;/li&gt;&lt;li&gt;People who could further spread the coronavirus&lt;/li&gt;&lt;/ul&gt;\nIf you have used the app in the past, you will notice that the assessment is now different. We will continue to update our protocols in accordance with relevant authorities and institutional recommendations. For this, we are working closely with the Robert Koch Institute and the Federal Ministry of Health.\n\nThe main message is: Please stay at home and do your part to help slow down the spread.\n\n&lt;strong&gt;Legal disclaimer&lt;/strong&gt;\nUsage of this app &lt;strong&gt;does not substitute medical treatment&lt;/strong&gt; by a physician or clinical diagnostics. The CovApp serves to improve the procedures at the Charité examination centre and other outpatient clinics in connection with the novel coronavirus SARS-CoV-2. If you currently feel seriously ill, please seek medical help.",
+  disclaimer_paragraph_2: "This website uses cookies, which are necessary for the function of the website. Personal data is not stored and no conclusions regarding the identity of the user can be made.",
+  disclaimer_sub_headline_1: "Remarks regarding usage of cookies",
+  faq_content: '&lt;strong&gt;About the coronavirus&lt;/strong&gt;\nThe scientific term for the novel coronavirus is „SARS-CoV-2“. This virus can cause a respiratory disease. The name of this disease is called „COVID-19“. Because the infectious disease COVID-19 has already spread across countries and continents, it\'s referred to as a pandemic.\n\n&lt;strong&gt;Transmission&lt;/strong&gt;\nThe new coronavirus is transmitted via droplet infection. It can directly be transferred between humans, when droplets containing the virus get into the respiratory system after they are absorbed via the lining of the mouth and nose or via the conjunctiva of the eye. But an indirect infection is also possible, when droplets are transmitted via the hands to the mucosa of mouth, nose and eyes. Symptoms occur 5 to 6, at most 14 days, after infection.\u2028\n\n&lt;strong&gt;Symptoms&lt;/strong&gt;\nAfter an infection with the coronavirus, the disease runs a mild course and is not life-threatening for most people. This extends to pregnant women and children. There can be flu-like symptoms, such as a dry cough, fatigue and fever. Furthermore, some patients suffer from a sore throat, headaches, limb pain and chills. Currently it’s been assumed that 4 in 5 cases run a mild course. Though in some patients the infection can have a serious course, causing respiratory distress and bilateral pneumonia. This mostly affects elderly persons or people with chronic diseases such as cardiovascular diseases, chronic lung disease, diabetes, high blood pressure, or cancer. Those severe cases have to be treated in intensive care in a hospital.\n\n&lt;strong&gt;Solidarity&lt;/strong&gt;\nAlthough there is a very good healthcare system available in Germany, it is not prepared for a rapid increase in intensive care patients. But if it is possible to prolong an increase in severe cases, treatment of infected patients will continue to be available. This can only be done if every citizen practices social distancing. As a precautionary measure, especially for the elderly generation and the chronically ill, everyone should take the situation seriously and avoid social contact as much as possible. But please, provide for elderly and chronically ill relatives or neighbors and living alone or persons in need with food and daily life essentials. Be considerate and attentive for their needs and worries. Communicate with each other – but stay at least 1.5 meters apart. Act in solidarity.\n\n&lt;strong&gt;Protection&lt;/strong&gt;\nTo slow down the spreading of the virus, avoid direct contact, for example when meeting someone. Wash your hands regularly and thoroughly, at least 20 seconds with soap and water. Keep as much distance as possible when coughing or sneezing – turn away from other people. Sneeze into a sleeve or a tissue, which you throw into a bin immediately. Don’t share something you touched with your mouth, like a glass or a bottle, with someone else. Stay at home.\n\n&lt;strong&gt;Therapy&lt;/strong&gt;\nThe therapy of the infection depends on the severity of the disease. Mild cases don’t have to be treated and can get well at home. Severe pneumonia has to be treated, for example with oxygen treatment, fluid substitution or antibiotics to treat bacterial co-infections. This mostly has to be done in a hospital.\n\n&lt;strong&gt;Vaccination&lt;/strong&gt;\nResearchers are currently working on developing a vaccine. Right now, there is no vaccination available which protects against the new coronavirus.\n\n&lt;strong&gt;Suchen Sie sich Hilfe&lt;/strong&gt;\nThe Violence against women support Hotline : &lt;a href="tel:+498000116116"&gt;0800 116 116&lt;/a&gt;\n Crisis Hotline: &lt;a href="tel:+498001110111"&gt;0800 111 0 111&lt;/a&gt; oder &lt;a href="tel:+498001110222"&gt;0800 111 0 222&lt;/a&gt;\n\n&lt;strong&gt;Stay informed&lt;/strong&gt;\nThe &lt;a href="https://www.bundesgesundheitsministerium.de/coronavirus.html" target="_blank"&gt;German Ministry of Health&lt;/a&gt; regularly updates the information on the coronavirus.\n\nCharité researcher Prof. Dr. Christian Drosten keeps you up-to-date on the &lt;a href="https://www.ndr.de/nachrichten/info/Corona-Podcast-Alle-Folgen-in-der-Uebersicht,podcastcoronavirus134.html" target="_blank"&gt;NDR podcast&lt;/a&gt;',
+  faq_headline: "FAQ Coronavirus",
+  found_code: "A QR code was found",
+  imprint_content: '&lt;strong&gt;Provider &lt;/strong&gt;\nCharité – Universitätsmedizin Berlin\nPostal address: Charitéplatz 1, 10117 Berlin \nDie Charité – Universitätsmedizin Berlin is a public-law institution. It is legally represented by the chairman of the board.\n\n&lt;strong&gt;Contact&lt;/strong&gt;\nSend an email to &lt;a href="mailto:covapp@charite.de"&gt;covapp@charite.de&lt;/a&gt; for any praise, notes, or criticism\nInternet: &lt;a href="https://www.charite.de" target="_blank"&gt;https://www.charite.de&lt;/a&gt;\n\n&lt;strong&gt;Responsible person in terms of media law&lt;/strong&gt;\nProf. Dr. Heyo K. Kroemer, The Chairman of the Board of Charité – Universitätsmedizin Berlin \n\nResponsible Content:\nProject Lead: Dr. Valerie Kirchberger, M. Sc.\nHead of Product: Dipl. Kffr. Claudia Hartmann\n\nResponsible Software development:\nHead Charité: Dr. Alexander H. Thieme M. Sc.\nSAP Integration: Peter Heumann\n\nCovApp Team: Antonia Rollwage, Peter Gocke\n\n&lt;strong&gt;Regulatory authority &lt;/strong&gt;\nThe Governing Mayor of Berlin – Senate Chancellery Higher Education and Research \nContact: &lt;a href="https://www.berlin.de/rbmskzl/" target="_blank"&gt;https://www.berlin.de/rbmskzl/&lt;/a&gt;\n\nSenate Chancellery Health, Care and Equality\n&lt;a href="https://www.berlin.de/sen/gpg/" target="_blank"&gt;https://www.berlin.de/sen/gpg/&lt;/a&gt;\n\nSales tax number – Identification number: DE 228847810',
+  imprint_headline: "Imprint",
+  input_date_error: "Invalid date. Please try again.",
+  input_date_error_future: "The date must not be in the future.",
+  input_date_help: "Ensure to enter a full date in the DD MM YYYY format that isn’t in the future. For example, 09 03 2020",
+  input_date_label: "Please enter the date",
+  input_date_label_day: "Day",
+  input_date_label_month: "Month",
+  input_date_label_year: "Year",
+  input_date_placeholder_day: "DD",
+  input_date_placeholder_month: "MM",
+  input_date_placeholder_year: "YYYY",
+  legal_first_paragraph: "&lt;p&gt;&lt;strong&gt;Legal notice&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Disclaimer&lt;/p&gt;&lt;p&gt;&lt;strong&gt;General notice &lt;/strong&gt;&lt;/p&gt;&lt;p&gt;The use of this app does not replace medical treatment. If you are currently feeling seriously ill, please seek medical treatment immediately. The digital application is not an application that provides diagnostic services. The application serves to simplify the procedures in care.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Liability for contents &lt;/strong&gt;&lt;/p&gt;&lt;p&gt;As a service provider, we are responsible for our own contents according to § 7 (1) TMG (German Telemedia Act). According to §§ 8 to 10 TMG, we, as a service provider, are not obligated to monitor third party information transmitted or stored. Obligations to remove or block the use of information according to general laws remain unaffected.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Liability for links &lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Our offer contains links to external websites of third parties, on whose contents we have no influence. Therefore, we cannot assume any liability for these external contents. The respective provider or operator of the sites is always responsible for the contents of the linked sites. &lt;/p&gt;&lt;p&gt;&lt;strong&gt;Copyright&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;The contents and works created by the service provider on these pages are subject to German copyright law. The reproduction, editing, distribution and any kind of use outside the limits of copyright law require the written consent of the respective author or creator. Downloads and copies of these pages are only permitted for private, non-commercial use. Insofar as the operator did not create the content on this site, the copyrights of third parties are respected. In particular, content of third parties is marked as such. Nevertheless, should you become aware of a copyright infringement, please inform us accordingly. If we become aware of any infringements, we will remove such contents immediately.&lt;/p&gt;",
+  legal_headline: "Legal",
+  logo_header_label: "In partnership with",
+  navigation_header_back_button_label: "Navigate back",
+  q_A_option0: "Under 40",
+  q_A_option1: "40-50",
+  q_A_option2: "51-60",
+  q_A_option3: "61-70",
+  q_A_option4: "71-80",
+  q_A_option5: "Over 80",
+  q_A_text: "How old are you?",
+  q_A0_comment: "The question relates to cold symptoms and excludes chronic runny nose, seasonal or allergy-related runny nose. If you have chronic sniffling, please compare your current conditions with your existing problems.",
+  q_A0_text: "In the past 24 hours, have you had a runny nose?",
+  q_A1_comment: "If you have a chronic bowel disease, please compare your current bowel symptoms to your bowel patterns under your existing medical condition.",
+  q_A1_text: "In the past 24 hours, have you had diarrhea?",
+  q_A2_text: "In the past 24 hours, have you had a sore throat?",
+  q_A3_text: "In the past 24 hours, have you had a headache?",
+  q_A5_text: "Have you been diagnosed with chronic lung disease by a doctor?",
+  q_A6_text: "Have you been diagnosed with diabetes by a doctor?",
+  q_A7_text: "Have you been diagnosed with heart disease by a doctor?",
+  q_A8_text: "Have you been diagnosed with adipositas (obesity) by a doctor?",
+  q_A9_text: "Are you pregnant?",
+  q_B_option0: "Living alone",
+  q_B_option1: "Living together with family, in a shared flat, or in a supervised community facility",
+  q_B_text: "What is your current living situation?",
+  q_B0_text: "Are you currently taking steroids?",
+  q_B1_comment: "You take or get immunosuppresives after an organ transplant, in the therapy of an autoimmune disease, or during chemotherapy.",
+  q_B1_text: "Are you currently taking immunosuppressants?",
+  q_B2_text: "Have you been vaccinated against flu between October 2019 and today?",
+  q_B7_comment: "Check the box if you:\n&lt;ul&gt;&lt;li&gt;Become breathless faster than usual or have difficulty breathing with light loads, such as a walk or climbing a short flight of stairs&lt;/li&gt;&lt;li&gt;Experience difficulty breathing or shortness of breath when sitting or lying down&lt;/li&gt;&lt;li&gt;Have a feeling of breathlessness/shortness of breath when getting up from bed or a chair&lt;/li&gt;&lt;/ul&gt;\n\nIf you have chronic lung disease, compare your current breathing problems with your existing breathing problems.",
+  q_B7_text: "In the past 24 hours, did you feel that you were more quickly out of breath than usual?",
+  q_B8_text: "What day was the last contact?",
+  q_B9_text: "With regard to all questions about symptoms: since when have you had the symptoms you specified?",
+  q_C_option0: "In the medical field",
+  q_C_option1: "In a community facility (school, day care center, university, home etc.)",
+  q_C_option2: "No, in none of the above",
+  q_C_text: "Do you work in one of the following areas?",
+  q_D_text: "Do you smoke?",
+  q_P1_text: "Are you 65 years old or older?",
+  q_P3_comment: "Care services or support that you provide in connection with your professional activity are not meant.",
+  q_P3_text: "At least once a week, do you privately care for people with age-related conditions, chronic illnesses, or frailty?",
+  q_Q_comment: 'Close contact with a confirmed case means:\n&lt;ul&gt;&lt;li&gt;Face-to-face contact for longer than 15 minutes&lt;/li&gt;&lt;li&gt;Direct, physical contact (touching, shaking hands, kissing)&lt;/li&gt;&lt;li&gt;Being within 1.5 meters of the person for more than 15 minutes&lt;/li&gt;&lt;li&gt;Contact with or exchange of body fluids&lt;/li&gt;&lt;li&gt;Living in the same apartment&lt;/li&gt;&lt;/ul&gt;\n\nChoose "no" if you have worn adequate protective measures (mask, smock) on contact.',
+  q_Q_text: "Have you had close contact with a confirmed case?",
+  q_SD_text: "Have you had any taste and/or smell loss in the last 24 hours?",
+  q_T_text: "Have you had a fever (over 38°C) in the past 24 hours?",
+  q_U_text: "Have you had a fever (over 38°C) in the past 4 days?",
+  q_V_option0: "Under 38°C",
+  q_V_option1: "38°C",
+  q_V_option2: "39°C",
+  q_V_option3: "40°C",
+  q_V_option4: "41°C",
+  q_V_option5: "42°C",
+  q_V_option6: "More than 42°C",
+  q_V_option7: "I don't know",
+  q_V_text: "What was the highest temperature, approx.?",
+  q_W_text: "In the past 24 hours, have you had chills?",
+  q_X_text: "In the past 24 hours, have you felt tired or worn out?",
+  q_Y_text: "In the past 24 hours, have you had body aches?",
+  q_Z_comment: "The question relates to cold symptoms and excludes chronic cough, seasonal or allergy-related cough.\nIf you have a chronic cough, please compare your current coughing to your regular problems.",
+  q_Z_text: "In the past 24 hours, have you had a persistent cough?",
+  qr_code_button_reset: "Delete answers",
+  qr_code_headline: "Your personal summary",
+  qr_code_hide_answers: "Hide answers",
+  qr_code_paragraph: "Below, you find a summary of your answers as a table and as a QR code.\n\nPlease save the following QR code and the summary of your answers if you received the recommendation to present yourself at a testing site. If possible, print the summary and, if applicable, show it at the testing site.\n\nIf you need to leave home: Please keep a distance of at least 1.5 meters from other people, do not touch anything, and try to contain coughing and sneezing without affecting others.",
+  qr_code_print: "Print",
+  qr_code_show_answers: "Show answers",
+  questionnaire_button_generate_qr: "Complete questionnaire",
+  questionnaire_button_next: "Next",
+  recommendation_case_1_additonal_info: "&lt;strong&gt;Charité Virchow Wedding&lt;/strong&gt;\nMittelallee 1 \nOpen daily 8 AM to 4 PM  \n\n&lt;strong&gt;Evangelisches Krankenhaus Königin Elisabeth Herzberge (KEH)&lt;/strong&gt;\nHerzbergstraße 79, 10365 Berlin \nMon-Fri 10 AM to 7 PM, Sat/Sun 10 AM to 5 PM\n\n&lt;strong&gt;DRK Kliniken Berlin Westend&lt;/strong&gt;\nSpandauer Damm 130, 14050 Berlin \nMon-Fri 9 AM to 3 PM\n\n&lt;strong&gt;Coronavirus outpatient clinic Havelhöhe Community Hospital, building 16&lt;/strong&gt;\nHaus 16, Kladower Damm 221, Spandau \nTesting site: Mon-Fri 9 AM to 5 PM, Hotline: Mon-Fri 8 AM to 6 PM and Sat/Sun 9 AM to 3:30 PM",
+  recommendation_case_1_emoji_label: "Red circle",
+  recommendation_case_1_headline: "Get in touch",
+  recommendation_case_1_hide_info: "Hide testing sites",
+  recommendation_case_1_show_info: "Show testing sites",
+  recommendation_case_1_text: 'You had contact with a confirmed case and reported symptoms of the disease that could be explained by a coronavirus infection.\n\nPlease contact your local health department or call a local public hotline to learn how to corona virus testing is organized in your area.\nYou can find contact information for the regional health authorities on the &lt;a href="https://tools.rki.de/PLZTool/" target="_blank"&gt;Robert Koch Institute website&lt;/a&gt;\n\n&lt;strong&gt;For residents of Berlin:&lt;/strong&gt;\nPlease contact the hotline of the Senate Department of Health (Tel. &lt;a href="tel:+493090282828"&gt;030 90282828&lt;/a&gt;) or make an appointment for the &lt;a href="https://app.samedi.de/practices/40qpj1s185nermhp/api/booking-widget/vcdirekt?category_id=73198&amp;event_type_id=211636"&gt;Charité\'s video consultation service&lt;/a&gt;. You can also visit one of the in-person testing sites. Please plan for long waiting times.\n\nAccording to the recommendations of the Robert Koch Institute, it would make sense for you to be tested. However, there is no entitlement to a test. The decision whether you should be tested is a medical one and may also depend on on-site test capacities.',
+  recommendation_case_2_headline: "Please take care of yourself at home.",
+  recommendation_case_2_text: 'The symptoms you mentioned may appear consistent with those of a coronavirus infection.\n\nAccording to the current recommendations of the Robert Koch Institute, an examination for the coronavirus is currently not recommended for you since the contact with a confirmed case was more than 14 days ago or you had no contact with a confirmed case.\n\nIt is best for you to stay at home, focus on your recovery and reduce direct personal contacts.\n\nIf your symptoms become more severe in the next few days or if you are unsure what to do, please first contact your general practitioner or the medical on-call service (&lt;a href="tel:+49116117"&gt;116117&lt;/a&gt;). Alternatively, you are welcome to make an appointment for the &lt;a href="https://app.samedi.de/practices/40qpj1s185nermhp/api/booking-widget/vcdirekt?category_id=73198&amp;event_type_id=211636"&gt;Charité\'s video consultation service&lt;/a&gt; or make an appointment using your mobile phone with KRY: &lt;a href="https://kry.de/redirect?campaign=charite_app-link-mar2020-corona" target="_blank"&gt;https://kry.de&lt;/a&gt;. (KRY is a external provider. You will be redirected to a third-party website, for which the Charité has no responsibility).\n\n&lt;strong&gt;For residents of Berlin:&lt;/strong&gt;\nYou are welcome to make an appointment for the &lt;a href="https://app.samedi.de/practices/40qpj1s185nermhp/api/booking-widget/vcdirekt?category_id=73198&amp;event_type_id=211636" target="_blank"&gt;Charité\'s video consultation service&lt;/a&gt; or contact the Senate Department of Health hotline (Tel. &lt;a href="tel:+493090282828"&gt;030 90282828&lt;/a&gt;).',
+  recommendation_case_3_emoji_label: "Orange circle",
+  recommendation_case_3_headline: "Stay at home and get healthy",
+  recommendation_case_3_text: 'You had contact with a person infected with the coronavirus within the past 14 days, but you currently have no symptoms. In your situation, a screening for the coronavirus is currently not recommended because a possible negative test result does not reliably rule out infection.\n\nPlease stay at home. If you develop (cold/flu) symptoms in the next few days, you can use this tool again to check for new recommendations given your symptom profile and history.\n\nIf you are unsure what to do or have any further questions, please contact your general practitioner or the medical on-call service (&lt;a href="tel:+49116117"&gt;116117&lt;/a&gt;). You are welcome to make an appointment for the &lt;a href="https://app.samedi.de/practices/40qpj1s185nermhp/api/booking-widget/vcdirekt?category_id=73198&amp;event_type_id=211636" target="_blank"&gt;Charité\'s video consultation service&lt;/a&gt; or make an appointment using your mobile phone with KRY: &lt;a href="https://kry.de/redirect?campaign=charite_app-link-mar2020-corona" target="_blank"&gt;https://kry.de&lt;/a&gt;. (KRY is a external provider. You will be redirected to a third-party website, for which the Charité has no responsibility).\n\n&lt;strong&gt;For residents of Berlin:&lt;/strong&gt;\nYou are welcome to make an appointment for the &lt;a href="https://app.samedi.de/practices/40qpj1s185nermhp/api/booking-widget/vcdirekt?category_id=73198&amp;event_type_id=211636" target="_blank"&gt;Charité\'s video consultation service&lt;/a&gt; or contact the Senate Department of Health hotline (Tel. &lt;a href="tel:+493090282828"&gt;030 90282828&lt;/a&gt;).',
+  recommendation_case_4_emoji_label: "Yellow circle",
+  recommendation_case_4_headline: "Please stay at home and follow the general hygiene recommendations.",
+  recommendation_case_4_text: 'According to the current recommendations of the Robert Koch Institute, an examination for the coronavirus is currently not recommended for you, since the contact with a confirmed case was more than 14 days ago or you had no contact with a confirmed case. \n\nPlease stay at home, allow yourself to recover, and avoid unnecessary contacts with other people.\n\nIf your symptoms get worse in the next few days or you feel unsure, please contact your general practitioner or the medical on-call service (&lt;a href="tel:+49116117"&gt;116117&lt;/a&gt;). Alternatively, you are welcome to make an appointment for the &lt;a href="https://app.samedi.de/practices/40qpj1s185nermhp/api/booking-widget/vcdirekt?category_id=73198&amp;event_type_id=211636" target="_blank"&gt;Charité\'s video consultation service&lt;/a&gt; or make an appointment using your mobile phone with KRY: &lt;a href="https://kry.de/redirect?campaign=charite_app-link-mar2020-corona" target="_blank"&gt;https://kry.de&lt;/a&gt;. (KRY is a external provider. You will be redirected to a third-party website, for which the Charité has no responsibility).\n\n&lt;strong&gt;For residents of Berlin:&lt;/strong&gt;\nYou are welcome to make an appointment for the &lt;a href="https://app.samedi.de/practices/40qpj1s185nermhp/api/booking-widget/vcdirekt?category_id=73198&amp;event_type_id=211636" target="_blank"&gt;Charité\'s video consultation service&lt;/a&gt; or contact the Senate Department of Health hotline (Tel. &lt;a href="tel:+493090282828"&gt;030 90282828&lt;/a&gt;).',
+  recommendation_case_5_emoji_label: "Green circle",
+  recommendation_case_5_headline: "Please stay at home",
+  recommendation_case_5_text: 'Currently, you don\'t need to do anything, because:\n&lt;ul&gt;&lt;li&gt;You didn\'t have contact to a verified case&lt;/li&gt;&lt;li&gt;You don\'t have symptoms&lt;/li&gt;&lt;/ul&gt;\nTo keep the risk of infection low, please pay more attention to good hand hygiene.\n\nAvoid unnecessary contacts with other people and stay at home if possible. When you leave the house, maintain a sufficient distance (at least 1.5 meters) from other people and follow the &lt;a href="https://www.infektionsschutz.de/coronavirus/verhalten.html" target="_blank"&gt;rules of conduct to protect against infection&lt;/a&gt;\n\nIf you develop (cold/flu) symptoms in the next few days, you can use this tool again to check for new recommendations given your symptom profile and history.\n\nFurther helpful information can be found on: &lt;a href="https://www.zusammengegencorona.de" target="_blank"&gt;ZusammenGegenCorona.de&lt;/a&gt;',
+  risk_spreading_caring_for_relatives: "&lt;strong&gt;You indicated that you take care of one or more relatives. &lt;/strong&gt;\nPlease discuss how to proceed with your general practitioner and try to maintain a safe physical distance from your relative(s) in care.",
+  risk_spreading_living_alone: '&lt;strong&gt;You reported that you live alone.&lt;/strong&gt;\nWe advise you to call a trusted person on a daily basis to discuss your current condition and any potential worsening of symptoms.\n\nPlease inquire with neighbors, family members, and friends whether they are able to help you. If this isn\'t possible, you can contact volunteers in your area or do research on the Internet (e.g., using the "Corona Neighborhood Help" search term). ',
+  risk_spreading_living_together: "&lt;strong&gt;You reported that you do not live alone. &lt;/strong&gt;\nWhen possible, please stay in your own room.",
+  risk_spreading_paragraphs: '&lt;strong&gt;General notes&lt;/strong&gt;\nWhen you leave the house, keep enough distance (at least 1.5 meters) from other people and follow the rules of conduct for &lt;a href="https://www.infektionsschutz.de/coronavirus/verhalten.html" target="_blank"&gt;protection against infection&lt;/a&gt;.\n\nPlease avoid unnecessary contact with other people and stay at home if possible.\n\nFurther helpful information can be found on: &lt;a href="https://www.zusammengegencorona.de" target="_blank"&gt;ZusammenGegenCorona.de&lt;/a&gt;',
+  risk_spreading_workspace_medical: "&lt;strong&gt;You are working in the medical field&lt;/strong&gt;\nPlease inform your employer of your contact or current symptoms and discuss further measures to protect the people around you and your colleagues.",
+  risk_very_ill_above_sixty_five: '&lt;strong&gt;You reported shortness of breath.&lt;/strong&gt;\nPlease call your general practitioner or the medical on-call service &lt;a href="tel:+49116117"&gt;(+49 116 117)&lt;/a&gt;. If your shortness of breath becomes severe, please seek medical help. \n\nPlease check in daily with a trusted person about your current condition and any potential worsening of symptoms.',
+  risk_very_ill_below_sixty_five: '&lt;strong&gt;You reported shortness of breath.&lt;/strong&gt;\nPlease call your general practitioner or the medical on-call service &lt;a href="tel:+49116117"&gt;(116117)&lt;/a&gt;. If your shortness of breath becomes severe, please seek medical help. ',
+  start_headline: "Recommendations and information regarding coronavirus",
+  start_legal_paragraph: "&lt;strong&gt;This application is not an application that provides diagnostic services. The application serves to simplify the procedures in care.&lt;/strong&gt;",
+  start_paragraph_1_option_1: "Contacts to services in Berlin",
+  start_paragraph_1_option_2: "Decision support for doctor's visit or coronavirus test",
+  start_paragraph_1_option_3: "Information to reduce your risk",
+  start_paragraph_1_option_4: "Optimize the patient flow",
+  start_paragraph_2: '&lt;p&gt;The CovApp is software developed by Charité in cooperation with Data4Life. You can use it to get recommendations for action in just a few minutes. The app asks you several questions including symptoms and potential contacts. Besides recommendations for action, relevant contacts, and structured results, the purpose of the app is to guide you safely through the various health care offers and, if necessary, to show you the way to hospitals or to examination centers. Please note that this app does not provide diagnostic services.&lt;/p&gt; \n&lt;p&gt;In this way, the CovApp can help you to better assess your medical condition, provide recommendations regarding doctor’s visits or coronavirus testing, and summarize relevant medical information for future doctor’s consultation. &lt;/p&gt;&lt;p&gt;&lt;h3 class="o-headline-3"&gt;How can I use the CovApp? &lt;/h3&gt;&lt;/p&gt;\n&lt;p&gt;&lt;strong&gt;1. Start the survey by clicking "Start questionnaire"&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;The survey contains questions regarding your current symptoms and contact history.  \nCompleting the survey takes approximately 5 minutes. Please try to answer the questions as precisely as possible.&lt;/p&gt;\n&lt;p&gt;&lt;strong&gt;2. Survey and recommendations&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;At the end of the survey, the CovApp summarizes your answers and provides you with a recommendation for action, for example: &lt;ul&gt;&lt;li&gt;Advice to contact the public hotline for coronavirus&lt;/li&gt;&lt;li&gt;Advice to contact your general practitioner&lt;/li&gt;&lt;li&gt;Advice on social distancing&lt;/li&gt;&lt;/ul&gt;&lt;/p&gt;\n&lt;p&gt;&lt;strong&gt;3. Preparation for doctor’s visit&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;When you\'re given the advice for a doctor’s visit or a visit to one of the coronavirus testing sites, please bring the QR code or print the summary presented. Some coronavirus testing sites (like the Charité) can scan the code so that your answers are made directly available to our medical staff and can be used for your consultation. This helps to speed up the process of the medical interview. \nIf visiting your local physician or any other coronavirus testing site, please print the summary provided and bring it along to your consultation.&lt;/p&gt;',
+  start_paragraph_3: "&lt;p&gt;The survey is evaluated anonymously, and all information is processed on your device (for example, your smartphone). None of your answers will be forwarded to us, our server, or any third party. &lt;/p&gt;",
+  start_paragraph_4: "&lt;p&gt;The use of this app does not qualify as medical treatment. If you currently feel seriously ill, please seek medical help.&lt;/p&gt;",
+  start_sub_headline_1: "Prepare your doctor's visit",
+  start_sub_headline_2: "What is the CovApp?",
+  start_sub_headline_3: "Which data will be transmitted through the internet?",
+  start_sub_headline_4: "If in doubt, call a doctor!"
+}
+&nbsp;
+export const QUESTIONNAIRE_DE = <span class="cstat-no" title="statement not covered" >{</span>
+  answer_no: "Nein",
+  answer_region_no: "Ich war in keiner der genannten Regionen",
+  answer_unknown: "Ich weiß es nicht",
+  answer_yes: "Ja",
+  app_root_all_rights_reserved: "Alle Rechte vorbehalten.",
+  app_root_data_privacy_link: "Datenschutzerklärung",
+  app_root_faq_link: "FAQ",
+  app_root_imprint_link: "Impressum",
+  app_root_legal_link: "Rechtliches",
+  button_continue: "Weiter zu den Fragen",
+  button_delete_qr_code: "Fragebogen neu ausfüllen",
+  button_show_code: "Erstellten QR-Code anzeigen",
+  button_start_now: "Fragebogen starten",
+  cookie_bar_accept: "Akzeptieren",
+  cookie_bar_data_privacy: "Datenschutzerklärung",
+  cookie_bar_reject: "Ablehnen",
+  cookie_bar_text: "Mit Ihrer Einwilligung analysieren wir Ihre Nutzung zu wissenschaftlichen Zwecken und zur Verbesserung der CovApp. Wenn Sie in die Übermittlung von Analysedaten einwilligen möchten, klicken Sie bitte auf „Akzeptieren”. Sie können die CovApp auch ohne Einwilligung in die Analyse Ihrer Nutzung der CovApp nutzen. Weitere Informationen finden Sie in der ",
+  cookie_bar_text_dnt: 'Für eine bessere Nutzererfahrung verwenden wir Cookies. Ihre "Do not track"-Browsereinstellung wird hierbei berücksichtigt und es findet keine Analyse statt.',
+  data_privacy_content: '&lt;strong&gt;Hinweise zum Datenschutz bei der CovApp der Charité (Stand: 20.3.2020)&lt;/strong&gt;\n\n&lt;strong&gt;1. Verantwortlichkeit&lt;/strong&gt;\n\nDie CovApp ist ein Gemeinschaftsprojekt der Charité – Universitätsmedizin Berlin (Verantwortlich für die Bereitstellung und das Hosting der CovApp) und der gemeinnützigen D4L data4life gGmbH.\n\nFür die Verarbeitung personenbezogener Daten verantwortlich ist die\n\nCharité – Universitätsmedizin Berlin\nCharitéplatz 1\n10117 Berlin\nDeutschland\nTel: &lt;a href="tel:+493045050"&gt;+49 (0) 30 450 50&lt;/a&gt;\nWebsite: &lt;a href="https://www.charite.de/" target="_blank"&gt;www.charite.de&lt;/a&gt;\n\nBei Fragen zur Verarbeitung Ihrer personenbezogenen Daten, sowie zu Ihren Rechten rund um den Datenschutz, wenden Sie sich bitte an:\nTelefon: &lt;a href="tel:+4930450580016"&gt;+49 (0) 30 450 580 016&lt;/a&gt;\nE-Mail: &lt;a href="mailto:datenschutz@charite.de"&gt;datenschutz(at)charite.de&lt;/a&gt;\n\n&lt;strong&gt;2. Welche Daten werden erhoben und wie werden sie verarbeitet?&lt;/strong&gt;\n\nMit der CovApp werden Fragen nach aktuellen Symptomen, Ihren letzten Reisen und möglichen Kontakten gestellt. Eine namentliche Zuordnung dieser Daten erfolgt nicht.\n\nBei der CovApp handelt es sich um Web-Anwendung. Dabei werden die folgenden Daten automatisch an den Web-Server der Charité, der im Auftrag der Charité von D4L data4life gGmbH als Auftragsverarbeiter betrieben wird, mit einem Rechenzentrum in Frankfurt bei dem Unterauftragsverarbeiter Amazon Web Services (AWS), übertragen:\n\n- IP-Adresse des beim Abruf verwendeten Geräts\n- Web-Adresse (URL) der Seite, von der aus die Datei angefordert wurde (Referrer)\n- Datum und Uhrzeit der Anforderung\n- Übertragene Datenmenge\n- Beschreibung des Typs des verwendeten Webbrowsers\n\nDie oben genannten Daten werden nach der Verwendung der App nicht gespeichert, sodass kein Rückschluss auf die Identität des Nutzers/der Nutzerin möglich ist.\n\nDie Antworten auf die in der App beantworteten Fragen und die Handlungsempfehlungen werden ausschließlich lokal auf dem von Ihnen genutzten Endgerät (Smartphone, Tablet oder PC) gespeichert. Diese Daten werden – sofern Sie dies wünschen – in einem QR-Code zusammengefasst. Sie können diesen QR-Code beim Durchführen eines Tests auf COVID-19 bei einem Arzt oder Krankenhaus vorzeigen, um die Erfassung von erforderlichen Anamnesedaten zu erleichtern.\n\nSie können die durch die CovApp auf ihrem Endgerät gespeicherten Daten jederzeit löschen, indem Sie am Ende des Fragebogens „Antworten löschen“ anklicken. \n\n&lt;strong&gt;3. Zu welchen Zwecken und auf welcher Rechtsgrundlage werden die Daten verarbeitet?&lt;/strong&gt;\n\nDie CovApp soll es den Nutzerinnen und Nutzern erleichtern, selbst einzuschätzen, ob ein weiterer Abklärungsbedarf hinsichtlich einer COVID-19-Infektion besteht und bietet konkrete Handlungsempfehlungen. Die App dient damit der Bekämpfung der aktuellen COVID-19-Pandemie. Rechtsgrundlage der Verarbeitung sind Artikel 6 Abs. 1 Satz 1 lit. d) und e), Art. 9 Abs. 2 lit c), h), i) Datenschutz-Grundverordnung in Verbindung mit § 14 Abs. 1 Nr. 3 Berliner Datenschutzgesetz.\n\n&lt;strong&gt;Im übrigen gilt die Datenschutzerklärung der Charité, abrufbar unter:&lt;/strong&gt;\n&lt;a href="https://www.charite.de/service/datenschutz/" target="_blank"&gt;https://www.charite.de/service/datenschutz/&lt;/a&gt;',
+  data_privacy_headline: "Datenschutzerklärung",
+  disclaimer_headline: "Hinweis",
+  disclaimer_paragraph_1: "Liebe Benutzerinnen und Benutzer,\ndie Coronavirus-Pandemie ändert sich und wir werden in Zukunft in Deutschland vorrangig nur noch Personen testen, die folgende Kriterien erfüllen:\n&lt;ul&gt;&lt;li&gt;Personen mit Kontakt zu Infizierten und mit Symptomen&lt;/li&gt;&lt;li&gt;Personen mit Risiken und Vorerkrankungen, die auf eine schwere COVID-19-Erkrankung hindeuten könnten&lt;/li&gt;&lt;li&gt;Personen, die das Coronavirus verbreiten könnten&lt;/li&gt;&lt;/ul&gt;\nFalls Sie die App bereits genutzt haben, werden Sie merken, dass sich die Bewertung geändert hat. Dies geschieht auch weiterhin nach Angaben der relevanten Behörden und Institutionen. Hierzu arbeiten wir eng mit dem Robert Koch-Institut und dem Bundesgesundheitsministerium zusammen.\n\nDie wichtigste Botschaft für Sie ist: Bleiben Sie zu Hause und helfen Sie so, die Ausbreitung zu verlangsamen.\n\n&lt;strong&gt;Rechtlicher Hinweis&lt;/strong&gt;\nDie Nutzung dieser App ersetzt keine ärztliche Behandlung und erbringt keine diagnostische Leistung. Die CovApp dient der Verbesserung der Handlungsabläufe in der Untersuchungsstelle der Charité und anderen Ambulanzen im Zusammenhang mit dem neuartigen Coronavirus SARS-CoV-2. Wenn Sie sich aktuell schwer krank fühlen, rufen Sie umgehend einen Arzt/Ärztin an.",
+  disclaimer_paragraph_2: "Diese Website verwendet einen Cookie, welcher zur Handhabung der Website erforderlich ist. Persönliche Daten, die einen Rückschluss auf Ihre Person zulassen, werden nicht gespeichert.",
+  disclaimer_sub_headline_1: "Hinweis auf die Verwendung von Cookies",
+  faq_content: '&lt;strong&gt;Über das Coronavirus&lt;/strong&gt;\nDie wissenschaftliche Bezeichnung des neuartigen Coronavirus lautet „SARS-CoV-2“. Dieses Virus kann eine Atemwegserkrankung auslösen. Diese Erkrankung trägt den Namen „COVID-19“. Weil sich die Infektionskrankheit COVID-19 bereits über Länder und Kontinente hinweg ausgebreitet hat, spricht man von einer Pandemie.\n \n&lt;strong&gt;Die Übertragung&lt;/strong&gt;\nDas neuartige Coronavirus wird über die sogenannte Tröpfcheninfektion übertragen. Dies kann direkt von Mensch zu Mensch geschehen, wenn virushaltige Tröpfchen über die Mund- oder Nasenschleimhaut oder die Augenbindehaut in die Atemwege gelangen. Aber auch eine indirekte Ansteckung ist möglich, wenn Tröpfchen über die Hände mit den Schleimhäuten in Kontakt kommen. Krankheitszeichen treten im Durchschnitt nach 5 bis 6, maximal 14 Tagen nach einer Ansteckung auf.\n \n&lt;strong&gt;Die Krankheitszeichen&lt;/strong&gt;\nWenn es zu einer Infektion mit dem Coronavirus gekommen ist, verläuft diese für die die meisten Menschen leicht und ist nicht lebensbedrohlich. Das gilt auch für Schwangere und Kinder. Leichte Krankheitszeichen können grippeähnliche Symptome wie trockener Husten, Abgeschlagenheit und Fieber sein. Darüber hinaus leiden einige Patientinnen und Patienten unter Halskratzen, Kopf- und Gliederschmerzen und Schüttelfrost. Derzeit geht man davon aus, dass 4 von 5 Infektionen mild verlaufen. Bei einigen Betroffenen kann das Virus jedoch zu einem schwereren Verlauf mit Atemproblemen bis hin zur beidseitigen Lungenentzündung führen. Hier handelt es sich oftmals um ältere Menschen und Patientinnen und Patienten mit Vorerkrankungen wie Herz-Kreislauf-Erkrankungen, chronischen Atemwegserkrankungen, Diabetes, Bluthochdruck oder Krebs. Diese schweren Fälle müssen intensivmedizinisch im Krankenhaus behandelt werden.\n\n&lt;strong&gt;Solidarität&lt;/strong&gt;\nObwohl Deutschland über ein sehr gutes Gesundheitssystem verfügt, ist dieses nicht auf einen steilen Anstieg insbesondere der intensiv medizinisch zu betreuenden Patientinnen und Patienten eingestellt. Gelingt es aber, den Anstieg schwerer Erkrankungen über einen längeren Zeitraum hinauszuzögern, werden Infizierte auch weiterhin gut versorgt werden können. Darum liegt das Hauptaugenmerk derzeit auf einer Entschleunigung der Infektionsrate. Dies kann nur gelingen, wenn alle Bürgerinnen und Bürger auf räumliche Distanz gehen. Zum Schutz, insbesondere der älteren Generation und chronisch Kranker, sollten alle darum die Situation ernst nehmen und soziale Kontakte so weit wie möglich einschränken. Versorgen Sie aber bitte ältere, hochbetagte oder chronisch kranke Angehörige oder Nachbarn und alleinstehende, hilfsbedürftige Menschen mit Lebensmitteln und Dingen des täglichen Bedarfs. Haben Sie ein offenes Ohr für ihre Sorgen und kommunizieren Sie miteinander – aber halten Sie dabei bitte mindestens 1,5 Meter Abstand. Handeln Sie solidarisch.\n\n&lt;strong&gt;Schutz&lt;/strong&gt;\nUm die Verbreitung des Coronavirus zu entschleunigen, vermeiden Sie unbedingt Berührungen beispielsweise bei der Begrüßung und waschen Sie Ihre Hände regelmäßig und gründlich mindestens 20 Sekunden lang mit Wasser und Seife. Halten Sie beim Husten oder Niesen größtmöglichen Abstand – drehen Sie sich einfach von ihrem Gegenüber weg. Niesen Sie in die Armbeuge oder in ein Papiertaschentuch, das Sie danach immer entsorgen. Vermeiden Sie es, mit ihren Händen Mund, Augen oder Nase zu berühren. Teilen Sie Gegenstände, die Sie mit Ihrem Mund berühren, wie z.B. Tassen oder Flaschen, nicht mit anderen Personen. Bleiben Sie daheim.\n \n&lt;strong&gt;Therapie&lt;/strong&gt;\nDie Behandlung der Infektion richtet sich nach der Schwere des Krankheitsbildes. Milde Fälle müssen nicht behandelt und können daheim auskuriert werden. Schwerere Lungenentzündungen werden z.B. durch die Gabe von Sauerstoff, den Ausgleich des Flüssigkeitshaushalts oder Antibiotikagabe zur Behandlung von bakteriellen Begleitinfektionen behandelt. Dies geschieht meistens im Krankenhaus.\n \n&lt;strong&gt;Impfung&lt;/strong&gt;\nEs wird an der Entwicklung eines Impfstoffes gearbeitet. Momentan steht jedoch noch kein Impfstoff zur Verfügung, der vor dem neuartigen Coronavirus schützt.\n\n&lt;strong&gt;Suchen Sie sich Hilfe&lt;/strong&gt;\n Hilfetelefon "Gewalt gegen Frauen": &lt;a href="tel:+498000116116"&gt;0800 116 116&lt;/a&gt;\n Telefonseelsorge: &lt;a href="tel:+498001110111"&gt;0800 111 0 111&lt;/a&gt; oder &lt;a href="tel:+498001110222"&gt;0800 111 0 222&lt;/a&gt;\n Elterntelefon: &lt;a href="tel:+498001110550"&gt;0800 111 0 550&lt;/a&gt;\n "Nummer gegen Kummer" für Kinder und Jugendliche: &lt;a href="tel:+49116111"&gt;116 111&lt;/a&gt;\n \n&lt;strong&gt;Bleiben Sie informiert&lt;/strong&gt;\nDas &lt;a href="https://www.bundesgesundheitsministerium.de/coronavirus.html" target="_blank"&gt;Bundesministerium für Gesundheit&lt;/a&gt; aktualisiert regelmäßig die Information zum Coronavirus.\n\nDer Charité-Wissenschaftler Prof. Dr. Christian Drosten hält sie im &lt;a href="https://www.ndr.de/nachrichten/info/Corona-Podcast-Alle-Folgen-in-der-Uebersicht,podcastcoronavirus134.html" tarrget="_blank"&gt;NDR-Podcast&lt;/a&gt; auf dem Laufenden.',
+  faq_headline: "FAQ Coronavirus",
+  found_code: "Es wurde ein QR-Code gefunden",
+  imprint_content: '&lt;strong&gt;Anbieter&lt;/strong&gt;\nCharité – Universitätsmedizin Berlin\nZentrale Postanschrift: Charitéplatz 1, 10117 Berlin\nDie Charité – Universitätsmedizin Berlin ist eine Körperschaft des Öffentlichen Rechts. Sie wird durch den Vorstandsvorsitzenden gesetzlich vertreten.\n\n&lt;strong&gt;Kontakt&lt;/strong&gt;\nFür Hinweise, Lob und Kritik schreiben Sie uns bitte eine E-Mail an: &lt;a href="mailto:covapp@charite.de"&gt;covapp@charite.de&lt;/a&gt;\nInternet: &lt;a href="https://www.charite.de" target="_blank"&gt;https://www.charite.de&lt;/a&gt;\n\n&lt;strong&gt;Verantwortlicher im Sinne des Medienrechts&lt;/strong&gt;\nProf. Dr. Heyo K. Kroemer, der Vorstandsvorsitzende der Charité – Universitätsmedizin Berlin\n\nVerantwortlich für Inhalte:\nProjektleitung: Dr. Valerie Kirchberger, M. Sc.\nHead of Product: Dipl. Kffr. Claudia Hartmann\n\nVerantwortlich Software Entwicklung:\nHead Charité: Dr. Alexander H. Thieme M. Sc.\nSAP Integration: Peter Heumann\n\nCovApp Team: Antonia Rollwage, Peter Gocke\n\n&lt;strong&gt;Zuständige Aufsichtsbehörde&lt;/strong&gt;\nDer Regierende Bürgermeister von Berlin – inkl. Wissenschaft und Forschung \nKontakt: &lt;a href="https://www.berlin.de/rbmskzl/" target="_blank"&gt;https://www.berlin.de/rbmskzl/&lt;/a&gt;\n\nSenatsverwaltung für Gesundheit, Pflege und Gleichstellung \nKontakt: &lt;a href="https://www.berlin.de/sen/gpg/" target="_blank"&gt;https://www.berlin.de/sen/gpg/&lt;/a&gt;\n\nUmsatzsteuer-Identifikationsnummer: DE 228847810',
+  imprint_headline: "Impressum",
+  input_date_error: "Ungültiges Datum. Bitte versuchen Sie es erneut.",
+  input_date_error_future: "Das Datum darf nicht in der Zukunft liegen.",
+  input_date_help: "Achten Sie darauf, ein vollständiges Datum im Format TT MM JJJJ einzugeben, das nicht in der Zukunft liegt. Beispiel: 09 03 2020",
+  input_date_label: "Bitte geben Sie das Datum ein",
+  input_date_label_day: "Tag",
+  input_date_label_month: "Monat",
+  input_date_label_year: "Jahr",
+  input_date_placeholder_day: "TT",
+  input_date_placeholder_month: "MM",
+  input_date_placeholder_year: "JJJJ",
+  legal_first_paragraph: "&lt;p&gt;&lt;strong&gt;Rechtliche Hinweise &lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Haftungsausschluss (Disclaimer) &lt;/p&gt;&lt;p&gt;&lt;strong&gt;Allgemeiner Hinweis&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Die Nutzung dieser App ersetzt keine ärztliche Behandlung. Wenn Sie sich aktuell schwer krank fühlen, suchen Sie bitte umgehend medizinische Hilfe. &lt;/p&gt;&lt;p&gt;&lt;strong&gt;Haftung für Inhalte &lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Als Dienstanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Dienstanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen. Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt. &lt;/p&gt;&lt;p&gt;&lt;strong&gt;Haftung für Links&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Unser Angebot enthält Links zu externen Webseiten Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich. &lt;/p&gt;&lt;p&gt;&lt;strong&gt;Urheberrecht &lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Die durch den Dienstanbieter erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers. Downloads und Kopien dieser Seite sind nur für den privaten, nicht kommerziellen Gebrauch gestattet. Soweit die Inhalte auf dieser Seite nicht vom Betreiber erstellt wurden, werden die Urheberrechte Dritter beachtet. Insbesondere werden Inhalte Dritter als solche gekennzeichnet. Sollten Sie trotzdem auf eine Urheberrechtsverletzung aufmerksam werden, bitten wir um einen entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Inhalte umgehend entfernen.&lt;/p&gt;",
+  legal_headline: "Rechtliches",
+  logo_header_label: "In Zusammenarbeit mit",
+  navigation_header_back_button_label: "Navigieren Sie zurück",
+  q_A_option0: "Jünger als 40",
+  q_A_option1: "40-50",
+  q_A_option2: "51-60",
+  q_A_option3: "61-70",
+  q_A_option4: "71-80",
+  q_A_option5: "Über 80",
+  q_A_text: "Wie alt sind Sie?",
+  q_A0_comment: "Die Frage bezieht sich auf Erkältungssymptome und schließt chronischen Schnupfen oder saisonalen bzw. allergischen Schnupfen aus. Sollten Sie einen chronischen Schnupfen haben, vergleichen Sie für die Beantwortung der Frage Ihre derzeitigen Beschwerden mit Ihren bisherigen Problemen.",
+  q_A0_text: "Hatten Sie in den letzten 24 Std. Schnupfen?",
+  q_A1_comment: "Sollten Sie eine chronische Darmerkrankung haben, vergleichen Sie für die Beantwortung der Frage Ihre derzeitigen Beschwerden mit Ihren bisherigen Problemen.",
+  q_A1_text: "Hatten Sie in den letzten 24 Std. Durchfall?",
+  q_A2_text: "Hatten Sie in den letzten 24 Std. Halsschmerzen?",
+  q_A3_text: "Hatten Sie in den letzten 24 Std. Kopfschmerzen?",
+  q_A5_text: "Wurde bei Ihnen durch einen Arzt/einer Ärztin eine chronische Lungenerkrankung festgestellt?",
+  q_A6_text: "Wurde bei Ihnen durch einen Arzt/einer Ärztin Diabetes festgestellt?",
+  q_A7_text: "Wurde bei Ihnen durch einen Arzt/einer Ärztin eine Herzerkrankung festgestellt?",
+  q_A8_text: "Wurde bei Ihnen durch einen Arzt/einer Ärztin Adipositas (Fettsucht) festgestellt?",
+  q_A9_text: "Sind Sie schwanger?",
+  q_B_option0: "Allein wohnend",
+  q_B_option1: "Zusammen mit Familie, in einer Wohngemeinschaft oder betreuten Gemeinschaftseinrichtung",
+  q_B_text: "Wie ist Ihre aktuelle Wohnsituation?",
+  q_B0_text: "Nehmen Sie aktuell Cortison ein (in Tablettenform)?",
+  q_B1_comment: "Immunsuppresiva nehmen oder bekommen Sie nach einer Organtransplantation, während der Therapie einer Autoimmunerkrankung oder im Rahmen einer Chemotherapie.",
+  q_B1_text: "Nehmen Sie aktuell Immunsuppressiva?",
+  q_B2_text: "Haben Sie sich im Zeitraum von Oktober 2019 bis heute gegen Grippe impfen lassen?",
+  q_B7_comment: 'Wählen Sie "Ja", wenn Sie: \n&lt;ul&gt;&lt;li&gt;Bei leichten Belastungen, wie einem Spaziergang oder dem Steigen weniger Treppenstufen schneller als sonst kurzatmig werden oder Schwierigkeiten beim Atmen haben&lt;/li&gt;&lt;li&gt;Das Gefühl der Atemnot/Luftnot oder Kurzatmigkeit beim Sitzen oder Liegen verspüren&lt;/li&gt;&lt;li&gt;Beim Aufstehen aus dem Bett oder vom Stuhl das Gefühl der Atemnot/Luftnot haben&lt;/li&gt;&lt;/ul&gt;\n\nSollten Sie eine chronische Lungenerkrankung haben, vergleichen Sie Ihre derzeitigen Beschwerden im Hinblick auf Ihre Atmung mit Ihren bisherigen Atemproblemen.',
+  q_B7_text: "Sind Sie in den letzten 24 Std. schneller außer Atem als sonst?",
+  q_B8_text: "An welchem Tag war der letzte Kontakt?",
+  q_B9_text: "Bezogen auf alle Fragen zu Symptomen: Seit wann haben Sie die von Ihnen angegebenen Symptome?",
+  q_C_option0: "Im medizinischen Bereich",
+  q_C_option1: "In einer Gemeinschaftseinrichtung (Schule, Kita, Universität, Heim etc.)",
+  q_C_option2: "Nein, in keinem der genannten Bereiche",
+  q_C_text: "Sind Sie in einem der folgenden Bereiche tätig?",
+  q_D_text: "Rauchen Sie?",
+  q_P1_text: "Sind Sie 65 Jahre oder älter?",
+  q_P3_comment: "Nicht gemeint sind Pflegeleistungen oder Unterstützung, die Sie im Zusammenhang mit Ihrer beruflichen Tätigkeit erbringen.",
+  q_P3_text: "Pflegen oder unterstützen Sie privat mindestens einmal pro Woche eine oder mehrere Personen mit altersbedingten Beschwerden, chronischen Erkrankungen oder Gebrechlichkeit?",
+  q_Q_comment: 'Enger Kontakt mit einem bestätigten Fall bedeutet:\n&lt;ul&gt;&lt;li&gt;Kontakt von Angesicht zu Angesicht länger als 15 Minuten&lt;/li&gt;&lt;li&gt;Direkter, physischer Kontakt (Berührung, Händeschütteln, Küssen)&lt;/li&gt;&lt;li&gt;Länger als 15 Minuten direkt neben einer infizierten Person (weniger als 1,5 Meter) verbracht&lt;/li&gt;&lt;li&gt;Kontakt mit oder Austausch von Körperflüssigkeiten&lt;/li&gt;&lt;li&gt;Teilen einer Wohnung&lt;/li&gt;&lt;/ul&gt;\n\nFalls Sie Kontakt hatten, aber adäquate Schutzmaßnahmen (Maske, Kittel) getragen haben, wählen Sie "Nein".',
+  q_Q_text: "Hatten Sie engen Kontakt zu einem bestätigten Fall?",
+  q_SD_text: "Hatten sie in den letzten 24 Std. Geschmacks- und/oder Geruchsverlust?",
+  q_T_text: "Hatten Sie in den letzten 24 Std. Fieber (über 38°C)?",
+  q_U_text: "Hatten Sie in den letzten 4 Tagen Fieber (über 38°C) ?",
+  q_V_option0: "Weniger als 38°C",
+  q_V_option1: "38°C",
+  q_V_option2: "39°C",
+  q_V_option3: "40°C",
+  q_V_option4: "41°C",
+  q_V_option5: "42°C",
+  q_V_option6: "Über 42°C",
+  q_V_option7: "Ich weiß es nicht",
+  q_V_text: "Wie hoch war die höchste Temperatur ca.?",
+  q_W_text: "Hatten Sie in den letzten 24 Std. Schüttelfrost?",
+  q_X_text: "Haben Sie sich in den letzten 24 Std. schlapp oder abgeschlagen gefühlt?",
+  q_Y_text: "Hatten Sie in den letzten 24 Std. Gliederschmerzen?",
+  q_Z_comment: "Die Frage bezieht sich auf Erkältungssymptome und schließt chronischen Husten oder saisonalen bzw. allergischen Husten aus. Sollten Sie chronischem Husten haben, vergleichen Sie für die Beantwortung der Frage Ihre derzeitigen Beschwerden mit Ihren bisherigen Problemen.",
+  q_Z_text: "Hatten Sie in den letzten 24 Std. anhaltenden Husten?",
+  qr_code_button_reset: "Antworten löschen",
+  qr_code_headline: "Zusammenfassung Ihrer Antworten",
+  qr_code_hide_answers: "Antworten ausblenden",
+  qr_code_paragraph: "Folgend finden Sie eine Übersicht Ihrer Antworten als Tabelle und QR-Code.\n\nFalls Sie den Hinweis erhalten haben, sich in einer Untersuchungsstelle vorzustellen, speichern Sie bitte den folgenden QR-Code und die Zusammenfassung der Fragen. Wenn möglich, drucken Sie die Zusammenfassung aus und zeigen Sie diese vor.\n\nWenn Sie das Haus verlassen, halten Sie ausreichend Abstand (mindestens 1,5 Meter) zu anderen Personen. Fassen Sie möglichst nichts an, und achten Sie auf die Regeln für richtiges Husten und Niesen.",
+  qr_code_print: "Drucken",
+  qr_code_show_answers: "Antworten anzeigen",
+  questionnaire_button_generate_qr: "Fragebogen abschließen",
+  questionnaire_button_next: "Weiter",
+  recommendation_case_1_additonal_info: "&lt;strong&gt;Charité-Standort Virchow in Wedding&lt;/strong&gt;\nMittelallee 1 \nGeöffnet täglich 8 bis 16 Uhr\n\n&lt;strong&gt;Evangelisches Krankenhaus Königin Elisabeth Herzberge in Lichtenberg &lt;/strong&gt;\nHerzbergstraße 79, 10365 Berlin \nMo-Fr: 10 bis 19 Uhr, Sa/So: 10 bis 17 Uhr\n\n&lt;strong&gt;DRK Kliniken Berlin Westend (Ambulantes Diagnostikzentrum)&lt;/strong&gt;\nSpandauer Damm 130, 14050 Berlin\nMo-Fr: 9 bis 15 Uhr\n\n&lt;strong&gt;Coronavirus-Ambulanz im Gemeinschaftskrankenhaus Havelhöhe&lt;/strong&gt;\nHaus 16, Kladower Damm 221, Spandau \nMo-Fr von 9 bis 17 Uhr geöffnet. Die Telefonhotline ist von Mo-Fr von 8 bis 18 Uhr und Sa/So 9 bis 15:30 Uhr besetzt.",
+  recommendation_case_1_emoji_label: "Roter Kreis",
+  recommendation_case_1_headline: "Melden Sie sich",
+  recommendation_case_1_hide_info: "Untersuchungsstellen ausblenden",
+  recommendation_case_1_show_info: "Untersuchungsstellen anzeigen",
+  recommendation_case_1_text: 'Sie hatten Kontakt zu einem bestätigten Fall und geben Krankheitssymptome an, die durch eine Coronavirus-Infektion erklärt werden könnten.\n\nBitte wenden Sie sich an Ihr zuständiges Gesundheitsamt oder eine lokale, öffentliche Hotline um zu erfahren, wie in Ihrer Region Untersuchungen auf das Coronavirus organisiert werden. \nKontaktinformationen zu den regionalen Gesundheitsämtern finden Sie auf der &lt;a href="https://tools.rki.de/PLZTool/" target="_blank"&gt;Website des Robert Koch-Instituts&lt;/a&gt;.\n\n&lt;strong&gt;Für Berliner Bürgerinnen und Bürger:&lt;/strong&gt;\nBitte melden Sie sich bei der Hotline der Senatsgesundheitsverwaltung (Tel. &lt;a href="tel:+493090282828"&gt;030 90282828&lt;/a&gt;) oder vereinbaren Sie für eine individuelle Beratung  einen Termin in der &lt;a href="https://app.samedi.de/practices/40qpj1s185nermhp/api/booking-widget/vcdirekt?category_id=73198&amp;event_type_id=211636"&gt;Video-Sprechstunde der Charité&lt;/a&gt;. Sie können sich in einer der Untersuchungsstellen vorstellen. Bitte rechnen Sie mit langen Wartezeiten.\n\nNach den Empfehlungen des Robert Koch-Instituts wäre bei Ihnen ein Test sinnvoll. Es besteht jedoch kein Anspruch auf einen Test. Dies wäre eine ärztliche Entscheidung und kann auch von Testkapazitäten vor Ort abhängen.',
+  recommendation_case_2_headline: "Kurieren Sie sich aus und bleiben Sie daheim.",
+  recommendation_case_2_text: 'Die von Ihnen genannten Symptome können bei einer Coronavirus-Infektion auftreten.\n\nNach den aktuellen Empfehlungen des Robert Koch-Instituts wird eine Untersuchung auf das Coronavirus derzeit nicht empfohlen, da Ihr letzter Kontakt zu einem bestätigten Fall mehr als 14 Tage zurückliegt oder Sie keinen Kontakt zu einem bestätigtem Fall hatten.\n\nBleiben Sie am besten zu Hause, kurieren Sie sich aus und reduzieren Sie direkte persönliche Kontakte.\n\nSollten Ihre Symptome in den nächsten Tagen stärker werden oder Sie sich unsicher fühlen, dann melden Sie sich zunächst telefonisch bei Ihrem Hausarzt oder dem Ärztlichen Bereitschaftsdienst der KV (Tel: &lt;a href="tel:+49116117"&gt;116117&lt;/a&gt;). Möglich wäre auch einen Termin in der &lt;a href="https://app.samedi.de/practices/40qpj1s185nermhp/api/booking-widget/vcdirekt?category_id=73198&amp;event_type_id=211636" target="_blank"&gt;Video-Sprechstunde der Charité&lt;/a&gt; zu vereinbaren oder in einer Video-Sprechstunde bspw. &lt;a href="https://kry.de/redirect?campaign=charite_app-link-mar2020-corona" target="_blank"&gt;von KRY&lt;/a&gt; zu vereinbaren. (Sie werden zu einer externen Website weitergeleitet, die nicht von der Charité verantwortet wird).\n\n&lt;strong&gt;Für Berliner Bürgerinnen und Bürger:&lt;/strong&gt;\nGerne können Sie einen Termin in der &lt;a href="https://app.samedi.de/practices/40qpj1s185nermhp/api/booking-widget/vcdirekt?category_id=73198&amp;event_type_id=211636" target="_blank"&gt;Video-Sprechstunde der Charité&lt;/a&gt; vereinbaren oder sich bei der Hotline der Senatsgesundheitsverwaltung (Tel. &lt;a href="tel:+493090282828"&gt;030 90282828&lt;/a&gt;) melden.',
+  recommendation_case_3_emoji_label: "Orange Kreis",
+  recommendation_case_3_headline: "Bleiben Sie zu Hause und kurieren Sie sich aus.",
+  recommendation_case_3_text: 'Sie hatten innerhalb der letzten 14 Tage Kontakt zu einer mit dem Coronavirus infizierten Person, haben aber aktuell keine Symptome. Eine Untersuchung auf das Coronavirus wird aktuell nicht empfohlen, da ein mögliches negatives Testergebnis eine Infektion nicht sicher ausschließt.\n\nBitte bleiben Sie zu Hause. Sollten Sie in den nächsten Tagen (Erkältungs-)Symptome entwickeln, können Sie Ihr persönliches Risiko mit dem Fragebogen erneut überprüfen.\n\nSollten Sie sich unsicher fühlen oder weitere Fragen haben, dann melden Sie sich zunächst telefonisch bei Ihrem Hausarzt oder dem Ärztlichen Bereitschaftsdienst (&lt;a href="tel:+49116117"&gt;116117&lt;/a&gt;). Möglich wäre auch einen Termin in der &lt;a href="https://app.samedi.de/practices/40qpj1s185nermhp/api/booking-widget/vcdirekt?category_id=73198&amp;event_type_id=211636" target="_blank"&gt;Video-Sprechstunde der Charité&lt;/a&gt; zu vereinbaren oder in einer Video-Sprechstunde bspw. &lt;a href="https://kry.de/redirect?campaign=charite_app-link-mar2020-corona" target="_blank"&gt;von KRY&lt;/a&gt; zu vereinbaren. (Sie werden zu einer externen Website weitergeleitet, die nicht von der Charité verantwortet wird).\n\n\n&lt;strong&gt;Für Berliner Bürgerinnen und Bürger:&lt;/strong&gt;\nGerne können Sie einen Termin in der &lt;a href="https://app.samedi.de/practices/40qpj1s185nermhp/api/booking-widget/vcdirekt?category_id=73198&amp;event_type_id=211636" target="_blank"&gt;Video-Sprechstunde der Charité&lt;/a&gt; vereinbaren oder sich bei der Hotline der Senatsgesundheitsverwaltung (Tel. &lt;a href="tel:+493090282828"&gt;030 90282828&lt;/a&gt;) melden.',
+  recommendation_case_4_emoji_label: "Gelber Kreis",
+  recommendation_case_4_headline: "Bleiben Sie zu Hause und befolgen Sie die allgemeinen Hygienehinweise.",
+  recommendation_case_4_text: 'Nach den aktuellen Empfehlungen des Robert Koch-Instituts wird eine Untersuchung auf das Coronavirus derzeit nicht empfohlen, da Ihr letzter Kontakt zu einem bestätigten Fall mehr als 14 Tage zurückliegt oder Sie keinen Kontakt zu einem bestätigtem Fall hatten. \n\nSollten Ihre Symptome in den nächsten Tagen stärker werden oder Sie sich unsicher fühlen, dann melden Sie sich zunächst telefonisch bei Ihrem Hausarzt oder dem Ärztlichen Bereitschaftsdienst (&lt;a href="tel:+49116117"&gt;116117&lt;/a&gt;). Möglich wäre auch einen Termin in der &lt;a href="https://app.samedi.de/practices/40qpj1s185nermhp/api/booking-widget/vcdirekt?category_id=73198&amp;event_type_id=211636" target="_blank"&gt;Video-Sprechstunde der Charité&lt;/a&gt; zu vereinbaren oder in einer Video-Sprechstunde bspw.  &lt;a href="https://kry.de/redirect?campaign=charite_app-link-mar2020-corona" target="_blank"&gt;von KRY&lt;/a&gt; zu vereinbaren. (Sie werden zu einer externen Website weitergeleitet, die nicht von der Charité verantwortet wird).\n\n\n&lt;strong&gt;Für Berliner Bürgerinnen und Bürger:&lt;/strong&gt;\nGerne können Sie einen Termin in der &lt;a href="https://app.samedi.de/practices/40qpj1s185nermhp/api/booking-widget/vcdirekt?category_id=73198&amp;event_type_id=211636" target="_blank"&gt;Video-Sprechstunde der Charité&lt;/a&gt; vereinbaren oder sich bei der Hotline der Senatsgesundheitsverwaltung (Tel. &lt;a href="tel:+493090282828"&gt;030 90282828&lt;/a&gt;) melden.',
+  recommendation_case_5_emoji_label: "Grüner Kreis",
+  recommendation_case_5_headline: "Bleiben Sie daheim",
+  recommendation_case_5_text: 'Es besteht derzeit kein Handlungsbedarf für Sie, da Sie:\n&lt;ul&gt;&lt;li&gt;Keinen Kontakt zu einem bestätigten Fall hatten&lt;/li&gt;&lt;li&gt;Keine Symptome haben&lt;/li&gt;&lt;/ul&gt;\nUm das Ansteckungsrisiko gering zu halten, achten Sie weiterhin verstärkt auf gute Händehygiene.\n\nVermeiden Sie unnötige Kontakte zu anderen Personen und bleiben Sie nach Möglichkeit zu Hause. Wenn Sie das Haus verlassen, halten Sie ausreichend Abstand (mindestens 1,5 Meter) zu anderen Personen und achten Sie auf die &lt;a href="https://www.infektionsschutz.de/hygienetipps/hygiene-beim-husten-und-niesen/#c6375" target="_blank"&gt;Verhaltensregeln zum Infektionsschutz&lt;/a&gt;. \n\nSollten Sie in den nächsten Tagen (Erkältungs-)Symptome entwickeln, könnten Sie Ihr persönliches Risiko mit dem Fragebogen erneut überprüfen.\n\nWeitere hilfreiche Informationen finden Sie auf: &lt;a href="https://www.zusammengegencorona.de" target="_blank"&gt;ZusammenGegenCorona.de&lt;/a&gt;',
+  risk_spreading_caring_for_relatives: "&lt;strong&gt;Sie geben an, einen Angehörigen zu pflegen. &lt;/strong&gt;\nBitte klären Sie das weitere Vorgehen mit Ihrem zuständigen Hausarzt telefonisch ab und halten Sie Abstand zu Ihrem zu pflegenden Angehörigen.",
+  risk_spreading_living_alone: '&lt;strong&gt;Sie geben an alleine zu wohnen.&lt;/strong&gt;\nWir raten Ihnen, täglich mit einer vertrauten Person zu telefonieren, mit der Sie eine eventuelle Verschlechterung der Symptome besprechen können.\n\nBitte erkundigen Sie sich bei Nachbarn, Familienangehörigen oder Freunden, ob sie Ihnen helfen können. Falls dies nicht möglich ist, können Sie sich an ehrenamtlich Helfende in ihrem Umkreis wenden, oder im Internet recherchieren (z.B unter dem Suchbegriff "Corona Nachbarschaftshilfe"). ',
+  risk_spreading_living_together: "&lt;strong&gt;Sie geben an, zusammen mit anderen Personen zu leben.&lt;/strong&gt;\nBitte bleiben Sie wenn möglich in Ihrem Zimmer. ",
+  risk_spreading_paragraphs: '&lt;strong&gt;Allgemeine Hinweise&lt;/strong&gt;\nWenn Sie das Haus verlassen, halten Sie ausreichend Abstand (mindestens 1,5 Meter) zu anderen Personen und achten Sie auf die &lt;a href="https://www.infektionsschutz.de/coronavirus/verhalten.html" target="_blank"&gt;Verhaltensregeln zum Infektionsschutz&lt;/a&gt;.\n\nBitte vermeiden Sie unnötige Kontakte zu anderen Personen und bleiben Sie nach Möglichkeit zu Hause.\n\nWeitere hilfreiche Informationen finden Sie auf: &lt;a href="https://www.zusammengegencorona.de/" target="_blank"&gt;ZusammenGegenCorona.de&lt;/a&gt;',
+  risk_spreading_workspace_medical: "&lt;strong&gt;Sie arbeiten im medizinischen Bereich&lt;/strong&gt;\nBitte Informieren Sie Ihren Arbeitgeber über etwaigen Kontakt oder Ihre aktuellen Symptome und sprechen Sie die weiteren Maßnahmen zum Schutz der Personen in Ihrem Umfeld sowie Ihrer Kolleginnen und Kollegen ab.",
+  risk_very_ill_above_sixty_five: '&lt;strong&gt;Sie geben an, unter Atemnot zu leiden. &lt;/strong&gt;\nBitte melden Sie sich telefonisch bei Ihrem Hausarzt oder dem Ärztlichen Bereitschaftsdienst &lt;a href="tel:+49116117"&gt;(+49 116 117)&lt;/a&gt;. Bei stärker werden der Atemnot holen Sie sich bitte ärztliche Hilfe.\n\nBitte tauschen Sie sich täglich mit einer nahestehenden Person über Ihr Befinden aus.',
+  risk_very_ill_below_sixty_five: '&lt;strong&gt;Sie geben an, unter Atemnot zu leiden.&lt;/strong&gt;\nBitte melden Sie sich telefonisch bei Ihrem Hausarzt oder dem Ärztlichen Bereitschaftsdienst &lt;a href="tel:+49116117"&gt;(116117)&lt;/a&gt;. Bei stärker werden der Atemnot holen Sie sich bitte ärztliche Hilfe.',
+  start_headline: "Handlungsempfehlungen und Informationen zum Coronavirus",
+  start_legal_paragraph: "&lt;strong&gt;Bei der digitalen Anwendung handelt es sich nicht um eine Anwendung, die diagnostische Leistungen erbringt. Die Anwendung dient der Vereinfachung der Handlungsabläufe in der Versorgung.&lt;/strong&gt;",
+  start_paragraph_1_option_1: "Ansprechpartner und Kontakte für Berlin",
+  start_paragraph_1_option_2: "Entscheidungshilfe bezüglich Arztbesuch oder Coronavirus-Test",
+  start_paragraph_1_option_3: "Verhaltensweisen zur Reduzierung des Infektionsrisikos",
+  start_paragraph_1_option_4: "Optimierung der Patientenströme",
+  start_paragraph_2: '&lt;p&gt;Die CovApp ist eine von der Charité in Zusammenarbeit mit Data4Life entwickelte Software, mit der Sie innerhalb weniger Minuten einen Fragenkatalog beantworten und daraus spezifische Handlungsempfehlungen erhalten. Dafür werden Ihnen Fragen nach aktuellen Symptomen und möglichen Kontakten gestellt. Diese App erbringt keine diagnostischen Leistungen. Sie erhalten aber nach Beantwortung des Fragenkatalogs konkrete Handlungsempfehlungen, Ansprechpartner und Kontakte sowie eine Zusammenfassung Ihrer Daten. Ziel ist es, Sie sicher durch die verschiedenen Angebote der Gesundheitsversorgung zu lotsen und Ihnen ggf. den Weg in Krankenhäuser oder zu Untersuchungsstellen aufzuzeigen.&lt;/p&gt;&lt;p&gt;So kann Ihnen die CovApp helfen, die Notwendigkeit eines Arztbesuches oder Coronavirus-Tests besser einzuschätzen. Die medizinisch relevanten Informationen für ein etwaiges Arztgespräch werden am Ende für Sie zusammengefasst.&lt;/p&gt;&lt;p&gt;&lt;h3 class="o-headline-3"&gt;Wie nutze ich die CovApp?&lt;/h3&gt;&lt;/p&gt;\n&lt;p&gt;&lt;strong&gt;1. Starten Sie die Befragung durch Klicken auf „Fragebogen starten“&lt;/strong&gt;&lt;/p&gt;\n&lt;p&gt;Der Fragebogen nimmt ca. 5 Minuten Ihrer Zeit in Anspruch und stellt Ihnen Fragen zu aktuellen Symptomen, Vorerkrankungen und dem Kontakt zu Verdachtsfällen. Versuchen Sie, die Fragen so genau wie möglich zu beantworten.&lt;/p&gt;\n&lt;p&gt;&lt;strong&gt;2. Fragenkatalog und Empfehlungen&lt;/strong&gt;&lt;/p&gt;\n&lt;p&gt;Zum Abschluss der Befragung erhalten Sie eine Übersicht über Ihre Antworten und spezifische Handlungsempfehlungen wie z.B. &lt;ul&gt;&lt;li&gt;Anruf bei einer der Hotlines des öffentlichen Gesundheitsdienstes&lt;/li&gt;\n&lt;li&gt;Vorstellung beim Hausarzt&lt;/li&gt;\n&lt;li&gt;Häusliche Isolierung&lt;/li&gt;\n&lt;/ul&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;3. Vorbereitung eines Arztgesprächs&lt;/strong&gt;&lt;/p&gt;\n&lt;p&gt;Falls ein Arztgespräch notwendig sein sollte, bieten einige Untersuchungsstellen die Möglichkeit, Ihre Antworten über einen QR-Code einzuscannen (u.a. an der Charité). Der Einsatz eines QR-Codes zur Übermittlung relevanter medizinischer Informationen unterstützt die weiterführende Versorgung und hilft, die hohe Anzahl an Hilfe- bzw. Ratsuchenden schneller zu bearbeiten. \nFür einen Besuch bei Ihrem Hausarzt oder in einer anderen Untersuchungsstelle außerhalb der Charité drucken Sie die Zusammenfassung am Ende aus oder zeigen Sie diese bei Ihrem Arztbesuch vor. &lt;/p&gt;',
+  start_paragraph_3: "&lt;p&gt;Der Fragebogen ist anonym und wird nur auf Ihrem Endgerät (zum Beispiel Smartphone) bearbeitet und gespeichert. Ihre Antworten werden nicht an uns oder über das Internet an Dritte übertragen.&lt;/p&gt;",
+  start_paragraph_4: "&lt;p&gt;Die Nutzung dieser App ersetzt keine ärztliche Behandlung. Wenn Sie sich aktuell schwer krank fühlen, rufen Sie bitte umgehend medizinische Hilfe.&lt;/p&gt;",
+  start_sub_headline_1: "Vorbereitung des Ihres Arztgespräches",
+  start_sub_headline_2: "Was ist die CovApp?",
+  start_sub_headline_3: "Welche Daten werden über das Internet übertragen?",
+  start_sub_headline_4: "Im Zweifel einen Arzt/Ärztin kontaktieren!"
+}
+&nbsp;
+export const QUESTIONNAIRE = <span class="cstat-no" title="statement not covered" >{</span>
+  'de': QUESTIONNAIRE_DE,
+  'en': QUESTIONNAIRE_EN
+}</pre></td></tr></table></pre>
+
+                <div class='push'></div><!-- for sticky footer -->
+            </div><!-- /wrapper -->
+            <div class='footer quiet pad2 space-top1 center small'>
+                Code coverage generated by
+                <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
+                at Sat Mar 28 2020 12:29:50 GMT+0100 (Mitteleuropäische Zeit)
+            </div>
+        </div>
+        <script src="..\..\..\..\prettify.js"></script>
+        <script>
+            window.onload = function () {
+                prettyPrint();
+            };
+        </script>
+        <script src="..\..\..\..\sorter.js"></script>
+        <script src="..\..\..\..\block-navigation.js"></script>
+    </body>
+</html>
+    

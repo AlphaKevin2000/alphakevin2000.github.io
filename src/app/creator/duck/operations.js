@@ -420,6 +420,7 @@ export const createContactFlowRepeat = (id, transitionUUID, position) => {
 export const createContactFlowAttribute = obj => {
   const { ownUUID, errorUUID, value, key, position } = obj
   const transitionUUID = uuid()
+  
   return {
     id: ownUUID,
     type: "SetAttributes",
@@ -437,7 +438,7 @@ export const createContactFlowAttribute = obj => {
       {
         name: "Attribute",
         value: value,
-        key: "accommodation",
+        key: key,
         namespace: null
       }
     ],
@@ -471,7 +472,6 @@ export const createContactFlow = () => {
     const contactFlowGreeting = createContactFlowGreeting(contactFlowVoice.branches[0].transition, transitionUUIDError)
     dispatch(addContactFlow(contactFlowGreeting))
 
-    console.log(uuidList)
     dispatch(addUUID(contactFlowGreeting.branches[0].transition))
 
     let x = 100
@@ -505,6 +505,7 @@ export const createContactFlow = () => {
       dispatch(addContactFlow(contactFlowRepeat))
       let contactFlowUserInput = createContactFlowUserInput(stuff)
       contactFlowUserInput.branches.filter(branch => branch.condition == 'Evaluate').forEach((obj, j) => {
+        console.log({obj, question})
         x = x + 200
         if (j%6 === 0 && j !== 0) {
           y = y + 600
@@ -512,10 +513,11 @@ export const createContactFlow = () => {
         }
         let position = {x: x, y: y}
         const val = j + 1
+        const key = `${question.category}_${question.id}`
         let stuff = {
           ownUUID: obj.transition,
           errorUUID: transitionUUIDError,
-          key: '',
+          key: key,
           value: val.toString(),
           position: position
         }

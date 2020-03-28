@@ -6,6 +6,7 @@ export const SET_CREATED_AMAZON_CONNECT_CONFIG = "SET_CREATED_AMAZON_CONNECT_CON
 export const ADD_CONTACT_FLOW = "ADD_CONTACT_FLOW"
 export const ADD_UUID = "ADD_UUID"
 
+
 export const setQuestionnaireStrings = stringMap => ({
   type: SET_QUESTIONNAIRE_STRING_MAP,
   payload: { stringMap }
