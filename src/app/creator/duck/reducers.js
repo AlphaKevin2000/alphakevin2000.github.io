@@ -3,15 +3,19 @@ import {
   SET_QUESTIONNAIRE_STRING_MAP,
   SET_LANGUAGE,
   SET_CREATED_JSON,
-  SET_CREATED_AMAZON_CONNECT_CONFIG
+  SET_CREATED_AMAZON_CONNECT_CONFIG,
+  ADD_CONTACT_FLOW,
+  ADD_UUID
 } from "./actions"
+import { connect } from "react-redux"
 
 export const initialState = {
   order: undefined,
   stringMap: {'de': undefined, 'en': undefined},
   language: 'de',
   chariteData: undefined,
-  connectConf: undefined
+  connectConf: undefined,
+  uuidList: []
 }
 
 export default (state = initialState, action) => {
@@ -40,6 +44,20 @@ export default (state = initialState, action) => {
       return {
         ...state,
         connectConf: action.payload.data
+      }
+    case ADD_CONTACT_FLOW:
+      const connectConf = Object.assign({}, state.connectConf)
+      connectConf.modules.push(action.payload.contactFlow)
+      return {
+        ...state,
+        connectConf
+      }
+    case ADD_UUID:
+      const uuidList = [...state.uuidList]
+      uuidList.push(action.payload.uuid)
+      return {
+        ...state,
+        uuidList
       }
     default:
       return state

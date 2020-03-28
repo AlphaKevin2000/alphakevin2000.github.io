@@ -28,7 +28,7 @@ export const CreatorComponent = props => {
     language,
     createJSON,
     chariteData,
-    createAmazonConnectConfig,
+    createContactFlow,
     connectConf,
     downloadJSON
   } = props
@@ -58,7 +58,7 @@ export const CreatorComponent = props => {
         </ButtonGroup>
         <ButtonGroup>
           <Button disabled={!order || !stringMap} onClick={createJSON}>create JSON</Button>
-          <Button disabled={!order || !stringMap || !chariteData} onClick={createAmazonConnectConfig}>create Connect Config</Button>
+          <Button disabled={!order || !stringMap || !chariteData} onClick={createContactFlow}>create Connect Config</Button>
           <Button disabled={!order || !stringMap || !chariteData || !connectConf} onClick={() => downloadJSON(connectConf)}>download Config</Button>
         </ButtonGroup>
       </ButtonToolbar>
