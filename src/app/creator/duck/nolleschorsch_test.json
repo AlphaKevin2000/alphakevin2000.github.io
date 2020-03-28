@@ -1,18 +1,62 @@
 {
-  "modules": [],
+  "modules": [
+      {
+          "id": "3b86c3be-0941-484a-805f-0555a4e12ca9",
+          "type": "SetLoggingBehavior",
+          "branches": [
+              {
+                  "condition": "Success",
+                  "transition": "af46b2ca-71d7-4ace-95b4-7ec664ee4e2e"
+              }
+          ],
+          "parameters": [
+              {
+                  "name": "LoggingBehavior",
+                  "value": "Enable"
+              }
+          ],
+          "metadata": {
+              "position": {
+                  "x": 40,
+                  "y": 20
+              }
+          }
+      },
+      {
+          "id": "af46b2ca-71d7-4ace-95b4-7ec664ee4e2e",
+          "type": "SetVoice",
+          "branches": [
+              {
+                  "condition": "Success",
+                  "transition": "a8091677-1e0c-4dc3-9c0c-e2e1a3ae6add"
+              }
+          ],
+          "parameters": [
+              {
+                  "name": "GlobalVoice",
+                  "value": "Vicki"
+              }
+          ],
+          "metadata": {
+              "position": {
+                  "x": 60,
+                  "y": 20
+              }
+          }
+      }
+  ],
   "version": "1",
   "type": "contactFlow",
-  "start": "193965d3-a1a1-4c52-a7f8-60cbfeded0fc",
+  "start": "3b86c3be-0941-484a-805f-0555a4e12ca9",
   "metadata": {
-    "entryPointPosition": {
-      "x": 20,
-      "y": 20
-    },
-    "snapToGrid": true,
-    "name": "nolleschorsch_test",
-    "description": null,
-    "type": "contactFlow",
-    "status": "saved",
-    "hash": "90da851dfc8e1c57859c3d715ee5af1219577774907a40255252b86776cbe86b"
+      "entryPointPosition": {
+          "x": 20,
+          "y": 20
+      },
+      "snapToGrid": true,
+      "name": "charite_generated_contactflow",
+      "description": "generated ContactFlow",
+      "type": "contactFlow",
+      "status": "saved"
   }
 }
