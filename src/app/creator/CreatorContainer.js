@@ -1,6 +1,12 @@
 import { connect } from "react-redux"
 import CreatorComponent from "./CreatorComponent"
-import { fetchDataMock, handleLanguageChange, createJSON, downloadJSON, createContactFlow } from "./duck/operations"
+import { 
+  fetchDataMock,
+  handleLanguageChange,
+  createJSON,
+  downloadJSON,
+  createContactFlow
+} from "./duck/operations"
 
 export const mapStateToProps = (state, ownProps) => ({
   order: state.creator.order,

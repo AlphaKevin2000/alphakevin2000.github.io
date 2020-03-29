@@ -59,7 +59,7 @@ export const CreatorComponent = props => {
         <ButtonGroup>
           <Button disabled={!order || !stringMap} onClick={createJSON}>create JSON</Button>
           <Button disabled={!order || !stringMap || !chariteData} onClick={createContactFlow}>create Connect Config</Button>
-          <Button disabled={!order || !stringMap || !chariteData || !connectConf} onClick={() => downloadJSON(connectConf)}>download Config</Button>
+          <Button disabled={!order || !stringMap || !chariteData || !connectConf} onClick={() => downloadJSON(connectConf)}>download Configs</Button>
         </ButtonGroup>
       </ButtonToolbar>
       <Accordion>

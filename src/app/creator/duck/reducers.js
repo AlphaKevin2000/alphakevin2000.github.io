@@ -4,6 +4,7 @@ import {
   SET_LANGUAGE,
   SET_CREATED_JSON,
   SET_CREATED_AMAZON_CONNECT_CONFIG,
+  SET_CREATED_AMAZON_CONNECT_DATA,
   ADD_CONTACT_FLOW,
   ADD_UUID
 } from "./actions"
@@ -45,12 +46,18 @@ export default (state = initialState, action) => {
         ...state,
         connectConf: action.payload.data
       }
-    case ADD_CONTACT_FLOW:
-      const connectConf = Object.assign({}, state.connectConf)
-      connectConf.modules.push(action.payload.contactFlow)
+    case SET_CREATED_AMAZON_CONNECT_DATA:
+      const connectConf = Object.assign({}, state.connectConf, action.payload.data)
       return {
         ...state,
         connectConf
+      }
+    case ADD_CONTACT_FLOW:
+      const connectConfX = Object.assign({}, state.connectConf)
+      connectConf.modules.push(action.payload.contactFlow)
+      return {
+        ...state,
+        connectConfX
       }
     case ADD_UUID:
       const uuidList = [...state.uuidList]

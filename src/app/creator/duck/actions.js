@@ -3,6 +3,7 @@ export const SET_QUESTIONNAIRE_ORDER = "SET_QUESTIONNAIRE_ORDER"
 export const SET_LANGUAGE = "SET_LANGUAGE"
 export const SET_CREATED_JSON = "SET_CREATED_JSON"
 export const SET_CREATED_AMAZON_CONNECT_CONFIG = "SET_CREATED_AMAZON_CONNECT_CONFIG"
+export const SET_CREATED_AMAZON_CONNECT_DATA = "SET_CREATED_AMAZON_CONNECT_DATA"
 export const ADD_CONTACT_FLOW = "ADD_CONTACT_FLOW"
 export const ADD_UUID = "ADD_UUID"
 
@@ -29,6 +30,11 @@ export const setCreatedJSON = data => ({
 
 export const setCreatedAmazonConnectConfig = data => ({
   type: SET_CREATED_AMAZON_CONNECT_CONFIG,
+  payload: { data }
+})
+
+export const setAmazonConnectData = data => ({
+  type: SET_CREATED_AMAZON_CONNECT_DATA,
   payload: { data }
 })
 

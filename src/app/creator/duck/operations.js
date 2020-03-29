@@ -1,12 +1,14 @@
 //import fetch from "cross-fetch"
 import { uuid } from "uuidv4"
 import fileDownload from "js-file-download"
+import JSZip from "jszip"
 import {
   setQuestionnaireStrings,
   setQuestionnaireOrder,
   setLanguage,
   setCreatedJSON,
   setCreatedAmazonConnectConfig,
+  setAmazonConnectData,
   addContactFlow,
   addUUID
 } from "./actions"
@@ -54,7 +56,7 @@ export const handleLanguageChange = language => {
   }
 }
 
-export const createRadionQuestion = (question, strings) => {
+export const createRadioQuestion = (question, strings) => {
   let options = question.options.map(option => strings[option])
   return Object.assign({}, question, {
     id: question.id,
@@ -82,20 +84,32 @@ export const createJSON = () => {
       if (question.inputType === 'date') {
         return createDateQuestion(question, strings)
       } else {
-        return createRadionQuestion(question, strings)
+        return createRadioQuestion(question, strings)
       }
     })
     dispatch(setCreatedJSON(data))
   }
 }
 
-export const downloadJSON = json => {
-  fileDownload(JSON.stringify(json, null, 4), 'generated_contact_flow.json')
+export const downloadJSON = jsonMap => {
+  const zip = new JSZip();
+ 
+
+  Object.keys(jsonMap).forEach((key, x) => {
+      zip.file(`${key}.json`, JSON.stringify(jsonMap[key], null, 4))
+      //fileDownload(JSON.stringify(jsonMap[key], null, 4), `${key}.json`)
+
+  })
+  zip.generateAsync({type:"blob"}).then(function(content) {
+    // see FileSaver.js
+    fileDownload(content, "example.zip");
+  });
+  
   return {type: ''}
 }
 
-export const createEmptyContactFlow = () => {
-  const startUUID = uuid()
+export const createEmptyContactFlow = obj => {
+  const { startUUID, name } = obj
   return {
     modules: [],
     version: "1",
@@ -107,7 +121,7 @@ export const createEmptyContactFlow = () => {
         y: 50
       },
       snapToGrid: true,
-      name: "charite_generated_contactflow",
+      name: name,
       description: "generated ContactFlow",
       type: "contactFlow",
       status: "saved"
@@ -141,7 +155,7 @@ export const createContactFlowError = obj => {
     ],
     metadata: {
       position: {
-        x: 20,
+        x: 220,
         y: 420
       },
       useDynamic: false
@@ -165,12 +179,45 @@ export const createContactFlowEnd = id => {
   }
 }
 
-export const createContactFlowLoggingBehavior = (id, transitionUUIDError) => {
+export const createContactFlowTransfer = obj => {
+  const { ownUUID, errorUUID, resourceName } = obj
+  return {
+    id: ownUUID,
+    type: "Transfer",
+    branches: [
+      {
+        condition: "Error",
+        transition: errorUUID
+      }
+    ],
+    parameters: [
+      {
+        name: "ContactFlowId",
+        value: "arn:aws:connect:eu-west-2:260148551992:instance/acfcd22b-ea7c-4be1-bf41-a109717c3bcd/contact-flow/2a00909d-71ef-4410-9e3a-2ddbf4ad09ad",
+        resourceName: resourceName
+      }
+    ],
+    metadata: {
+      position: {
+        x: 20,
+        y: 600
+      },
+      useDynamic: false,
+      ContactFlow: {
+        id: "arn:aws:connect:eu-west-2:260148551992:instance/acfcd22b-ea7c-4be1-bf41-a109717c3bcd/contact-flow/2a00909d-71ef-4410-9e3a-2ddbf4ad09ad",
+        text: resourceName
+      }
+    },
+    target: "Flow"
+  }
+}
 
-  const transitionUUID = uuid()
+export const createContactFlowLoggingBehavior = obj => {
+
+  const { ownUUID, transitionUUID, errorUUID } = obj
 
   return {
-    id: id,
+    id: ownUUID,
     type: "SetLoggingBehavior",
     branches: [
       {
@@ -179,7 +226,7 @@ export const createContactFlowLoggingBehavior = (id, transitionUUIDError) => {
       },
       {
         condition: "Error",
-        transition: transitionUUIDError
+        transition: errorUUID
       }
     ],
     parameters: [
@@ -199,7 +246,7 @@ export const createContactFlowLoggingBehavior = (id, transitionUUIDError) => {
 
 export const createContactFlowVoice = obj => {
 
-  const { ownUUID, transitionUUID, transitionUUIDError } = obj
+  const { ownUUID, transitionUUID, errorUUID } = obj
   //const transitionUUID = uuid()
 
   return {
@@ -212,7 +259,7 @@ export const createContactFlowVoice = obj => {
       },
       {
         condition: "Error",
-        transition: transitionUUIDError
+        transition: errorUUID
       }
     ],
     parameters: [
@@ -232,7 +279,7 @@ export const createContactFlowVoice = obj => {
 
 export const createContactFlowGreeting = obj => {
 
-  const { ownUUID, transitionUUID, transitionUUIDError } = obj
+  const { ownUUID, transitionUUID, errorUUID } = obj
   //const transitionUUID = uuid()
 
   return {
@@ -245,7 +292,7 @@ export const createContactFlowGreeting = obj => {
       },
       {
         condition: "Error",
-        transition: transitionUUIDError
+        transition: errorUUID
       }
     ],
     parameters: [
@@ -271,48 +318,69 @@ export const createContactFlowGreeting = obj => {
 
 export const createContactFlowUserInput = obj => {
   
+  const { question, repeatUUID, errorUUID, transitionUUID, uuidMap, optionsUUIDMap, modules, x, y } = obj
   const conditionMetadata = []
 
   const staticBranches = [
     {
       condition: "Timeout",
-      transition: obj.repeatUUID
+      transition: repeatUUID
     },
     {
       condition: "NoMatch",
-      transition: obj.repeatUUID
+      transition: repeatUUID
     },
     {
       condition: "Error",
-      transition: obj.errorUUID
+      transition: errorUUID
     }
   ]
 
+  /*  each dynamic branch needs a SetAttributes */
   let dynamicBranches
 
-  if (obj.question.hasOwnProperty("options")) {
-    dynamicBranches = obj.question.options.map((option,i) => {
-      let val = i + 1
-      let transitionUUID = uuid()
-      let conditionMetadataUUID = uuid()
-  
+  if (question.hasOwnProperty("options")) {
+
+    dynamicBranches = question.options.map((option,i) => {
+      let conditionMetadataUUID = uuid()//optionsUUIDMap[i]
+
       const conditionMetadataObj = {
         id: conditionMetadataUUID,
-        value: val.toString()
+        value: i.toString()
       }
-  
       conditionMetadata.push(conditionMetadataObj)
+
+
+      let fooUUID
+      if(question.hasOwnProperty("nextQuestionMap") && question.nextQuestionMap != undefined) {
+        console.log(question.nextQuestionMap)
+        fooUUID = transitionUUID //uuidMap[question.nextQuestionMap[i]]
+      }  else {
+        fooUUID = transitionUUID 
+      }
+      
+      let key = `${question.category}_${question.id}`
+
+      let contactFlowAttribute = createContactFlowAttribute({
+        ownUUID: optionsUUIDMap[i],
+        errorUUID: errorUUID,
+        key: key,
+        value: i,
+        position: {x: x + 250, y: y + i * 200},
+        transitionUUID: fooUUID
+      })
+      modules.push(contactFlowAttribute)
   
       return {
         condition: "Evaluate",
         conditionType: "Equals",
-        conditionValue: val.toString(),
-        transition: transitionUUID
+        conditionValue: i.toString(),
+        transition: optionsUUIDMap[i]
       }
     })
   } else {
-    let transitionUUID = uuid()
-    let conditionMetadataUUID = uuid()
+    //let transitionUUID = uuid()
+    let conditionMetadataUUID = optionsUUIDMap[0]
   
     const conditionMetadataObj = {
         id: conditionMetadataUUID,
@@ -396,14 +464,6 @@ export const createContactFlowRepeat = obj => {
 export const createContactFlowAttribute = obj => {
   const { ownUUID, errorUUID, value, key, position, transitionUUID } = obj
 
-    /* ownUUID: obj.transition,
-    errorUUID: transitionUUIDError,
-    key: key,
-    value: val.toString(),
-    position: position,
-    transitionUUID: transitionUUID */
-
-
   return {
     id: ownUUID,
     type: "SetAttributes",
@@ -432,114 +492,162 @@ export const createContactFlowAttribute = obj => {
 }
 
 export const createContactFlow = () => {
-
-  // TODO: use 0 index instead of 1
-
   return (dispatch, getState) => {
-
-    const transitionUUIDError = uuid()
-    const transitionUUIDEnd = uuid()
-
-    let state = getState()
+    const state = getState()
+    //const questions = [ state.creator.chariteData[0]]
     const questions = state.creator.chariteData
-    let uuidList = state.creator.uuidList
-
-    // initialize new contact flow. fill contactFlow.modules
-    const contactFlow = createEmptyContactFlow()
-    dispatch(setCreatedAmazonConnectConfig(contactFlow))
-
-
-    const contactFlowError = createContactFlowError({ownUUID: transitionUUIDError, transitionUUID: transitionUUIDEnd})
-    dispatch(addContactFlow(contactFlowError))
-    const contactFlowEnd = createContactFlowEnd(transitionUUIDEnd)
-    dispatch(addContactFlow(contactFlowEnd))
-    const contactFlowLoggingBehavior = createContactFlowLoggingBehavior(contactFlow.start, transitionUUIDError)
-    dispatch(addContactFlow(contactFlowLoggingBehavior))
-
-    //transitionUUID
-    uuidList.push(uuid())
-
-    const contactFlowVoice = createContactFlowVoice({
-      ownUUID: contactFlowLoggingBehavior.branches[0].transition,
-      transitionUUIDError: transitionUUIDError,
-      transitionUUID: uuidList.slice(-1)[0]
+    
+    const questionIDList = []
+    questions.forEach(question => {
+      questionIDList.push(question.id)
     })
-    dispatch(addContactFlow(contactFlowVoice))
 
-    //transitionUUID
-    uuidList.push(uuid())
+    const questionIDSet = new Set(questionIDList)
+    const uuidMap = {}
 
-    const contactFlowGreeting = createContactFlowGreeting({
-      ownUUID: contactFlowVoice.branches[0].transition,
-      transitionUUIDError: transitionUUIDError,
-      transitionUUID: uuidList.slice(-1)[0]
+    // Set sadly has no map method :(
+    questionIDSet.forEach(id => {
+      uuidMap[id] =  uuid()
     })
-    dispatch(addContactFlow(contactFlowGreeting))
 
-    dispatch(addUUID(contactFlowGreeting.branches[0].transition))
+    questions.forEach((question, i) => {
 
-    let x = 820
-    let y = 20
+      const contactFlowName = `generated_charite_data_${i}`
 
-    const myquestions = questions.slice(0,1) // use 10 when everyhting works, maybe even higher //[questions[1]]
-    const finalQuestion = myquestions.slice(-1)[0]
-    // remove filter!! .filter(q => !q.hasOwnProperty("nextQuestionMap"))
+      const endUUID = uuid()
+      const repeatUUID = uuid()
+      const errorUUID = uuid()
+      const transferUUID = uuid()
 
-    //let endUUID = uuid()
+      const x = 820
+      const y = 20
 
-    myquestions.forEach((question, i) => {
-      //console.log(finalQuestion === question)
-      //state = getState()
-      //uuidList = state.creator.uuidList
-      uuidList = uuidList.slice(-1)
-      let position = {x: x, y: y + 200}
-      let repeatUUID = uuid()
-      let ownUUID = uuidList[i]
-      let contactFlowRepeat = createContactFlowRepeat({
+      const contactFlow = createEmptyContactFlow({
+        name: contactFlowName,
+        startUUID: uuidMap[question.id]
+      })
+      const modules = []
+
+      const contactFlowEnd = createContactFlowEnd(endUUID)
+      modules.push(contactFlowEnd)
+
+      const contactFlowRepeat = createContactFlowRepeat({
         ownUUID: repeatUUID,
-        transitionUUID: ownUUID,
-        position: position
+        transitionUUID: uuidMap[question.id],
+        position: {x: x, y: y + 200}
       })
+      modules.push(contactFlowRepeat)
 
-      position = {x: x, y: y}
-      
+      const contactFlowError = createContactFlowError({
+        ownUUID: errorUUID,
+        transitionUUID: endUUID
+      })
+      modules.push(contactFlowError)
 
-      let stuff = {
-        ownUUID: ownUUID,//uuidList[i],
-        errorUUID: transitionUUIDError,
-        repeatUUID: repeatUUID,
-        position: position,
-        question: question
+      const contactFlowTransfer = createContactFlowTransfer({
+        ownUUID: transferUUID,
+        errorUUID: errorUUID,
+        resourceName: `generated_charite_data_${i+1}`
+      })
+      modules.push(contactFlowTransfer)
+
+      let optionsUUIDMap = {}
+
+      if (question.hasOwnProperty("options")) {
+        console.log({question})
+        question.options.forEach((option,i) => {
+          optionsUUIDMap[i] = uuid()
+        })
+      } else {
+        optionsUUIDMap[0] = uuid()
       }
-      
-      dispatch(addContactFlow(contactFlowRepeat))
-      let contactFlowUserInput = createContactFlowUserInput(stuff)
 
-      let transitionUUID = finalQuestion === question ? transitionUUIDEnd : uuid() 
+      console.log({optionsUUIDMap})
 
-      contactFlowUserInput.branches.filter(branch => branch.condition == 'Evaluate').forEach((obj, j) => {
-
-        let position = {x: x + 200, y: y + j * 200}
-
-        const val = j + 1
-        const key = `${question.category}_${question.id}`
-        let stuff = {
-          ownUUID: obj.transition,
-          errorUUID: transitionUUIDError,
-          key: key,
-          value: val.toString(),
-          position: position,
-          transitionUUID: transitionUUID
-        }
-
-        let contactFlowAttribute = createContactFlowAttribute(stuff)
-        dispatch(addContactFlow(contactFlowAttribute))
-        
+      const contactFlowUserInput = createContactFlowUserInput({
+        ownUUID: uuidMap[question.id],
+        errorUUID: errorUUID,
+        repeatUUID: repeatUUID,
+        position: {x: x, y: y},
+        question: question,
+        transitionUUID: transferUUID,
+        uuidMap: uuidMap,
+        optionsUUIDMap: optionsUUIDMap,
+        modules: modules,
+        x: x,
+        y: y
       })
-      uuidList.push(contactFlowUserInput.branches[0].transition)
-      //dispatch(addUUID(contactFlowUserInput.branches[0].transition))
-      dispatch(addContactFlow(contactFlowUserInput))
-      x = x + 400
+      modules.push(contactFlowUserInput)
+
+      contactFlow.modules = modules
+      dispatch(setAmazonConnectData({[contactFlowName]: contactFlow}))
     })
+    // TODO: add static start and end
+
+    const loggingUUUID = uuid()
+    const startErrorUUID = uuid()
+    const startEndUUID = uuid()
+    const startTransferUUID = uuid()
+    const voiceUUID = uuid()
+    const greetingUUID = uuid()
+
+    const staticStart = createEmptyContactFlow({
+      startUUID: loggingUUUID,
+      name: "generated_charite_data_start"
+    })
+    const startModules = []
+
+    const startError = createContactFlowError({
+      ownUUID: startErrorUUID,
+      transitionUUID: startEndUUID
+    })
+    startModules.push(startError)
+
+    const startEnd = createContactFlowEnd(startEndUUID)
+    startModules.push(startEnd)
+
+    const startTransfer = createContactFlowTransfer({
+      ownUUID: startTransferUUID,
+      errorUUID: startErrorUUID,
+      resourceName: "generated_charite_data_0"
+    })
+    startModules.push(startTransfer)
+
+    const startLogging = createContactFlowLoggingBehavior({
+      ownUUID: loggingUUUID,
+      transitionUUID: voiceUUID,
+      errorUUID: startErrorUUID
+    })
+    startModules.push(startLogging)
+
+    const startVoice = createContactFlowVoice({
+      ownUUID: voiceUUID,
+      transitionUUID: greetingUUID,
+      errorUUID: startErrorUUID
+    })
+    startModules.push(startVoice)
+
+    const startGreeting = createContactFlowGreeting({
+      ownUUID: greetingUUID,
+      transitionUUID: startTransferUUID,
+      errorUUID: startErrorUUID
+    })
+    startModules.push(startGreeting)
+
+    staticStart.modules = startModules
+
+    dispatch(setAmazonConnectData({"generated_charite_data_start": staticStart}))
+
+    const finishUUID = uuid()
+    const endErrorUUID = uuid()
+
+    const staticEnd = createEmptyContactFlow({
+      startUUID: finishUUID,
+      name: "generated_charite_data_29"
+    })
+
+    const endError = createContactFlowEnd(finishUUID) 
+    staticEnd.modules = [endError]
+    dispatch(setAmazonConnectData({"generated_charite_data_29": staticEnd}))
   }
 }

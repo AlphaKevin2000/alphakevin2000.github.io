@@ -5,6 +5,7 @@
   "dependencies": {
     "cross-fetch": "^3.0.4",
     "js-file-download": "^0.4.10",
+    "jszip": "^3.2.2",
     "react": "^16.13.1",
     "react-bootstrap": "^1.0.0",
     "react-dom": "^16.13.1",
@@ -22,7 +23,6 @@
     "coverage": "react-scripts test --coverage --watchAll=false",
     "eject": "react-scripts eject"
   },
-  
   "eslintConfig": {
     "extends": "react-app"
   },
