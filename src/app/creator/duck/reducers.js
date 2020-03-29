@@ -6,7 +6,8 @@ import {
   SET_CREATED_AMAZON_CONNECT_CONFIG,
   SET_CREATED_AMAZON_CONNECT_DATA,
   ADD_CONTACT_FLOW,
-  ADD_UUID
+  ADD_UUID,
+  ADD_KEY
 } from "./actions"
 import { connect } from "react-redux"
 
@@ -16,7 +17,8 @@ export const initialState = {
   language: 'de',
   chariteData: undefined,
   connectConf: undefined,
-  uuidList: []
+  uuidList: [],
+  lambdaKeys: {"lambdaKeys": []}
 }
 
 export default (state = initialState, action) => {
@@ -65,6 +67,17 @@ export default (state = initialState, action) => {
       return {
         ...state,
         uuidList
+      }
+    case ADD_KEY:
+      let lambdaKeys = state.lambdaKeys
+  
+      if (lambdaKeys["lambdaKeys"].indexOf(action.payload.key) === -1) {
+        lambdaKeys["lambdaKeys"].push(action.payload.key)
+      }
+
+      return {
+        ...state,
+        lambdaKeys
       }
     default:
       return state

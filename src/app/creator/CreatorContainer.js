@@ -13,7 +13,8 @@ export const mapStateToProps = (state, ownProps) => ({
   stringMap: state.creator.stringMap,
   language: state.creator.language,
   chariteData: state.creator.chariteData,
-  connectConf: state.creator.connectConf
+  connectConf: state.creator.connectConf,
+  lambdaKeys: state.creator.lambdaKeys
 })
 
 export const mapDispatchToProps = {

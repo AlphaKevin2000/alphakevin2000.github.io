@@ -10,7 +10,8 @@ import {
   setCreatedAmazonConnectConfig,
   setAmazonConnectData,
   addContactFlow,
-  addUUID
+  addUUID,
+  addKey
 } from "./actions"
 
 import { QUESTIONNAIRE_ORDER } from "./questionnaire_order"
@@ -279,8 +280,10 @@ export const createContactFlowVoice = obj => {
 
 export const createContactFlowGreeting = obj => {
 
-  const { ownUUID, transitionUUID, errorUUID } = obj
+  const { ownUUID, transitionUUID, errorUUID, text } = obj
   //const transitionUUID = uuid()
+
+  const textX = text === undefined ? "lorem ipsum" : text
 
   return {
     id: ownUUID,
@@ -298,7 +301,7 @@ export const createContactFlowGreeting = obj => {
     parameters: [
       {
         name: "Text",
-        value: "Dieser Telefonservice ist eine von der Charité in Zusammenarbeit mit einem Team von freiwilligen des Heckatons der Bundesregierung entwickelte Dienstleistung, mit der Sie innerhalb weniger Minuten einen Fragenkatalog beantworten und daraus spezifische Handlungsempfehlungen erhalten. Sie erhalten nach Beantwortung der Fragen konkrete Handlungsempfehlungen. Ziel ist es, die Patientenströme in Krankenhäusern und Untersuchungsstellen zu optimieren.\n\nSie erhalten am Ende zwei Wörter, die Sie sich notieren. Durch Nennung dieser beiden Wörter können Praxen und Kliniken ihre individuelle Zusammenfassung der Antworten abfragen. Sie können frei entscheiden, wem Sie diese zwei Wörter anvertrauen.\n\nNehmen Sie sich etwa 10 Minuten Zeit.\n\nBitte beachten Sie, dass die Nutzung dieser Dienstleistung keine ärztliche Behandlung ersetzt und keine diagnostische Leistung erbringt. Wenn Sie sich daher aktuell schwer krank fühlen, suchen Sie bitte umgehend einen Arzt/Ärztin oder medizinische Hilfe auf.\n\nBeginnen wir nun mit den Fragen:",
+        value: textX,
         namespace: null
       },
       {
@@ -318,7 +321,7 @@ export const createContactFlowGreeting = obj => {
 
 export const createContactFlowUserInput = obj => {
   
-  const { question, repeatUUID, errorUUID, transitionUUID, uuidMap, optionsUUIDMap, modules, x, y } = obj
+  const { question, repeatUUID, errorUUID, transitionUUID, uuidMap, optionsUUIDMap, modules, x, y, dispatch } = obj
   const conditionMetadata = []
 
   const staticBranches = [
@@ -360,6 +363,7 @@ export const createContactFlowUserInput = obj => {
       }
       
       let key = `${question.category}_${question.id}`
+      dispatch(addKey(key))
 
       let contactFlowAttribute = createContactFlowAttribute({
         ownUUID: optionsUUIDMap[i],
@@ -491,6 +495,65 @@ export const createContactFlowAttribute = obj => {
   }
 }
 
+export const createContactFlowInvokeExternal = obj => {
+
+  const { ownUUID, transitionUUID, errorUUID, lambdaKeys } = obj
+
+  console.log({lambdaKeys})
+  alert("")
+
+  let dynamicParameters = []
+  let dynamicMetadata = {}
+
+  lambdaKeys.lambdaKeys.forEach((key, i) => {
+    let dynamicParamter = {
+      name: "Parameter",
+      key: key,
+      value: `$.Attributes.${key}`,
+      namespace: null
+    }
+    let dynamicMetadata = {[key]: false}
+    dynamicParameters.push(dynamicParamter)
+    dynamicMetadata[key] = false
+  })
+
+  return {
+    id: ownUUID,
+    type: "InvokeExternalResource",
+    branches: [
+      {
+        condition: "Success",
+        transition: transitionUUID
+      },
+      {
+        condition: "Error",
+        transition: errorUUID
+      }
+    ],
+    parameters: [
+      {
+        name: "FunctionArn",
+        value: "arn:aws:lambda:eu-west-2:260148551992:function:determineWordsForCovApp",
+        namespace: null
+      },
+      {
+        name: "TimeLimit",
+        value: "8"
+      },
+      ...dynamicParameters
+    ],
+    metadata: {
+      position: {
+        x: 337,
+        y: 35
+      },
+      dynamicMetadata: dynamicMetadata,
+      useDynamic: false
+    },
+    target: "Lambda"
+  }
+}
+
 export const createContactFlow = () => {
   return (dispatch, getState) => {
     const state = getState()
@@ -575,7 +638,8 @@ export const createContactFlow = () => {
         optionsUUIDMap: optionsUUIDMap,
         modules: modules,
         x: x,
-        y: y
+        y: y,
+        dispatch: dispatch
       })
       modules.push(contactFlowUserInput)
 
@@ -640,14 +704,57 @@ export const createContactFlow = () => {
 
     const finishUUID = uuid()
     const endErrorUUID = uuid()
+    const lambdaUUID = uuid()
+    const recomUUID = uuid()
+    const recomSpeechUUID = uuid()
+    const endModules = []
 
     const staticEnd = createEmptyContactFlow({
-      startUUID: finishUUID,
+      startUUID: lambdaUUID,
       name: "generated_charite_data_29"
     })
 
-    const endError = createContactFlowEnd(finishUUID) 
-    staticEnd.modules = [endError]
+    const endError = createContactFlowError({
+      ownUUID: endErrorUUID,
+      transitionUUID: finishUUID
+    })
+    endModules.push(endError)
+
+    const finishLine = createContactFlowEnd(finishUUID)
+    endModules.push(finishLine)
+
+    const finalState = getState()
+    const lambdaKeys = finalState.creator.lambdaKeys
+
+    const lambdaCall = createContactFlowInvokeExternal({
+      ownUUID: lambdaUUID,
+      errorUUID: endErrorUUID,
+      lambdaKeys: lambdaKeys,
+      transitionUUID: recomUUID
+    })
+    endModules.push(lambdaCall)
+
+    let position = {x: 400, y: 400}
+
+    const recomAttr = createContactFlowAttribute({
+      ownUUID: recomUUID,
+      errorUUID: endErrorUUID,
+      value: "$.External.recommendation",
+      key: "recommendation",
+      position: position,
+      transitionUUID: recomSpeechUUID
+    })
+    endModules.push(recomAttr)
+
+    const recomVoice = createContactFlowGreeting({
+      ownUUID: recomSpeechUUID,
+      transitionUUID: finishUUID,
+      errorUUID: endErrorUUID,
+      text: "$.External.word1 und $.External.word2"
+    })
+    endModules.push(recomVoice)
+
+    staticEnd.modules = endModules 
     dispatch(setAmazonConnectData({"generated_charite_data_29": staticEnd}))
   }
 }

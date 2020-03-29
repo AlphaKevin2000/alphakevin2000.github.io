@@ -30,7 +30,8 @@ export const CreatorComponent = props => {
     chariteData,
     createContactFlow,
     connectConf,
-    downloadJSON
+    downloadJSON,
+    lambdaKeys
   } = props
 
   const bla = {
@@ -60,6 +61,7 @@ export const CreatorComponent = props => {
           <Button disabled={!order || !stringMap} onClick={createJSON}>create JSON</Button>
           <Button disabled={!order || !stringMap || !chariteData} onClick={createContactFlow}>create Connect Config</Button>
           <Button disabled={!order || !stringMap || !chariteData || !connectConf} onClick={() => downloadJSON(connectConf)}>download Configs</Button>
+          <Button disabled={!order || !stringMap || !chariteData || !connectConf} onClick={() => downloadJSON(lambdaKeys)}>download keys</Button>
         </ButtonGroup>
       </ButtonToolbar>
       <Accordion>
