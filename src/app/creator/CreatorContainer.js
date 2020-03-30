@@ -22,7 +22,7 @@ export const mapDispatchToProps = {
   handleLanguageChange,
   createJSON,
   createContactFlow,
-  downloadJSON
+  downloadJSON,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreatorComponent)

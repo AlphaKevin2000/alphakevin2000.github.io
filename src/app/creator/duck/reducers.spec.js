@@ -48,22 +48,6 @@ describe("creatorReducer", () => {
     expect(newState.connectConf).toEqual(action.payload.data)
     expect(newState).toEqual(Object.assign({}, initialState, action.payload))
   })
-  it("has correct state after addContactFlow", () => {
-    let preAction = setCreatedAmazonConnectConfig({modules: []})
-    initialState = creatorReducer(initialState, preAction)
-
-    action = addContactFlow({fake: "contactFlow"})
-    newState = creatorReducer(initialState, action)
-
-    expect(newState.connectConf.modules).toEqual([action.payload.contactFlow])
-    //expect(newState).toEqual(Object.assign({}, initialState, action.payload))
-
-    action = addContactFlow({another: "fakeContact"})
-    let anotherContactFlow = [action.payload.contactFlow]
-    let expected = [...newState.connectConf.modules, ...anotherContactFlow]
-    newState = creatorReducer(newState, action)
-    expect(newState.connectConf.modules).toEqual(expected)
-  })
   it("has correct state after addUUID", () => {
     action = addUUID("some-fake-uuid")
     newState = creatorReducer(initialState, action)

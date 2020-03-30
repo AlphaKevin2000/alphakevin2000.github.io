@@ -1,0 +1,55 @@
+import PropTypes from "prop-types"
+
+
+export const defaultProps = {
+}
+
+export const propTypes = {
+  ownUUID: PropTypes.string.isRequired,
+  errorUUID: PropTypes.string.isRequired,
+  transitionUUID: PropTypes.string.isRequired,
+  value: PropTypes.any.isRequired,
+  key: PropTypes.string.isRequired,
+  positionX: PropTypes.number.isRequired,
+  positionY: PropTypes.number.isRequired
+}
+
+
+export const ContactFlowAttribute = ({
+    ownUUID, errorUUID, transitionUUID, value, key, positionX, positionY
+  }) => {
+
+  return {
+    id: ownUUID,
+    type: "SetAttributes",
+    branches: [
+      {
+        condition: "Success",
+        transition: transitionUUID
+      },
+      {
+        condition: "Error",
+        transition: errorUUID
+      }
+    ],
+    parameters: [
+      {
+        name: "Attribute",
+        value: value,
+        key: key,
+        namespace: null
+      }
+    ],
+    metadata: {
+      position: {
+        x: positionX,
+        y: positionY
+      }
+    }
+  }
+}
+
+ContactFlowAttribute.propTypes = propTypes
+ContactFlowAttribute.defaultProps = defaultProps
+
+export default ContactFlowAttribute

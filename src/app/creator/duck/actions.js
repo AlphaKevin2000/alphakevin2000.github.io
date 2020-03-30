@@ -7,6 +7,7 @@ export const SET_CREATED_AMAZON_CONNECT_DATA = "SET_CREATED_AMAZON_CONNECT_DATA"
 export const ADD_CONTACT_FLOW = "ADD_CONTACT_FLOW"
 export const ADD_UUID = "ADD_UUID"
 export const ADD_KEY = "ADD_KEY"
+export const SET_QUESTION_COUNT = "SET_QUESTION_COUNT"
 
 export const setQuestionnaireStrings = stringMap => ({
   type: SET_QUESTIONNAIRE_STRING_MAP,
@@ -51,4 +52,9 @@ export const addUUID = uuid => ({
 export const addKey = key => ({
   type: ADD_KEY,
   payload: { key }
+})
+
+export const setQuestionCount = questionCount => ({
+  type: SET_QUESTION_COUNT,
+  payload: { questionCount }
 })

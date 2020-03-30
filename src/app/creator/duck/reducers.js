@@ -5,9 +5,9 @@ import {
   SET_CREATED_JSON,
   SET_CREATED_AMAZON_CONNECT_CONFIG,
   SET_CREATED_AMAZON_CONNECT_DATA,
-  ADD_CONTACT_FLOW,
   ADD_UUID,
-  ADD_KEY
+  ADD_KEY,
+  SET_QUESTION_COUNT
 } from "./actions"
 import { connect } from "react-redux"
 
@@ -54,13 +54,6 @@ export default (state = initialState, action) => {
         ...state,
         connectConf
       }
-    case ADD_CONTACT_FLOW:
-      const connectConfX = Object.assign({}, state.connectConf)
-      connectConf.modules.push(action.payload.contactFlow)
-      return {
-        ...state,
-        connectConfX
-      }
     case ADD_UUID:
       const uuidList = [...state.uuidList]
       uuidList.push(action.payload.uuid)
@@ -78,6 +71,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         lambdaKeys
+      }
+    case SET_QUESTION_COUNT:
+      return {
+        ...state,
+        quesitonCount: action.payload.questionCount
       }
     default:
       return state
