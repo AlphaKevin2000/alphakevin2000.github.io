@@ -10,15 +10,16 @@ export const AmazonConnectConfiguratorComponent = props => {
     createContactFlow,
     connectConf,
     downloadJSON,
-    lambdaKeys
+    lambdaKeys,
+    language
   } = props
 
   return (
 
    <ButtonGroup size="sm">
           <Button onClick={createContactFlow}>create Connect Config</Button>
-          <Button disabled={!connectConf} onClick={() => downloadJSON(connectConf)}>download Configs</Button>
-          <Button disabled={!connectConf} onClick={() => downloadJSON(lambdaKeys)}>download keys</Button>
+          <Button disabled={!connectConf} onClick={() => downloadJSON(connectConf, language)}>download Configs</Button>
+          <Button disabled={!connectConf} onClick={() => downloadJSON(lambdaKeys, language)}>download keys</Button>
     </ButtonGroup>
   )
 }

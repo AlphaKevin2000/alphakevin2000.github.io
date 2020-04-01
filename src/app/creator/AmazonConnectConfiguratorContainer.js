@@ -10,7 +10,8 @@ import {
 export const mapStateToProps = (state, ownProps) => ({
   chariteData: state.creator.chariteData,
   connectConf: state.creator.connectConf,
-  lambdaKeys: state.creator.lambdaKeys
+  lambdaKeys: state.creator.lambdaKeys,
+  language: state.creator.language
 })
 
 export const mapDispatchToProps = {

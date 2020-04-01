@@ -96,12 +96,12 @@ export const createJSON = () => {
   }
 }
 
-export const downloadJSON = jsonMap => {
+export const downloadJSON = (jsonMap, language) => {
   const zip = new JSZip();
  
 
   Object.keys(jsonMap).forEach((key, x) => {
-      zip.file(`${key}.json`, JSON.stringify(jsonMap[key], null, 4))
+      zip.file(`${key}_${language}.json`, JSON.stringify(jsonMap[key], null, 4))
       //fileDownload(JSON.stringify(jsonMap[key], null, 4), `${key}.json`)
 
   })
