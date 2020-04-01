@@ -19,33 +19,49 @@ export const propTypes = {
 }
 
 export const ContactFlowQuestion = ({
-    dispatch, uuidMap, question, index, addKey,
+    dispatch, uuidMap, question, index, addKey, name,
     positionX = defaultProps.positionX,
     positionY = defaultProps.positionY
   }) => {
 
-      const contactFlowName = `generated_charite_data_${index}`
-
       const endUUID = uuid()
       const repeatUUID = uuid()
       const errorUUID = uuid()
-      const transferUUID = uuid()
 
+      let transferUUIDs 
+      if (question.nextQuestionMap !== undefined) {
+        let someUUIDs = Array.from(new Set(question.nextQuestionMap.map(q => {
+          return {uuid: uuid(), key: q}
+        })))
+        transferUUIDs = question.nextQuestionMap.map(q => {
+          return someUUIDs.find(u => u.key === q)
+        })
+      }
+      else {
+        let singleTransferUUID = {uuid: uuid(), key: question.id}
+        if (question.hasOwnProperty("options")) {
+          transferUUIDs = question.options.map(q => singleTransferUUID)
+        } else {
+          transferUUIDs = [singleTransferUUID]
+        }
+      }
+
+      transferUUIDs = Array.from(transferUUIDs)
 
       const contactFlowQuestion = EmptyContactFlow({
-        name: contactFlowName,
+        name: name,
         startUUID: uuidMap[question.id]
       })
       const modules = []
 
-      const contactFlowEnd = ContactFlowEnd(endUUID)
+      const contactFlowEnd = ContactFlowEnd({ownUUID:endUUID})
       modules.push(contactFlowEnd)
 
       const contactFlowRepeat = ContactFlowRepeat({
         ownUUID: repeatUUID,
         transitionUUID: uuidMap[question.id],
         positionX: positionX,
-        postionY: positionY + 200
+        positionY: positionY + 200
       })
       modules.push(contactFlowRepeat)
 
@@ -55,17 +71,18 @@ export const ContactFlowQuestion = ({
       })
       modules.push(contactFlowError)
 
-      const contactFlowTransfer = ContactFlowTransfer({
-        ownUUID: transferUUID,
-        errorUUID: errorUUID,
-        resourceName: `generated_charite_data_${index+1}`
+      Array.from(new Set(transferUUIDs)).forEach(t => {
+        const contactFlowTransfer = ContactFlowTransfer({
+          ownUUID: t.uuid,
+          errorUUID: errorUUID,
+          resourceName: `generated_charite_data_${t.key}`
+        })
+        modules.push(contactFlowTransfer)
       })
-      modules.push(contactFlowTransfer)
 
       let optionsUUIDMap = {}
 
       if (question.hasOwnProperty("options")) {
-        console.log({question})
         question.options.forEach((option,i) => {
           optionsUUIDMap[i] = uuid()
         })
@@ -73,14 +90,12 @@ export const ContactFlowQuestion = ({
         optionsUUIDMap[0] = uuid()
       }
 
-      console.log({optionsUUIDMap})
-
       const contactFlowUserInput = ContactFlowUserInput({
         ownUUID: uuidMap[question.id],
         errorUUID: errorUUID,
         repeatUUID: repeatUUID,
         question: question,
-        transitionUUID: transferUUID,
+        transitionUUIDs: transferUUIDs,
         uuidMap: uuidMap,
         optionsUUIDMap: optionsUUIDMap,
         modules: modules,

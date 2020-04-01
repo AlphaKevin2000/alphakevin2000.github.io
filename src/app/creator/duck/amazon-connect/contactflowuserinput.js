@@ -12,7 +12,7 @@ export const propTypes = {
   ownUUID: PropTypes.string.isRequired,
   repeatUUID: PropTypes.string.isRequired,
   errorUUID: PropTypes.string.isRequired,
-  transitionUUID: PropTypes.string.isRequired,
+  transitionUUIDs: PropTypes.arrayOf(PropTypes.object).isRequired,
   optionsUUIDMap: PropTypes.arrayOf(PropTypes.string).isRequired,
   modules: PropTypes.arrayOf(PropTypes.object).isRequired,
   positionX: PropTypes.number.isRequired,
@@ -27,7 +27,7 @@ export const ContactFlowUserInput = ({
     ownUUID,
     repeatUUID,
     errorUUID,
-    transitionUUID,
+    transitionUUIDs,
     optionsUUIDMap,
     modules,
     positionX,
@@ -58,24 +58,15 @@ export const ContactFlowUserInput = ({
   let dynamicBranches
 
   if (question.hasOwnProperty("options")) {
-
+    // TODO: add each option to the question text
     dynamicBranches = question.options.map((option,i) => {
-      let conditionMetadataUUID = uuid()//optionsUUIDMap[i]
+      let conditionMetadataUUID = uuid()
 
       const conditionMetadataObj = {
         id: conditionMetadataUUID,
         value: i.toString()
       }
       conditionMetadata.push(conditionMetadataObj)
-
-
-      let fooUUID
-      if(question.hasOwnProperty("nextQuestionMap") && question.nextQuestionMap != undefined) {
-        console.log(question.nextQuestionMap)
-        fooUUID = transitionUUID //uuidMap[question.nextQuestionMap[i]]
-      }  else {
-        fooUUID = transitionUUID 
-      }
       
       let key = `${question.category}_${question.id}`
       dispatch(addKey(key))
@@ -86,8 +77,8 @@ export const ContactFlowUserInput = ({
         key: key,
         value: i,
         positionX: positionX + 250,
-        postionY: positionY + i * 200,
-        transitionUUID: fooUUID
+        positionY: positionY + i * 200,
+        transitionUUID: transitionUUIDs[i].uuid
       })
       modules.push(contactFlowAttribute)
   
@@ -99,7 +90,7 @@ export const ContactFlowUserInput = ({
       }
     })
   } else {
-    //let transitionUUID = uuid()
+    // TODO: make this work properly
     let conditionMetadataUUID = optionsUUIDMap[0]
   
     const conditionMetadataObj = {
@@ -113,7 +104,7 @@ export const ContactFlowUserInput = ({
       condition: "Evaluate",
       conditionType: "Equals",
       conditionValue: "1",
-      transition: transitionUUID
+      transition: transitionUUIDs[0].uuid
     }]
 
   }

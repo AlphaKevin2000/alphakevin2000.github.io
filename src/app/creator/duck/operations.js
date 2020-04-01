@@ -14,8 +14,8 @@ import {
 
 import cf from "./amazon-connect/contactflow"
 
-import { QUESTIONNAIRE_ORDER } from "./questionnaire_order"
-import { QUESTIONNAIRE } from "./questionnaire_strings"
+import { QUESTIONNAIRE_ORDER_SMALL as QUESTIONNAIRE_ORDER } from "./foo" /* "./questionnaire_order" */
+import { QUESTIONNAIRE } from  "./bar" /* "./questionnaire_strings" */
 
 // TODO: implement a real fetch from  https://covapp.charite.de/
 export const fetchData = () => {
@@ -47,6 +47,14 @@ export const fetchDataMock = url => {
   }
 }
 
+export const getQuestionsAndGenerateJSONMock = url => {
+  return dispatch => {
+    dispatch(setQuestionnaireStrings(QUESTIONNAIRE))
+    dispatch(setQuestionnaireOrder(QUESTIONNAIRE_ORDER))
+    dispatch(createJSON())
+  }
+}
+
 export const handleLanguageChange = language => {
   return dispatch => {
     dispatch(setLanguage(language))
@@ -75,7 +83,7 @@ export const createJSON = () => {
   return (dispatch, getState) => {
     const state = getState()
     const { order, stringMap, language } = state.creator
-    const strings = stringMap[language]
+    const strings = stringMap[language].keys
     const data = order.map(question => {
 
       if (question.inputType === 'date') {
@@ -133,7 +141,8 @@ export const createContactFlow = () => {
     let qCount = 0
 
     questions.forEach((question, i) => {
-      const contactFlowName = `generated_charite_data_${i}`
+      
+      const contactFlowName = `automated_charite_data_${question.id}`
       const contactFlow = cf.ContactFlowQuestion({
         name: contactFlowName,
         getState: getState,
@@ -143,19 +152,19 @@ export const createContactFlow = () => {
         addKey: addKey,
         dispatch: dispatch
       })
+      
       qCount++
       dispatch(setAmazonConnectData({[contactFlowName]: contactFlow}))
     })
     dispatch(setQuestionCount(qCount))
 
-    const staticStartName = "generated_charite_data_start"
+    const staticStartName = "automated_charite_data_start"
     const staticStart = cf.ContactFlowStaticStart({name: staticStartName})
     dispatch(setAmazonConnectData({[staticStartName]: staticStart}))    
 
     state = getState()
-    const { questionCount } = state.creator
 
-    const staticEndName = `generated_charite_data_${questionCount}`
+    const staticEndName = "automated_charite_data_end"
     const staticEnd = cf.ContactFlowStaticEnd({name: staticEndName, getState: getState})
     dispatch(setAmazonConnectData({[staticEndName]: staticEnd}))
   }

@@ -9,7 +9,6 @@ import {
   ADD_KEY,
   SET_QUESTION_COUNT
 } from "./actions"
-import { connect } from "react-redux"
 
 export const initialState = {
   order: undefined,

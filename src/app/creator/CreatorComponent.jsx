@@ -4,13 +4,12 @@ import ButtonToolbar from "react-bootstrap/ButtonToolbar"
 import ButtonGroup from "react-bootstrap/ButtonGroup"
 import Button from "react-bootstrap/Button"
 import Form from "react-bootstrap/Form"
-import Row from "react-bootstrap/Row"
-import Col from "react-bootstrap/Col"
 import Accordion from "react-bootstrap/Accordion"
 import Card from "react-bootstrap/Card"
-import AccordionToggle from "react-bootstrap/AccordionToggle"
 
- 
+import  AmazonSettings from "./AmazonConnectConfiguratorContainer" 
+
+
 export const defaultProps = {
   availableLanguages: [
     {key: 'en', display: 'English'},
@@ -23,16 +22,12 @@ export const CreatorComponent = props => {
   const {
     order,
     stringMap,
-    fetchDataMock,
+    getQuestionsAndGenerateJSONMock,
     availableLanguages,
     handleLanguageChange,
     language,
-    createJSON,
     chariteData,
-    createContactFlow,
     connectConf,
-    downloadJSON,
-    lambdaKeys
   } = props
 
   const bla = {
@@ -46,24 +41,19 @@ export const CreatorComponent = props => {
     <Container>
       <h1>Hello World</h1>
       <ButtonToolbar>
-        <ButtonGroup className="mr-2">
+        <ButtonGroup className="mr-2" size="sm">
         {
           // TODO: use something else instead of buttons
           availableLanguages.map(language =>
-          <Button variant="secondary" key={language.key} onClick={() => handleLanguageChange(language.key)}>{language.display}</Button>
+          <Button size="xs" variant="secondary" key={language.key} onClick={() => handleLanguageChange(language.key)}>{language.display}</Button>
             ) 
         }
         </ButtonGroup>
-        <ButtonGroup className="mr-2">
-          <Button onClick={() => fetchDataMock('stringMap')}>Get Questionnnaire StringMap</Button>
-          <Button onClick={() => fetchDataMock('order')}>Get Questionnnaire Order</Button>
+        <ButtonGroup className="mr-2" size="sm">
+          <Button onClick={getQuestionsAndGenerateJSONMock}>Get Questions</Button>
         </ButtonGroup>
-        <ButtonGroup>
-          <Button disabled={!order || !stringMap} onClick={createJSON}>create JSON</Button>
-          <Button disabled={!order || !stringMap || !chariteData} onClick={createContactFlow}>create Connect Config</Button>
-          <Button disabled={!order || !stringMap || !chariteData || !connectConf} onClick={() => downloadJSON(connectConf)}>download Configs</Button>
-          <Button disabled={!order || !stringMap || !chariteData || !connectConf} onClick={() => downloadJSON(lambdaKeys)}>download keys</Button>
-        </ButtonGroup>
+        {chariteData ? <AmazonSettings /> : null}
+
       </ButtonToolbar>
       <Accordion>
         {

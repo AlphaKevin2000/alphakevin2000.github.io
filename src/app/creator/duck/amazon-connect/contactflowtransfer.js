@@ -5,7 +5,7 @@ import PropTypes from "prop-types"
 export const defaultProps = {
   positionX: 20,
   positionY: 600,
-  endPoint: "arn:aws:connect:eu-west-2:260148551992:instance/acfcd22b-ea7c-4be1-bf41-a109717c3bcd/contact-flow/2a00909d-71ef-4410-9e3a-2ddbf4ad09ad"
+  endPoint: ""
 }
 
 export const propTypes = {
