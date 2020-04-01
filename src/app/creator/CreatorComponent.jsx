@@ -44,8 +44,8 @@ export const CreatorComponent = props => {
         <ButtonGroup className="mr-2" size="sm">
         {
           // TODO: use something else instead of buttons
-          availableLanguages.map(language =>
-          <Button size="xs" variant="secondary" key={language.key} onClick={() => handleLanguageChange(language.key)}>{language.display}</Button>
+          availableLanguages.map(lang =>
+          <Button size="xs" variant={language === lang.key ? "success" : "secondary"} key={language.key} onClick={() => handleLanguageChange(lang.key)}>{lang.display}</Button>
             ) 
         }
         </ButtonGroup>

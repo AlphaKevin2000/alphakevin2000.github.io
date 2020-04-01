@@ -13,7 +13,7 @@ import {
 export const initialState = {
   order: undefined,
   stringMap: {'de': undefined, 'en': undefined},
-  language: 'de',
+  language: 'en',
   chariteData: undefined,
   connectConf: undefined,
   uuidList: [],
