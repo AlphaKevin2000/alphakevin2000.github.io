@@ -14,7 +14,7 @@ import {
 
 import cf from "./amazon-connect/contactflow"
 
-import { QUESTIONNAIRE_ORDER_SMALL as QUESTIONNAIRE_ORDER } from "./foo" /* "./questionnaire_order" */
+import { QUESTIONNAIRE_ORDER } from "./foo" /* "./questionnaire_order" */
 import { QUESTIONNAIRE } from  "./bar" /* "./questionnaire_strings" */
 
 // TODO: implement a real fetch from  https://covapp.charite.de/
@@ -132,26 +132,43 @@ export const createContactFlow = () => {
 
     const questionIDSet = new Set(questionIDList)
     const uuidMap = {}
+    const xxxMap = Array.from(new Set(questionIDList.map(q => {return {key: q, uuid: uuid()}})))
 
     // Set sadly has no map method :(
     questionIDSet.forEach(id => {
       uuidMap[id] =  uuid()
     })
+    console.log({uuidMap, xxxMap})
 
     let qCount = 0
 
     questions.forEach((question, i) => {
       
       const contactFlowName = `automated_charite_data_${question.id}`
-      const contactFlow = cf.ContactFlowQuestion({
-        name: contactFlowName,
-        getState: getState,
-        uuidMap: uuidMap,
-        question: question,
-        index: i,
-        addKey: addKey,
-        dispatch: dispatch
-      })
+      let contactFlow
+      if (question.inputType === 'radio') {
+        contactFlow = cf.ContactFlowQuestion({
+          name: contactFlowName,
+          getState: getState,
+          uuidMap: uuidMap,
+          xxxMap: xxxMap,
+          question: question,
+          index: i,
+          addKey: addKey,
+          dispatch: dispatch
+        })
+      } else {
+        contactFlow = cf.ContactFlowQuestionDate({
+          name: contactFlowName,
+          getState: getState,
+          uuidMap: uuidMap,
+          xxxMap: xxxMap,
+          question: question,
+          index: i,
+          addKey: addKey,
+          dispatch: dispatch
+        })
+      }
       
       qCount++
       dispatch(setAmazonConnectData({[contactFlowName]: contactFlow}))

@@ -45,7 +45,7 @@ export const ContactFlowPlayPrompt = ({
       },
       {
         name: "TextToSpeechType",
-        value: "text"
+        value: "ssml"
       }
     ],
     metadata: {

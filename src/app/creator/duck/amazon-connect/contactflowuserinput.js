@@ -1,10 +1,20 @@
 import PropTypes from "prop-types"
 import { uuid } from "uuidv4"
-import { ContactFlowAttribute }  from "./contactflowattribute"
+import { ContactFlowAttribute } from "./contactflowattribute"
 
 
 export const defaultProps = {
-  useDynamic: false
+  useDynamic: false,
+  maxDigits: "1"
+}
+
+export const generateTextFromOptions = question => {
+  let text = `${question.text} <break time="1s" />`
+
+  question.options.forEach((option, i) => {
+    text = text.concat(`Drücken Sie die ${i} für ${option} <break time="1s" />`)
+  })
+  return `<speak>${text}</speak>`
 }
 
 export const propTypes = {
@@ -19,27 +29,29 @@ export const propTypes = {
   positionY: PropTypes.number.isRequired,
   dispatch: PropTypes.func.isRequired,
   addKey: PropTypes.func.isRequired,
-  useDynamic: PropTypes.bool
+  useDynamic: PropTypes.bool,
+  maxDigits: PropTypes.string
 }
 
 export const ContactFlowUserInput = ({
-    question,
-    ownUUID,
-    repeatUUID,
-    errorUUID,
-    transitionUUIDs,
-    optionsUUIDMap,
-    modules,
-    positionX,
-    positionY,
-    dispatch,
-    addKey,
-    useDynamic = defaultProps.useDynamic
-  }) => {
-  
+  question,
+  ownUUID,
+  repeatUUID,
+  errorUUID,
+  transitionUUIDs,
+  optionsUUIDMap,
+  modules,
+  positionX,
+  positionY,
+  dispatch,
+  addKey,
+  useDynamic = defaultProps.useDynamic,
+  maxDigits = defaultProps.maxDigits
+}) => {
+
   const conditionMetadata = []
 
-  const staticBranches = [
+  let staticBranches = [
     {
       condition: "Timeout",
       transition: repeatUUID
@@ -58,8 +70,7 @@ export const ContactFlowUserInput = ({
   let dynamicBranches
 
   if (question.hasOwnProperty("options")) {
-    // TODO: add each option to the question text
-    dynamicBranches = question.options.map((option,i) => {
+    dynamicBranches = question.options.map((option, i) => {
       let conditionMetadataUUID = uuid()
 
       const conditionMetadataObj = {
@@ -67,7 +78,7 @@ export const ContactFlowUserInput = ({
         value: i.toString()
       }
       conditionMetadata.push(conditionMetadataObj)
-      
+
       let key = `${question.category}_${question.id}`
       dispatch(addKey(key))
 
@@ -81,7 +92,7 @@ export const ContactFlowUserInput = ({
         transitionUUID: transitionUUIDs[i].uuid
       })
       modules.push(contactFlowAttribute)
-  
+
       return {
         condition: "Evaluate",
         conditionType: "Equals",
@@ -89,27 +100,67 @@ export const ContactFlowUserInput = ({
         transition: optionsUUIDMap[i]
       }
     })
-  } else {
+  }
+  else {
     // TODO: make this work properly
-    let conditionMetadataUUID = optionsUUIDMap[0]
-  
-    const conditionMetadataObj = {
+    //let conditionMetadataUUID = optionsUUIDMap[0]
+
+    /* const conditionMetadataObj = {
         id: conditionMetadataUUID,
         value: "1"
-    }
-  
-    conditionMetadata.push(conditionMetadataObj)
+    } */
 
-    dynamicBranches = [{
-      condition: "Evaluate",
-      conditionType: "Equals",
-      conditionValue: "1",
-      transition: transitionUUIDs[0].uuid
-    }]
+    //conditionMetadata.push(conditionMetadataObj)
 
+    /*  dynamicBranches = [{
+       condition: "Evaluate",
+       conditionType: "Equals",
+       conditionValue: "1",
+       transition: transitionUUIDs[0].uuid
+     }] */
+
+
+    let key = `${question.category}_${question.id}`
+    dispatch(addKey(key))
+
+    const blyatUUID = uuid()
+
+    let contactFlowAttribute = ContactFlowAttribute({
+      ownUUID: blyatUUID,
+      errorUUID: errorUUID,
+      key: key,
+      value: 0,
+      positionX: positionX + 250,
+      positionY: positionY + 0 * 200,
+      transitionUUID: transitionUUIDs[0].uuid
+    })
+    modules.push(contactFlowAttribute)
+
+
+    dynamicBranches = [
+
+    ]
+    staticBranches = [
+      {
+        condition: "Timeout",
+        transition: repeatUUID
+      },
+      {
+        condition: "NoMatch",
+        transition: blyatUUID
+      },
+      {
+        condition: "Error",
+        transition: errorUUID
+      }
+    ]
   }
 
   const branches = [...dynamicBranches, ...staticBranches]
+
+  //console.log({question})
+
+  let useFullText = question.hasOwnProperty("options") ? generateTextFromOptions(question) : `<speak>${question.text}</speak>`
 
   return {
     id: ownUUID,
@@ -118,12 +169,12 @@ export const ContactFlowUserInput = ({
     parameters: [
       {
         name: "Text",
-        value: question.text,
+        value: useFullText,
         namespace: null
       },
       {
         name: "TextToSpeechType",
-        value: "text"
+        value: "ssml"
       },
       {
         name: "Timeout",
@@ -131,7 +182,7 @@ export const ContactFlowUserInput = ({
       },
       {
         name: "MaxDigits",
-        value: "1"
+        value: maxDigits
       }
     ],
     metadata: {

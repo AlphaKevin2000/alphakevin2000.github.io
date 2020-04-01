@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 export const defaultProps = {
   positionX: 220,
   positionY: 420,
-  errorText: "Irgendetwas ist schief gelaufen. Es tut uns Leid. Bitte versuchen Sie es später noch einmal.",
+  errorText: "<speak>Irgendetwas ist schief gelaufen. Es tut uns Leid. Bitte versuchen Sie es später noch einmal.</speak>",
   useDynamic: false
 }
 
@@ -41,7 +41,7 @@ export const ContactFlowError = ({
       },
       {
         name: "TextToSpeechType",
-        value: "text"
+        value: "ssml"
       }
     ],
     metadata: {

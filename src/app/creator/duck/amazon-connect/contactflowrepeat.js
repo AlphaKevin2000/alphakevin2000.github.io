@@ -2,7 +2,7 @@ import PropTypes from "prop-types"
 
 
 export const defaultProps = {
-  text: "Die Frage wird nun wiederholt.",
+  text: "<speak>Die Frage wird nun wiederholt.</speak>",
   useDynamic: false
 }
 
@@ -37,7 +37,7 @@ export const ContactFlowRepeat = ({
       },
       {
         name: "TextToSpeechType",
-        value: "text"
+        value: "ssml"
       }
     ],
     metadata: {

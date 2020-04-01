@@ -12,6 +12,8 @@ import { ContactFlowUserInput } from "./contactflowuserinput"
 import { ContactFlowStaticStart } from "./contactflowstaticstart"
 import { ContactFlowStaticEnd } from "./contactflowstaticend"
 import { ContactFlowQuestion } from "./contactflowquestion"
+import { ContactFlowQuestionDate } from "./contactflowquestiondate"
+import { ContactFlowStore } from "./contactflowstore"
 
 export const ContactFlow = {
   EmptyContactFlow,
@@ -27,7 +29,9 @@ export const ContactFlow = {
   ContactFlowUserInput,
   ContactFlowStaticStart,
   ContactFlowStaticEnd,
-  ContactFlowQuestion
+  ContactFlowQuestion,
+  ContactFlowQuestionDate,
+  ContactFlowStore
 }
 
 export default ContactFlow

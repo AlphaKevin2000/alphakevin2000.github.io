@@ -5,7 +5,7 @@ import { ContactFlowEnd } from "./contactflowend"
 import { ContactFlowRepeat } from "./contactflowrepeat"
 import { ContactFlowError } from "./contactflowerror"
 import { ContactFlowTransfer } from "./contactflowtransfer"
-import { ContactFlowUserInput } from "./contactflowuserinput"
+import { ContactFlowStore } from "./contactflowstore"
 
 export const defaultProps = {
   positionX: 820,
@@ -18,7 +18,7 @@ export const propTypes = {
   positionY: PropTypes.number
 }
 
-export const ContactFlowQuestion = ({
+export const ContactFlowQuestionDate = ({
     dispatch, uuidMap, xxxMap, question, index, addKey, name,
     positionX = defaultProps.positionX,
     positionY = defaultProps.positionY
@@ -109,7 +109,7 @@ export const ContactFlowQuestion = ({
 
       console.log("the quest", question)
 
-      const contactFlowUserInput = ContactFlowUserInput({
+      const contactFlowStore = ContactFlowStore({
         ownUUID: uuidMap[question.id],
         errorUUID: errorUUID,
         repeatUUID: repeatUUID,
@@ -124,7 +124,7 @@ export const ContactFlowQuestion = ({
         addKey: addKey,
         maxDigits: question.inputType === "radio" ? "1" : "3"
       })
-      modules.push(contactFlowUserInput)
+      modules.push(contactFlowStore)
 
       contactFlowQuestion.modules = modules
 

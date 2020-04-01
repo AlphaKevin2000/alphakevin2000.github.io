@@ -319,5 +319,11 @@ export const QUESTIONNAIRE_ORDER_SMALL = [
     text: 'q_P2_text',
     inputType: 'radio',
     options: ['q_P2_option0', 'q_P2_option1'],
+  },
+  {
+    id: QUESTION.CONTACT_DATE,
+    category: CATEGORIES.CONTACT,
+    text: 'q_CZ_text',
+    inputType: 'date',
   }
 ]

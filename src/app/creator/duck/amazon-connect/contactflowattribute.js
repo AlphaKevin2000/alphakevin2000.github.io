@@ -2,6 +2,7 @@ import PropTypes from "prop-types"
 
 
 export const defaultProps = {
+  namespace: null
 }
 
 export const propTypes = {
@@ -16,7 +17,8 @@ export const propTypes = {
 
 
 export const ContactFlowAttribute = ({
-    ownUUID, errorUUID, transitionUUID, value, key, positionX, positionY
+    ownUUID, errorUUID, transitionUUID, value, key, positionX, positionY,
+    namespace = defaultProps.namespace
   }) => {
 
   return {
@@ -37,7 +39,7 @@ export const ContactFlowAttribute = ({
         name: "Attribute",
         value: value,
         key: key,
-        namespace: null
+        namespace: namespace
       }
     ],
     metadata: {
