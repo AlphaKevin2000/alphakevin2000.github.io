@@ -16,7 +16,7 @@ export const generateTextFromOptions = (question, language) => {
 
   question.options.forEach((option, i) => {
     //text = text.concat(`Drücken Sie die ${i} für ${option} <break time="1s" />`)
-    text = text.concat(`${part1} ${i} ${part2} ${option} <break time="1s" />`)
+    text = text.concat(`${part1} ${i+1} ${part2} ${option} <break time="1s" />`)
   })
   return `<speak>${text}</speak>`
 }
@@ -74,10 +74,10 @@ export const ContactFlowUserInput = ({
   /*  each dynamic branch needs a SetAttributes */
   const dynamicBranches = question.options.map((option, i) => {
     let conditionMetadataUUID = uuid()
-
+    let val = i + 1
     const conditionMetadataObj = {
       id: conditionMetadataUUID,
-      value: i.toString()
+      value: val.toString()
     }
     conditionMetadata.push(conditionMetadataObj)
 
@@ -88,7 +88,7 @@ export const ContactFlowUserInput = ({
       ownUUID: optionsUUIDMap[i],
       errorUUID: errorUUID,
       key: key,
-      value: i,
+      value: val,
       positionX: positionX + 250,
       positionY: positionY + i * 200,
       transitionUUID: transitionUUIDs[i].uuid
@@ -98,7 +98,7 @@ export const ContactFlowUserInput = ({
     return {
       condition: "Evaluate",
       conditionType: "Equals",
-      conditionValue: i.toString(),
+      conditionValue: val.toString(),
       transition: optionsUUIDMap[i]
     }
   })

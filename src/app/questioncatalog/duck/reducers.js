@@ -1,3 +1,4 @@
+import { uuid } from "uuidv4"
 import {
   RESET_NEW_QUESTION,
   ADD_QUESTION,
@@ -9,9 +10,11 @@ import {
   ADD_RADIO_OPTION
 } from "./actions"
 
+import Sample from "./sample"
+
 
 export const initialState = {
-  questions: [],
+  questions: Sample.map(s => Object.assign({}, s, {uuid: uuid()})),
   newQuestion: {
     text: "",
     type: null,

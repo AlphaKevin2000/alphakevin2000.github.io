@@ -15,8 +15,9 @@ import {
 import cf from "./amazon-connect/contactflow"
 import { defaultText } from "./questions/defaultText"
 
-import { QUESTIONNAIRE_ORDER_SMALL as QUESTIONNAIRE_ORDER } from "./foo" /* "./questionnaire_order" */
+import { QUESTIONNAIRE_ORDER } from "./foo" /* "./questionnaire_order" */
 import { QUESTIONNAIRE } from  "./bar" /* "./questionnaire_strings" */
+
 
 // TODO: implement a real fetch from  https://covapp.charite.de/
 export const fetchData = () => {
@@ -121,9 +122,10 @@ export const createContactFlow = () => {
   return (dispatch, getState) => {
     let state = getState()
 
+    const basename = state.creator.basename
     const questions = state.creator.chariteData
     const language = state.creator.language
-    
+
     const questionIDList = []
     questions.forEach(question => {
       questionIDList.push(question.id)
@@ -142,8 +144,7 @@ export const createContactFlow = () => {
 
     questions.forEach((question, i) => {
       
-      //const contactFlowName = `question_${question.id}_${language}`
-      const contactFlowName = `question_${i}_${language}`
+      const contactFlowName = `${basename}_${i}`//`question_${i}_${language}`
       let contactFlow
       if (question.inputType === 'radio') {
         contactFlow = cf.ContactFlowQuestion({
@@ -180,17 +181,18 @@ export const createContactFlow = () => {
     })
     dispatch(setQuestionCount(qCount))
 
-    const staticStartName = `question_start_${language}`
+    const staticStartName = "automated_charite_data_start"//`${basename}_start`//`question_start_${language}`
     const staticStart = cf.ContactFlowStaticStart({
       name: staticStartName,
       text: defaultText.greetingText[language],
-      language: language
+      language: language,
+      firstQuestionName: `${basename}_0`
     })
     dispatch(setAmazonConnectData({[staticStartName]: staticStart}))    
 
     state = getState()
 
-    const staticEndName = `question_end_${language}`
+    const staticEndName = "automated_charite_data_end"//`${basename}_end`//`question_end_${language}`
     const staticEnd = cf.ContactFlowStaticEnd({name: staticEndName, getState: getState})
     dispatch(setAmazonConnectData({[staticEndName]: staticEnd}))
   }

@@ -51,7 +51,8 @@ export const ContactFlowQuestion = ({
 
       const contactFlowQuestion = EmptyContactFlow({
         name: name,
-        startUUID: uuidMap[question.id]
+        startUUID: uuidMap[question.id],
+        description: question.id
       })
       const modules = []
 
@@ -90,29 +91,31 @@ export const ContactFlowQuestion = ({
           fooName =  uniqueTransferUUIDs.length === 1 ? xxxMap[nextIndex].key : t.key
         }
   
+        let resourceName
         if (fooName !== "end") {
           let nextQuestion = xxxMap.find(x => x.key === fooName)
           fooName = xxxMap.indexOf(nextQuestion)
+          resourceName = `generated_charite_data_${fooName}`
+        } else {
+          // remove this. its a workaround for 100 max contactflows @ amazon connect
+          resourceName = "automated_charite_data_end"
         }
         console.log(`${question.id} leads to question number ${fooName}`)
 
         const contactFlowTransfer = ContactFlowTransfer({
           ownUUID: t.uuid,
           errorUUID: errorUUID,
-          resourceName: `question_${fooName}_${language}`
+          resourceName: resourceName//`generated_charite_data_${fooName}`//`question_${fooName}_${language}`
         })
         modules.push(contactFlowTransfer)
       })
 
       let optionsUUIDMap = {}
 
-      if (question.hasOwnProperty("options")) {
-        question.options.forEach((option,i) => {
-          optionsUUIDMap[i] = uuid()
-        })
-      } else {
-        optionsUUIDMap[0] = uuid()
-      }
+      question.options.forEach((option,i) => {
+        optionsUUIDMap[i] = uuid()
+      })
+
 
       const contactFlowUserInput = ContactFlowUserInput({
         question: question,

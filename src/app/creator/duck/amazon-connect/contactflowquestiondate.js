@@ -35,7 +35,8 @@ export const ContactFlowQuestionDate = ({
       const contactFlowQuestion = EmptyContactFlow({
         name: name,
         startUUID: uuidMap[question.id],
-        errorText: errorText
+        errorText: errorText,
+        description: question.id
       })
       const modules = []
 
@@ -82,7 +83,7 @@ export const ContactFlowQuestionDate = ({
         const contactFlowTransfer = ContactFlowTransfer({
           ownUUID: t.uuid,
           errorUUID: errorUUID,
-          resourceName: `question_${fooName}_${language}`
+          resourceName: `generated_charite_data_${fooName}`//`question_${fooName}_${language}`
         })
         modules.push(contactFlowTransfer)
       })

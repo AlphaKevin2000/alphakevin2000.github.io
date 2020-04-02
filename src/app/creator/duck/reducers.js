@@ -17,7 +17,8 @@ export const initialState = {
   chariteData: undefined,
   connectConf: undefined,
   uuidList: [],
-  lambdaKeys: {"lambdaKeys": []}
+  lambdaKeys: {"lambdaKeys": []},
+  basename: "generated_charite_data"
 }
 
 export default (state = initialState, action) => {

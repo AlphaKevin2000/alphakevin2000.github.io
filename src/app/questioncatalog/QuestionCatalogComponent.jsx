@@ -18,11 +18,13 @@ export const QuestionCatalogComponent = props => {
     handleMoveQuestion
   } = props
 
+  console.log({questions})
+
   return (
     <Container>
       <h1>QuestionCatalogComponent</h1>
       {questions.map((question,i) => 
-        <Question key={`question_${i}`} uuid={question.uuid} question={question}
+        <Question key={question.uuid} uuid={question.uuid} question={question}
           handleRemoveQuestion={handleRemoveQuestion}
           handleMoveQuestion={handleMoveQuestion}
           index={i} total={questions.length - 1}

@@ -23,6 +23,7 @@ export const propTypes = {
 
 export const ContactFlowStaticStart = ({
     language,
+    firstQuestionName,
     name = defaultProps.name,
     text = defaultProps.text
   }) => {
@@ -54,7 +55,8 @@ export const ContactFlowStaticStart = ({
     const startTransfer = ContactFlowTransfer({
       ownUUID: startTransferUUID,
       transitionUUID: voiceUUID,
-      errorUUID: startErrorUUID
+      errorUUID: startErrorUUID,
+      resourceName: firstQuestionName
     })
     startModules.push(startTransfer)
 
