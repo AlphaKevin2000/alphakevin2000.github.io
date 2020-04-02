@@ -181,7 +181,7 @@ export const createContactFlow = () => {
     })
     dispatch(setQuestionCount(qCount))
 
-    const staticStartName = "automated_charite_data_start"//`${basename}_start`//`question_start_${language}`
+    const staticStartName = `${basename}_start`//`question_start_${language}` "automated_charite_data_start_en"//
     const staticStart = cf.ContactFlowStaticStart({
       name: staticStartName,
       text: defaultText.greetingText[language],
@@ -192,8 +192,8 @@ export const createContactFlow = () => {
 
     state = getState()
 
-    const staticEndName = "automated_charite_data_end"//`${basename}_end`//`question_end_${language}`
-    const staticEnd = cf.ContactFlowStaticEnd({name: staticEndName, getState: getState})
+    const staticEndName = `${basename}_end`//`question_end_${language}` "automated_charite_data_end_en"//
+    const staticEnd = cf.ContactFlowStaticEnd({name: staticEndName, getState: getState, language: language})
     dispatch(setAmazonConnectData({[staticEndName]: staticEnd}))
   }
 }

@@ -74,16 +74,21 @@ export const ContactFlowQuestionDate = ({
           fooName =  uniqueTransferUUIDs.length === 1 ? xxxMap[nextIndex].key : t.key
         } 
         
+        let resourceName
         if (fooName !== "end") {
           let nextQuestion = xxxMap.find(x => x.key === fooName)
           fooName = xxxMap.indexOf(nextQuestion)
+          resourceName = `generated_charite_data_${fooName}`
+        }  else {
+          // remove this. its a workaround for 100 max contactflows @ amazon connect
+          resourceName = "generated_charite_data_end"
         }
         console.log(`${question.id} leads to question number ${fooName}`)
 
         const contactFlowTransfer = ContactFlowTransfer({
           ownUUID: t.uuid,
           errorUUID: errorUUID,
-          resourceName: `generated_charite_data_${fooName}`//`question_${fooName}_${language}`
+          resourceName: resourceName//`question_${fooName}_${language}`
         })
         modules.push(contactFlowTransfer)
       })

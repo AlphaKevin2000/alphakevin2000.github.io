@@ -98,7 +98,7 @@ export const ContactFlowQuestion = ({
           resourceName = `generated_charite_data_${fooName}`
         } else {
           // remove this. its a workaround for 100 max contactflows @ amazon connect
-          resourceName = "automated_charite_data_end"
+          resourceName = "generated_charite_data_end"
         }
         console.log(`${question.id} leads to question number ${fooName}`)
 

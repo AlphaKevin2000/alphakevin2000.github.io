@@ -27,6 +27,8 @@ export const ContactFlowInvokeExternal = ({
   let dynamicParameters = []
   let dynamicMetadata = {}
 
+  console.log({lambdaKeys})
+
   lambdaKeys.forEach((key, i) => {
     let dynamicParamter = {
       name: "Parameter",
@@ -34,10 +36,12 @@ export const ContactFlowInvokeExternal = ({
       value: `$.Attributes.${key}`,
       namespace: null
     }
-    let dynamicMetadata = {[key]: false}
+    //let dynamicMetadata = {[key]: false} woopsie
     dynamicParameters.push(dynamicParamter)
     dynamicMetadata[key] = false
   })
+
+  console.log({dynamicMetadata})
 
   return {
     id: ownUUID,

@@ -6,6 +6,7 @@ import { ContactFlowEnd } from "./contactflowend"
 import { ContactFlowInvokeExternal } from "./contactflowinvokeexternal"
 import { ContactFlowAttribute } from "./contactflowattribute"
 import { ContactFlowPlayPrompt } from "./contactflowplayprompt"
+import { defaultText } from "../questions/defaultText"
 
 export const defaultProps = {
   name: "generated_charite_data_29"
@@ -16,9 +17,9 @@ export const propTypes = {
   name: PropTypes.string
 }
 
-
+// TODO: dynamicMetadata {<key>: false}
 export const ContactFlowStaticEnd = ({
-    getState,
+    getState, language,
     name = defaultProps.name
   }) => {
 
@@ -36,7 +37,8 @@ export const ContactFlowStaticEnd = ({
 
     const endError = ContactFlowError({
       ownUUID: endErrorUUID,
-      transitionUUID: finishUUID
+      transitionUUID: finishUUID,
+      errorText: defaultText.errorText[language]
     })
     endModules.push(endError)
 
@@ -54,7 +56,7 @@ export const ContactFlowStaticEnd = ({
     })
     endModules.push(lambdaCall)
 
-    const recomAttr = ContactFlowAttribute({
+   /*  const recomAttr = ContactFlowAttribute({
       ownUUID: recomUUID,
       errorUUID: endErrorUUID,
       value: "$.External.recommendation",
@@ -63,7 +65,7 @@ export const ContactFlowStaticEnd = ({
       positionY: 400,
       transitionUUID: recomSpeechUUID
     })
-    endModules.push(recomAttr)
+    endModules.push(recomAttr) */
 
     const recomVoice = ContactFlowPlayPrompt({
       ownUUID: recomSpeechUUID,
