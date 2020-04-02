@@ -4,7 +4,6 @@ import { EmptyContactFlow } from "./emptycontactflow"
 import { ContactFlowError } from "./contactflowerror"
 import { ContactFlowEnd } from "./contactflowend"
 import { ContactFlowInvokeExternal } from "./contactflowinvokeexternal"
-import { ContactFlowAttribute } from "./contactflowattribute"
 import { ContactFlowPlayPrompt } from "./contactflowplayprompt"
 import { defaultText } from "../questions/defaultText"
 
@@ -59,6 +58,7 @@ export const ContactFlowStaticEnd = ({
       ownUUID: recomSpeechUUID,
       transitionUUID: finishUUID,
       errorUUID: endErrorUUID,
+      textToSpechType: "text",
       text: "$.External.word1 und $.External.word2"
     })
     endModules.push(recomVoice)

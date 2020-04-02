@@ -4,7 +4,8 @@ import PropTypes from "prop-types"
 export const defaultProps = {
   positionX: 620,
   positionY: 20,
-  useDynamic: false
+  useDynamic: false,
+  textToSpechType: "ssml"
 }
 
 export const propTypes = {
@@ -21,7 +22,8 @@ export const ContactFlowPlayPrompt = ({
     ownUUID, transitionUUID, errorUUID, text,
     positionX = defaultProps.positionX,
     positionY = defaultProps.positionY,
-    useDynamic = defaultProps.useDynamic
+    useDynamic = defaultProps.useDynamic,
+    textToSpechType = defaultProps.textToSpechType
   }) => {
 
   return {
@@ -45,7 +47,7 @@ export const ContactFlowPlayPrompt = ({
       },
       {
         name: "TextToSpeechType",
-        value: "ssml"
+        value: textToSpechType
       }
     ],
     metadata: {
