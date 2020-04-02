@@ -26,6 +26,8 @@ export const ContactFlowTransfer = ({
     useDynamic = defaultProps.useDynamic
   }) => {
 
+  console.log({resourceName})
+
   return {
     id: ownUUID,
     type: "Transfer",

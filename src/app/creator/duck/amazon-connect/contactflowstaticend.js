@@ -40,7 +40,7 @@ export const ContactFlowStaticEnd = ({
     })
     endModules.push(endError)
 
-    const finishLine = ContactFlowEnd(finishUUID)
+    const finishLine = ContactFlowEnd({ownUUID: finishUUID})
     endModules.push(finishLine)
 
     const finalState = getState()

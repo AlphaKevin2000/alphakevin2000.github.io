@@ -2,17 +2,21 @@ import PropTypes from "prop-types"
 import { uuid } from "uuidv4"
 import { ContactFlowAttribute } from "./contactflowattribute"
 
-
 export const defaultProps = {
   useDynamic: false,
   maxDigits: "1"
 }
 
-export const generateTextFromOptions = question => {
+export const generateTextFromOptions = (question, language) => {
   let text = `${question.text} <break time="1s" />`
 
+  // quick n dirty. these stuff needs to be moved to state.
+  let part1 = language === 'de' ? 'Drücken Sie die' : 'Press'
+  let part2 = language === 'de' ? 'für' : 'for'
+
   question.options.forEach((option, i) => {
-    text = text.concat(`Drücken Sie die ${i} für ${option} <break time="1s" />`)
+    //text = text.concat(`Drücken Sie die ${i} für ${option} <break time="1s" />`)
+    text = text.concat(`${part1} ${i} ${part2} ${option} <break time="1s" />`)
   })
   return `<speak>${text}</speak>`
 }
@@ -45,6 +49,7 @@ export const ContactFlowUserInput = ({
   positionY,
   dispatch,
   addKey,
+  language,
   useDynamic = defaultProps.useDynamic,
   maxDigits = defaultProps.maxDigits
 }) => {
@@ -67,100 +72,40 @@ export const ContactFlowUserInput = ({
   ]
 
   /*  each dynamic branch needs a SetAttributes */
-  let dynamicBranches
+  const dynamicBranches = question.options.map((option, i) => {
+    let conditionMetadataUUID = uuid()
 
-  if (question.hasOwnProperty("options")) {
-    dynamicBranches = question.options.map((option, i) => {
-      let conditionMetadataUUID = uuid()
-
-      const conditionMetadataObj = {
-        id: conditionMetadataUUID,
-        value: i.toString()
-      }
-      conditionMetadata.push(conditionMetadataObj)
-
-      let key = `${question.category}_${question.id}`
-      dispatch(addKey(key))
-
-      let contactFlowAttribute = ContactFlowAttribute({
-        ownUUID: optionsUUIDMap[i],
-        errorUUID: errorUUID,
-        key: key,
-        value: i,
-        positionX: positionX + 250,
-        positionY: positionY + i * 200,
-        transitionUUID: transitionUUIDs[i].uuid
-      })
-      modules.push(contactFlowAttribute)
-
-      return {
-        condition: "Evaluate",
-        conditionType: "Equals",
-        conditionValue: i.toString(),
-        transition: optionsUUIDMap[i]
-      }
-    })
-  }
-  else {
-    // TODO: make this work properly
-    //let conditionMetadataUUID = optionsUUIDMap[0]
-
-    /* const conditionMetadataObj = {
-        id: conditionMetadataUUID,
-        value: "1"
-    } */
-
-    //conditionMetadata.push(conditionMetadataObj)
-
-    /*  dynamicBranches = [{
-       condition: "Evaluate",
-       conditionType: "Equals",
-       conditionValue: "1",
-       transition: transitionUUIDs[0].uuid
-     }] */
-
+    const conditionMetadataObj = {
+      id: conditionMetadataUUID,
+      value: i.toString()
+    }
+    conditionMetadata.push(conditionMetadataObj)
 
     let key = `${question.category}_${question.id}`
     dispatch(addKey(key))
 
-    const blyatUUID = uuid()
-
     let contactFlowAttribute = ContactFlowAttribute({
-      ownUUID: blyatUUID,
+      ownUUID: optionsUUIDMap[i],
       errorUUID: errorUUID,
       key: key,
-      value: 0,
+      value: i,
       positionX: positionX + 250,
-      positionY: positionY + 0 * 200,
-      transitionUUID: transitionUUIDs[0].uuid
+      positionY: positionY + i * 200,
+      transitionUUID: transitionUUIDs[i].uuid
     })
     modules.push(contactFlowAttribute)
 
-
-    dynamicBranches = [
-
-    ]
-    staticBranches = [
-      {
-        condition: "Timeout",
-        transition: repeatUUID
-      },
-      {
-        condition: "NoMatch",
-        transition: blyatUUID
-      },
-      {
-        condition: "Error",
-        transition: errorUUID
-      }
-    ]
-  }
+    return {
+      condition: "Evaluate",
+      conditionType: "Equals",
+      conditionValue: i.toString(),
+      transition: optionsUUIDMap[i]
+    }
+  })
 
   const branches = [...dynamicBranches, ...staticBranches]
 
-  //console.log({question})
-
-  let useFullText = question.hasOwnProperty("options") ? generateTextFromOptions(question) : `<speak>${question.text}</speak>`
+  let useFullText = question.hasOwnProperty("options") ? generateTextFromOptions(question, language) : `<speak>${question.text}</speak>`
 
   return {
     id: ownUUID,

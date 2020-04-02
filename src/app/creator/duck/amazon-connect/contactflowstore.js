@@ -4,7 +4,8 @@ import { ContactFlowAttribute } from "./contactflowattribute"
 
 export const defaultProps = {
   positionX: 800,
-  positionY: 800
+  positionY: 800,
+  maxDigits: 3
 }
 
 export const propTypes = {
@@ -19,17 +20,15 @@ export const generateTextFromOptions = question => {
 export const ContactFlowStore = ({
   question,
   ownUUID,
-  repeatUUID,
   errorUUID,
   transitionUUIDs,
-  optionsUUIDMap,
   modules,
   positionX,
   positionY,
   dispatch,
-  addKey
+  addKey,
   //useDynamic = defaultProps.useDynamic,
-  //maxDigits = defaultProps.maxDigits
+  maxDigits = defaultProps.maxDigits
 }) => {
   let key = `${question.category}_${question.id}`
   dispatch(addKey(key))
@@ -48,7 +47,7 @@ export const ContactFlowStore = ({
   })
   modules.push(contactFlowAttribute)
   let useFullText = generateTextFromOptions(question)
-  console.log(useFullText)
+  //console.log(useFullText)
   const wtf = {
     id: ownUUID,
     type: "StoreUserInput",
@@ -82,7 +81,7 @@ export const ContactFlowStore = ({
       },
       {
         name: "MaxDigits",
-        value: 5
+        value: maxDigits
       },
       {
         name: "EncryptEntry",
@@ -104,7 +103,6 @@ export const ContactFlowStore = ({
       countryCodePrefix: "+1"
     }
   }
-  console.log(wtf)
   return wtf
 }
 

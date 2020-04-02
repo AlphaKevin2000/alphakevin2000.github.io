@@ -7,19 +7,24 @@ import { ContactFlowTransfer } from "./contactflowtransfer"
 import { ContactFlowLogging } from "./contactflowlogging"
 import { ContactFlowVoice } from "./contactflowvoice"
 import { ContactFlowPlayPrompt } from "./contactflowplayprompt"
+import { defaultText } from "../questions/defaultText"
 
 
 export const defaultProps = {
-  name: "generated_charite_data_start"
+  name: "automated_charite_data_start",
+  text: "miau"
 }
 
 export const propTypes = {
-  name: PropTypes.string
+  name: PropTypes.string,
+  text: PropTypes.string
 }
 
 
 export const ContactFlowStaticStart = ({
-    name = defaultProps.name
+    language,
+    name = defaultProps.name,
+    text = defaultProps.text
   }) => {
     const loggingUUUID = uuid()
     const startErrorUUID = uuid()
@@ -36,7 +41,8 @@ export const ContactFlowStaticStart = ({
 
     const startError = ContactFlowError({
       ownUUID: startErrorUUID,
-      transitionUUID: startEndUUID
+      transitionUUID: startEndUUID,
+      errorText: defaultText.errorText[language]
     })
     startModules.push(startError)
 
@@ -62,7 +68,8 @@ export const ContactFlowStaticStart = ({
     const startVoice = ContactFlowVoice({
       ownUUID: voiceUUID,
       transitionUUID: greetingUUID,
-      errorUUID: startErrorUUID
+      errorUUID: startErrorUUID,
+      voiceType: defaultText.defaultVoice[language]
     })
     startModules.push(startVoice)
 
@@ -70,7 +77,7 @@ export const ContactFlowStaticStart = ({
       ownUUID: greetingUUID,
       transitionUUID: startTransferUUID,
       errorUUID: startErrorUUID,
-      text: "miau"
+      text: text
     })
     startModules.push(startGreeting)
 

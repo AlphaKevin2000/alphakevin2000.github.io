@@ -13,8 +13,9 @@ import {
 } from "./actions"
 
 import cf from "./amazon-connect/contactflow"
+import { defaultText } from "./questions/defaultText"
 
-import { QUESTIONNAIRE_ORDER } from "./foo" /* "./questionnaire_order" */
+import { QUESTIONNAIRE_ORDER_SMALL as QUESTIONNAIRE_ORDER } from "./foo" /* "./questionnaire_order" */
 import { QUESTIONNAIRE } from  "./bar" /* "./questionnaire_strings" */
 
 // TODO: implement a real fetch from  https://covapp.charite.de/
@@ -99,16 +100,13 @@ export const createJSON = () => {
 export const downloadJSON = (jsonMap, language) => {
   const zip = new JSZip();
  
-
   Object.keys(jsonMap).forEach((key, x) => {
-      zip.file(`${key}_${language}.json`, JSON.stringify(jsonMap[key], null, 4))
-      //fileDownload(JSON.stringify(jsonMap[key], null, 4), `${key}.json`)
+      zip.file(`${key}.json`, JSON.stringify(jsonMap[key], null, 4))
 
   })
   zip.generateAsync({type:"blob"}).then(function(content) {
-    // see FileSaver.js
-    fileDownload(content, "example.zip");
-  });
+    fileDownload(content, "example.zip")
+  })
   
   return {type: ''}
 }
@@ -122,8 +120,9 @@ export const handleQuestionCount = questionCount => {
 export const createContactFlow = () => {
   return (dispatch, getState) => {
     let state = getState()
-    //const questions = [ state.creator.chariteData[0]]
+
     const questions = state.creator.chariteData
+    const language = state.creator.language
     
     const questionIDList = []
     questions.forEach(question => {
@@ -138,13 +137,13 @@ export const createContactFlow = () => {
     questionIDSet.forEach(id => {
       uuidMap[id] =  uuid()
     })
-    console.log({uuidMap, xxxMap})
 
     let qCount = 0
 
     questions.forEach((question, i) => {
       
-      const contactFlowName = `automated_charite_data_${question.id}`
+      //const contactFlowName = `question_${question.id}_${language}`
+      const contactFlowName = `question_${i}_${language}`
       let contactFlow
       if (question.inputType === 'radio') {
         contactFlow = cf.ContactFlowQuestion({
@@ -155,7 +154,10 @@ export const createContactFlow = () => {
           question: question,
           index: i,
           addKey: addKey,
-          dispatch: dispatch
+          dispatch: dispatch,
+          language: language,
+          errorText: defaultText.errorText[language],
+          repeatText: defaultText.repeatText[language]
         })
       } else {
         contactFlow = cf.ContactFlowQuestionDate({
@@ -166,7 +168,10 @@ export const createContactFlow = () => {
           question: question,
           index: i,
           addKey: addKey,
-          dispatch: dispatch
+          dispatch: dispatch,
+          language: language,
+          errorText: defaultText.errorText[language],
+          repeatText: defaultText.repeatText[language]
         })
       }
       
@@ -175,13 +180,17 @@ export const createContactFlow = () => {
     })
     dispatch(setQuestionCount(qCount))
 
-    const staticStartName = "automated_charite_data_start"
-    const staticStart = cf.ContactFlowStaticStart({name: staticStartName})
+    const staticStartName = `question_start_${language}`
+    const staticStart = cf.ContactFlowStaticStart({
+      name: staticStartName,
+      text: defaultText.greetingText[language],
+      language: language
+    })
     dispatch(setAmazonConnectData({[staticStartName]: staticStart}))    
 
     state = getState()
 
-    const staticEndName = "automated_charite_data_end"
+    const staticEndName = `question_end_${language}`
     const staticEnd = cf.ContactFlowStaticEnd({name: staticEndName, getState: getState})
     dispatch(setAmazonConnectData({[staticEndName]: staticEnd}))
   }

@@ -23,7 +23,6 @@ export const ContactFlowError = ({
     useDynamic = defaultProps.useDynamic
   }) => {
 
-
   return {
     id: ownUUID,
     type: "PlayPrompt",

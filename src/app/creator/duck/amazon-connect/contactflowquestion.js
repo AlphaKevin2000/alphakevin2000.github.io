@@ -9,7 +9,9 @@ import { ContactFlowUserInput } from "./contactflowuserinput"
 
 export const defaultProps = {
   positionX: 820,
-  positionY: 20
+  positionY: 20,
+  offsetX: 0,
+  offsetY: 200
 }
 
 export const propTypes = {
@@ -19,10 +21,15 @@ export const propTypes = {
 }
 
 export const ContactFlowQuestion = ({
-    dispatch, uuidMap, xxxMap, question, index, addKey, name,
+    language, errorText, repeatText, index,
+    dispatch, uuidMap, xxxMap, question, addKey, name,
     positionX = defaultProps.positionX,
-    positionY = defaultProps.positionY
+    positionY = defaultProps.positionY,
+    offsetX = defaultProps.offsetX,
+    offsetY = defaultProps.offsetY
   }) => {
+
+      console.log(`hello question ${question.id} has index ${index}`)
 
       const endUUID = uuid()
       const repeatUUID = uuid()
@@ -39,14 +46,8 @@ export const ContactFlowQuestion = ({
       }
       else {
         let singleTransferUUID = {uuid: uuid(), key: question.id}
-        if (question.hasOwnProperty("options")) {
-          transferUUIDs = question.options.map(q => singleTransferUUID)
-        } else {
-          transferUUIDs = [singleTransferUUID]
-        }
+        transferUUIDs = question.options.map(q => singleTransferUUID)
       }
-
-      transferUUIDs = Array.from(transferUUIDs)
 
       const contactFlowQuestion = EmptyContactFlow({
         name: name,
@@ -60,18 +61,22 @@ export const ContactFlowQuestion = ({
       const contactFlowRepeat = ContactFlowRepeat({
         ownUUID: repeatUUID,
         transitionUUID: uuidMap[question.id],
-        positionX: positionX,
-        positionY: positionY + 200
+        positionX: positionX + offsetX,
+        positionY: positionY + offsetY,
+        text: repeatText
       })
       modules.push(contactFlowRepeat)
 
       const contactFlowError = ContactFlowError({
         ownUUID: errorUUID,
-        transitionUUID: endUUID
+        transitionUUID: endUUID,
+        errorText: errorText
       })
       modules.push(contactFlowError)
 
-      Array.from(new Set(transferUUIDs)).forEach(t => {
+      const uniqueTransferUUIDs = Array.from(new Set(transferUUIDs))
+
+      uniqueTransferUUIDs.forEach(t => {
 
         let current = xxxMap.find(u => u.key === t.key)
         let currentIndex = xxxMap.indexOf(current)
@@ -81,18 +86,20 @@ export const ContactFlowQuestion = ({
         if(question.id === xxxMap.slice(-1)[0].key) {
           fooName = "end"
         } else {
-          console.log(t.key === xxxMap.slice(-1)[0].key)
-          console.log(t.key, xxxMap, Array.from(new Set(transferUUIDs)))
-          // Set only 1 element? use xxxMap[next] else t.key
-          fooName =  Array.from(new Set(transferUUIDs)).length === 1 ? xxxMap[nextIndex].key : t.key
-        } 
-        console.log(`${question.id} leads to ${fooName}`)
+          // uniqueTransferUUIDs only 1 element? use xxxMap[next] else t.key
+          fooName =  uniqueTransferUUIDs.length === 1 ? xxxMap[nextIndex].key : t.key
+        }
+  
+        if (fooName !== "end") {
+          let nextQuestion = xxxMap.find(x => x.key === fooName)
+          fooName = xxxMap.indexOf(nextQuestion)
+        }
+        console.log(`${question.id} leads to question number ${fooName}`)
 
         const contactFlowTransfer = ContactFlowTransfer({
           ownUUID: t.uuid,
           errorUUID: errorUUID,
-          resourceName: `automated_charite_data_${fooName}`
-          //resourceName: `automated_charite_data_${t.key}`
+          resourceName: `question_${fooName}_${language}`
         })
         modules.push(contactFlowTransfer)
       })
@@ -107,22 +114,20 @@ export const ContactFlowQuestion = ({
         optionsUUIDMap[0] = uuid()
       }
 
-      console.log("the quest", question)
-
       const contactFlowUserInput = ContactFlowUserInput({
-        ownUUID: uuidMap[question.id],
-        errorUUID: errorUUID,
-        repeatUUID: repeatUUID,
         question: question,
+        ownUUID: uuidMap[question.id],
+        repeatUUID: repeatUUID,
+        errorUUID: errorUUID,
         transitionUUIDs: transferUUIDs,
-        uuidMap: uuidMap,
         optionsUUIDMap: optionsUUIDMap,
         modules: modules,
         positionX: positionX,
         positionY: positionY,
         dispatch: dispatch,
         addKey: addKey,
-        maxDigits: question.inputType === "radio" ? "1" : "3"
+        language: language,
+        maxDigits: question.inputType === "radio" ? "1" : "3",
       })
       modules.push(contactFlowUserInput)
 
