@@ -26,7 +26,6 @@ export const ContactFlowStaticEnd = ({
     const finishUUID = uuid()
     const endErrorUUID = uuid()
     const lambdaUUID = uuid()
-    const recomUUID = uuid()
     const recomSpeechUUID = uuid()
 
     const staticEnd = EmptyContactFlow({
@@ -52,20 +51,9 @@ export const ContactFlowStaticEnd = ({
       ownUUID: lambdaUUID,
       errorUUID: endErrorUUID,
       lambdaKeys: lambdaKeys,
-      transitionUUID: recomUUID
-    })
-    endModules.push(lambdaCall)
-
-   /*  const recomAttr = ContactFlowAttribute({
-      ownUUID: recomUUID,
-      errorUUID: endErrorUUID,
-      value: "$.External.recommendation",
-      key: "recommendation",
-      positionX: 400,
-      positionY: 400,
       transitionUUID: recomSpeechUUID
     })
-    endModules.push(recomAttr) */
+    endModules.push(lambdaCall)
 
     const recomVoice = ContactFlowPlayPrompt({
       ownUUID: recomSpeechUUID,
