@@ -6,8 +6,12 @@ import Button from "react-bootstrap/Button"
 import Badge from "react-bootstrap/Badge"
 import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
+import Octicon, { ArrowDown, ArrowUp, Trashcan }from "@primer/octicons-react"
 import RadioOption from "./RadioOptionContainer"
 import NextQuestionMap from "./NextQuestionMapContainer"
+
+
+/* https://primer.style/octicons/packages/react */
 
 export const defaultProps = {
   categoryMap: {
@@ -81,9 +85,15 @@ export const QuestionComponent = props => {
         />
       </Col>
       <Col xs={3}>
-        <Button variant="outline-secondary" disabled={index === 0} onClick={() => handleMoveQuestion(uuid, -1)}>up</Button>
-        <Button variant="outline-secondary" disabled={total === index} onClick={() => handleMoveQuestion(uuid, 1)}>down</Button>
-        <Button variant="danger" onClick={() => handleRemoveQuestion(uuid)}>remove</Button>
+        <Button variant="outline-secondary" disabled={index === 0} onClick={() => handleMoveQuestion(uuid, -1)}>
+        <Octicon><ArrowUp /></Octicon>
+        </Button>
+        <Button variant="outline-secondary" disabled={total === index} onClick={() => handleMoveQuestion(uuid, 1)}>
+          <Octicon><ArrowDown /></Octicon>
+        </Button>
+        <Button variant="danger" onClick={() => handleRemoveQuestion(uuid)}>
+        <Octicon><Trashcan /></Octicon>
+        </Button>
       </Col>
       <RadioOption existingQuestion={question} />
       <NextQuestionMap existingQuestion={question} />

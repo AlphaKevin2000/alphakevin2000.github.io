@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@primer/octicons-react": "^9.6.0",
     "cross-fetch": "^3.0.4",
     "js-file-download": "^0.4.10",
     "jszip": "^3.2.2",
