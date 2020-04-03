@@ -3,14 +3,21 @@ export const REMOVE_QUESTION = "REMOVE_QUESTION"
 export const MOVE_QUESTION = "MOVE_QUESTION"
 export const RENAME_QUESTION = "RENAME_QUESTION"
 export const CHANGE_QUESTION_CATEGORY = "CHANGE_QUESTION_CATEGORY"
+export const CHANGE_QUESTION_TYPE = "CHANGE_QUESTION_TYPE"
 export const UPDATE_RADIO_OPTION = "UPDATE_RADIO_OPTION"
 export const REMOVE_RADIO_OPTION = "REMOVE_RADIO_OPTION"
 export const ADD_NEW_RADIO_OPTION = "ADD_NEW_RADIO_OPTION"
 export const UPDATE_NEW_RADIO_OPTION = "UPDATE_NEW_RADIO_OPTION"
+export const REMOVE_OPTIONS = "REMOVE_OPTIONS"
+export const ADD_OPTIONS = "ADD_OPTIONS"
 export const REMOVE_NEXTQUESTIONMAP = "REMOVE_NEXTQUESTIONMAP"
 export const ADD_NEXTQUESTIONMAP = "ADD_NEXTQUESTIONMAP"
 export const UPDATE_NEXTQUESTIONMAP_OPTION = "UPDATE_NEXTQUESTIONMAP_OPTION"
 export const ADD_NEXTQUESTIONMAP_OPTION = "ADD_NEXTQUESTIONMAP_OPTION"
+
+
+// TODO: action to set question type ['radio', 'date']
+// TODO later: so many actions have same structure => DRY 
 
 
 export const updateQuestion = question => ({
@@ -30,6 +37,11 @@ export const renameQuestion = (value, uuid) => ({
 
 export const changeQuestionCategory = (value, uuid) => ({
   type: CHANGE_QUESTION_CATEGORY,
+  payload: { value, uuid }
+})
+
+export const changeQuestionType = (value, uuid) => ({
+  type: CHANGE_QUESTION_TYPE,
   payload: { value, uuid }
 })
 
@@ -56,6 +68,16 @@ export const addNewRadioOption = (option, uuid) => ({
 export const updateNewRadioOption = option => ({
   type: UPDATE_NEW_RADIO_OPTION,
   payload: { option }
+})
+
+export const removeOptions = uuid => ({
+  type: REMOVE_OPTIONS,
+  payload: { uuid }
+})
+
+export const addOptions = uuid => ({
+  type: ADD_OPTIONS,
+  payload: { uuid }
 })
 
 export const removeNextQuestionMap = uuid => ({

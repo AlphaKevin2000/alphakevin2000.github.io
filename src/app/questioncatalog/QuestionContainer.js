@@ -5,8 +5,11 @@ import {
   handleMoveQuestion,
   handleToggleNextQuestionMap,
   handleRenameQuestion,
-  handleChangeQuestionCategory
+  handleChangeQuestionCategory,
+  changeChangeQuestionType
 } from "./duck/operations"
+
+// TODO: bundle opereation e.g import questionContainerOperations from ./duck/operations
 
 
 export const mapStateToProps = (state, ownProps) => ({
@@ -19,7 +22,8 @@ export const mapDispatchToProps = {
   handleRemoveQuestion,
   handleMoveQuestion,
   handleRenameQuestion,
-  handleChangeQuestionCategory
+  handleChangeQuestionCategory,
+  changeChangeQuestionType
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(QuestionComponent)

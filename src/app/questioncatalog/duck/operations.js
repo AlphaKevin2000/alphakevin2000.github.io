@@ -4,10 +4,13 @@ import {
   moveQuestion,
   renameQuestion,
   changeQuestionCategory,
+  changeQuestionType,
   updateRadioOption,
   removeRadioOption,
   updateNewRadioOption,
   addNewRadioOption,
+  removeOptions,
+  addOptions,
   removeNextQuestionMap,
   addNextQuestionMap,
   addNextQuestionMapOption,
@@ -42,6 +45,29 @@ export const handleChangeQuestionCategory = (value, uuid) => {
     const state = getState()
     const targetQuestion = state.questioncatalog.questions.find(q => q.uuid === uuid)
     dispatch(changeQuestionCategory(value, uuid))
+    dispatch(updateQuestion(targetQuestion))
+  }
+}
+
+export const changeChangeQuestionType = (value, uuid) => {
+  return (dispatch, getState) => {
+    const state = getState()
+    const targetQuestion = state.questioncatalog.questions.find(q => q.uuid === uuid)
+    // time for sagas?
+    dispatch(changeQuestionType(value, uuid))
+    dispatch(updateQuestion(targetQuestion))
+    if(value === "date") {
+      dispatch(removeOptions(uuid))
+      dispatch(updateQuestion(targetQuestion))
+      dispatch(removeNextQuestionMap(uuid))
+    }
+    else {
+      dispatch(addOptions(uuid))
+    }
+    // date ? options [], nextQuesitonMap [] : null
+    dispatch(updateQuestion(targetQuestion))
+    dispatch(removeNextQuestionMap(uuid))
+
     dispatch(updateQuestion(targetQuestion))
   }
 }
@@ -85,7 +111,6 @@ export const handleAddNewRadioOption = (option, uuid) => {
 }
 
 export const handleToggleNextQuestionMap = (event, uuid) => {
-  console.log(event.target.checked, uuid)
   return (dispatch, getState) => {
     const state = getState()
     const targetQuestion = state.questioncatalog.questions.find(q => q.uuid === uuid)

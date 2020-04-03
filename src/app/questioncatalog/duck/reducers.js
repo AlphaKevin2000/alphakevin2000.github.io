@@ -5,10 +5,13 @@ import {
   MOVE_QUESTION,
   RENAME_QUESTION,
   CHANGE_QUESTION_CATEGORY,
+  CHANGE_QUESTION_TYPE,
   UPDATE_RADIO_OPTION,
   REMOVE_RADIO_OPTION,
   ADD_NEW_RADIO_OPTION,
   UPDATE_NEW_RADIO_OPTION,
+  REMOVE_OPTIONS,
+  ADD_OPTIONS,
   REMOVE_NEXTQUESTIONMAP,
   ADD_NEXTQUESTIONMAP,
   UPDATE_NEXTQUESTIONMAP_OPTION,
@@ -92,7 +95,6 @@ export default (state = initialState, action) => {
       }
 
     case CHANGE_QUESTION_CATEGORY:
-      console.log("LOOK ME BEACH", action.payload)
       questions = [...state.questions]
       targetQuestionIndex = findTargetQuestionIndex(questions, action.payload.uuid)
       targetQuestion = questions[targetQuestionIndex]
@@ -102,6 +104,18 @@ export default (state = initialState, action) => {
         ...state,
         editQuestion
       }
+
+    case CHANGE_QUESTION_TYPE: {
+      questions = [...state.questions]
+      targetQuestionIndex = findTargetQuestionIndex(questions, action.payload.uuid)
+      targetQuestion = questions[targetQuestionIndex]
+      editQuestion = Object.assign({}, state.editQuestion, targetQuestion)
+      editQuestion.inputType = action.payload.value
+      return {
+        ...state,
+        editQuestion
+      }
+    }
 
     case UPDATE_RADIO_OPTION:
       questions = [...state.questions]
@@ -146,10 +160,31 @@ export default (state = initialState, action) => {
       }
 
     case UPDATE_NEW_RADIO_OPTION:
-      console.log("LLOKKK", action.payload)
       return {
         ...state,
         newRadioOption: action.payload.option
+      }
+
+    case REMOVE_OPTIONS:
+      questions = [...state.questions]
+      targetQuestionIndex  = findTargetQuestionIndex(questions, action.payload.uuid)
+      targetQuestion = findTargetQuestion(questions, action.payload.uuid)
+      editQuestion = Object.assign({}, state.editQuestion, targetQuestion)
+      editQuestion.options = undefined
+      return {
+        ...state,
+        editQuestion
+      }
+
+    case ADD_OPTIONS:
+      questions = [...state.questions]
+      targetQuestionIndex  = findTargetQuestionIndex(questions, action.payload.uuid)
+      targetQuestion = findTargetQuestion(questions, action.payload.uuid)
+      editQuestion = Object.assign({}, state.editQuestion, targetQuestion)
+      editQuestion.options = []
+      return {
+        ...state,
+        editQuestion
       }
 
     case REMOVE_NEXTQUESTIONMAP:

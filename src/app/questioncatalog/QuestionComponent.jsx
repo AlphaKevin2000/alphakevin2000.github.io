@@ -17,8 +17,10 @@ export const defaultProps = {
     respiratorySymptoms: "primary",
     illnesses: "dark",
     medication: "secondary"
-  }
+  },
+  inputTypes: ["radio", "date"]
 }
+
 
 
 export const propTypes = {
@@ -28,14 +30,26 @@ export const propTypes = {
 
 export const QuestionComponent = props => {
 
-  const { uuid, question, handleRemoveQuestion, handleToggleNextQuestionMap,
-    handleMoveQuestion, index, total, categoryMap, handleRenameQuestion, handleChangeQuestionCategory
+  const {
+    uuid,
+    question,
+    handleRemoveQuestion,
+    handleToggleNextQuestionMap,
+    handleMoveQuestion,
+    index,
+    total,
+    categoryMap,
+    inputTypes,
+    handleRenameQuestion,
+    handleChangeQuestionCategory,
+    changeChangeQuestionType
   } = props
 
   return (
-    <Row>
+    <Row style={{border: "solid red 1px"}}>
       <Col xs={1}>
         <Badge variant={categoryMap[question.category]}>{question.category}</Badge>
+        <Badge variant="secondary">{question.inputType}</Badge>
       </Col>
       <Col xs={3}>
         <FormControl defaultValue={question.id} onChange={(event) => handleRenameQuestion(event.target.value, question.uuid)} />
@@ -45,11 +59,16 @@ export const QuestionComponent = props => {
           {Object.keys(categoryMap).map((cat, i) => <option key={`category-question-${question.id}-${i}`} defaultValue={cat === question.category}>{cat}</option>)}
         </FormControl>
       </Col>
-      <Col xs={5}>
+      <Col xs={3}>
+        <FormControl as="select" onChange={(event) => changeChangeQuestionType(event.target.value, question.uuid)}>
+          {inputTypes.map((t, i) => <option key={`inputType-question-${question.id}-${i}`} defaultValue={t === question.inputType}>{t}</option>)}
+        </FormControl>
+      </Col>
+      <Col xs={2}>
         <Form.Check
           type="checkbox"
-          label="has nextQuestionMap"
-          defaultChecked={question.nextQuestionMap !== undefined}
+          label="fork"
+          checked={question.nextQuestionMap !== undefined}
           onChange={(event) => handleToggleNextQuestionMap(event, question.uuid)}
         />
       </Col>
