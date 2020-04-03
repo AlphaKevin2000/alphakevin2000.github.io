@@ -1,12 +1,6 @@
-//import fetch from "cross-fetch"
-import { uuid as uuidV4 } from "uuidv4"
 import {
-  resetNewQuestion,
-  addNewQuestion,
   removeQuestion,
   updateQuestion,
-  setNewQuestionText,
-  setNewQuestionType,
   moveQuestion,
   updateRadioOption,
   removeRadioOption,
@@ -18,36 +12,9 @@ import {
   updateNextQuestionMapOption,
 } from "./actions"
 
-
-export const handleNewQuestionAdd = question => {
-  return dispatch => {
-    question.uuid = uuidV4()
-    dispatch(addNewQuestion(question))
-    dispatch(resetNewQuestion({text: "", type: null}))
-  }
-}
-
 export const handleRemoveQuestion = question => {
   return dispatch => {
     dispatch(removeQuestion(question))
-  }
-}
-
-export const handleUpateNewQuestion = question => {
-  return dispatch => {
-    dispatch(updateQuestion)
-  }
-}
-
-export const handleNewQuestionTextChange = text => {
-  return dispatch => {
-    dispatch(setNewQuestionText(text))
-  }
-}
-
-export const handleNewQuestionTypeChange = type => {
-  return dispatch => {
-    dispatch(setNewQuestionType(type))
   }
 }
 
@@ -87,7 +54,10 @@ export const handleAddNewRadioOption = (option, uuid) => {
     const state = getState()
     const targetQuestion = state.questioncatalog.questions.find(q => q.uuid === uuid)
     dispatch(addNewRadioOption(option, uuid))
-    dispatch(addNextQuestionMapOption(uuid))
+    if (targetQuestion.nextQuestionMap !== undefined) {
+      dispatch(addNextQuestionMapOption(uuid))
+    }
+    
     dispatch(updateQuestion(targetQuestion))
   }
 }

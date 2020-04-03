@@ -2,7 +2,6 @@ import { connect } from "react-redux"
 import QuestionCatalogComponent from "./QuestionCatalogComponent"
 import {
   handleRemoveQuestion,
-  handleUpateNewQuestion,
   handleMoveQuestion
 } from "./duck/operations"
 
@@ -13,7 +12,6 @@ export const mapStateToProps = (state, ownProps) => ({
 
 export const mapDispatchToProps = {
   handleRemoveQuestion,
-  handleUpateNewQuestion,
   handleMoveQuestion
 }
 

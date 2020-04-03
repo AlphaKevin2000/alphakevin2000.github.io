@@ -1,6 +1,7 @@
 import React from "react"
-import InputGroup from "react-bootstrap/InputGroup"
 import FormControl from "react-bootstrap/FormControl"
+import Row from "react-bootstrap/Row"
+import Col from "react-bootstrap/Col"
 
 export const NextQuestionMapComponent = props => {
   const {
@@ -12,16 +13,22 @@ export const NextQuestionMapComponent = props => {
   const content = question.nextQuestionMap === undefined
     ? null
     : (
-      <InputGroup>
+      <Col xs={6}>
         {question.nextQuestionMap.map((opt, i) =>
-          <FormControl as="select" key={`nextQuestion-option-${i}`}
+        <Row key={`nextQuestion-option-${i}`}>
+          <Col xs={6}>Option {question.options[i]} leads to Question: </Col>
+          <Col xs={6}>
+          <FormControl as="select"
             value={opt}
             onChange={(event) => handleUpdateNextQuestionMapOption(event.target.value, question.uuid, i)}
           >
+            <option defaultValue="">Please select</option>
             {questions.map((q, j) => <option key={`nextQuestion-option-${i}-${j}`} defaultValue={q.id === opt}>{q.id}</option>)}
           </FormControl>
+          </Col>
+        </Row>
         )}
-      </InputGroup>
+      </Col>
     )
     return content
 }

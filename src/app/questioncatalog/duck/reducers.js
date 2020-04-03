@@ -3,13 +3,10 @@ import {
   REMOVE_QUESTION,
   UPDATE_QUESTION,
   MOVE_QUESTION,
-
   UPDATE_RADIO_OPTION,
-
   REMOVE_RADIO_OPTION,
   ADD_NEW_RADIO_OPTION,
   UPDATE_NEW_RADIO_OPTION,
-
   REMOVE_NEXTQUESTIONMAP,
   ADD_NEXTQUESTIONMAP,
   UPDATE_NEXTQUESTIONMAP_OPTION,
@@ -112,7 +109,10 @@ export default (state = initialState, action) => {
       targetQuestion = findTargetQuestion(questions, action.payload.uuid)
       editQuestion = Object.assign({}, state.editQuestion, targetQuestion)
       editQuestion.options = editQuestion.options.filter((q, i) => i !== action.payload.index)
-      editQuestion.nextQuestionMap = targetQuestion.nextQuestionMap.filter((n,i) => i !== action.payload.index)
+
+      editQuestion.nextQuestionMap = editQuestion.nextQuestionMap !== undefined
+        ? targetQuestion.nextQuestionMap.filter((n,i) => i !== action.payload.index)
+        : undefined
 
       return {
         ...state,
@@ -120,7 +120,7 @@ export default (state = initialState, action) => {
       }
 
     case UPDATE_NEW_RADIO_OPTION:
-
+      console.log("LLOKKK", action.payload)
       return {
         ...state,
         newRadioOption: action.payload.option
@@ -167,8 +167,10 @@ export default (state = initialState, action) => {
       targetQuestionIndex  = findTargetQuestionIndex(questions, action.payload.uuid)
       targetQuestion = findTargetQuestion(questions, action.payload.uuid)
       editQuestion = Object.assign({}, state.editQuestion, targetQuestion)
+      /* editQuestion.nextQuestionMap =  editQuestion.nextQuestionMap === undefined
+        ? []
+        : editQuestion.nextQuestionMap */
       editQuestion.nextQuestionMap.push("")
-      //questions[targetQuestionIndex] = targetQuestion
 
       return {
         ...state,
