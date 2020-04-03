@@ -4,6 +4,7 @@ import {
   UPDATE_QUESTION,
   MOVE_QUESTION,
   RENAME_QUESTION,
+  CHANGE_QUESTION_TEXT,
   CHANGE_QUESTION_CATEGORY,
   CHANGE_QUESTION_TYPE,
   UPDATE_RADIO_OPTION,
@@ -46,7 +47,10 @@ export const initialState = {
 export const findTargetQuestionIndex = (questions, uuid) => questions.findIndex(q => q.uuid === uuid)
 export const findTargetQuestion = (questions, uuid) => questions.find(q => q.uuid === uuid)
 
-/* TODO: make everything use editQuestion, so one can call UPDATE_QUESTION after things are set */
+/* 
+  TODO: make everything use editQuestion, so one can call UPDATE_QUESTION after things are set
+  TODO: DRY?
+*/
 
 export default (state = initialState, action) => {
   let questions, editQuestion, index, targetQuestionIndex, targetQuestion
@@ -89,6 +93,17 @@ export default (state = initialState, action) => {
       targetQuestion = questions[targetQuestionIndex]
       editQuestion = Object.assign({}, state.editQuestion, targetQuestion)
       editQuestion.id = action.payload.value
+      return {
+        ...state,
+        editQuestion
+      }
+
+    case CHANGE_QUESTION_TEXT:
+      questions = [...state.questions]
+      targetQuestionIndex = findTargetQuestionIndex(questions, action.payload.uuid)
+      targetQuestion = questions[targetQuestionIndex]
+      editQuestion = Object.assign({}, state.editQuestion, targetQuestion)
+      editQuestion.text = action.payload.value
       return {
         ...state,
         editQuestion

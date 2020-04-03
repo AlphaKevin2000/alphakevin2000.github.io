@@ -98,6 +98,14 @@ export const createJSON = () => {
   }
 }
 
+export const createJSONFromQuestionCatalog = () => {
+  return (dispatch, getState) => {
+    const state = getState()
+    const data = state.questioncatalog.questions
+    dispatch(setCreatedJSON(data))
+  }
+}
+
 export const downloadJSON = (jsonMap, language) => {
   const zip = new JSZip();
  

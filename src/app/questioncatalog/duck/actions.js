@@ -2,6 +2,7 @@ export const UPDATE_QUESTION = "UPDATE_QUESTION"
 export const REMOVE_QUESTION = "REMOVE_QUESTION"
 export const MOVE_QUESTION = "MOVE_QUESTION"
 export const RENAME_QUESTION = "RENAME_QUESTION"
+export const CHANGE_QUESTION_TEXT = "CHANGE_QUESTION_TEXT"
 export const CHANGE_QUESTION_CATEGORY = "CHANGE_QUESTION_CATEGORY"
 export const CHANGE_QUESTION_TYPE = "CHANGE_QUESTION_TYPE"
 export const UPDATE_RADIO_OPTION = "UPDATE_RADIO_OPTION"
@@ -32,6 +33,11 @@ export const removeQuestion = uuid => ({
 
 export const renameQuestion = (value, uuid) => ({
   type: RENAME_QUESTION,
+  payload: { value, uuid }
+})
+
+export const changeQuestionText = (value, uuid) => ({
+  type: CHANGE_QUESTION_TEXT,
   payload: { value, uuid }
 })
 

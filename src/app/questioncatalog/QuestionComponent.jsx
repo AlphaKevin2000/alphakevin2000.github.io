@@ -25,8 +25,6 @@ export const defaultProps = {
   inputTypes: ["radio", "date"]
 }
 
-
-
 export const propTypes = {
   text: PropTypes.string
 }
@@ -45,6 +43,7 @@ export const QuestionComponent = props => {
     categoryMap,
     inputTypes,
     handleRenameQuestion,
+    handleChangeQuestionText,
     handleChangeQuestionCategory,
     changeChangeQuestionType
   } = props
@@ -80,8 +79,8 @@ export const QuestionComponent = props => {
         <FormControl
           as="textarea"
           placeholder="Enter question text"
-          defaultValue={question.text}
-          onChange={() => console.log(question)}
+          value={question.text}
+          onChange={(event) => handleChangeQuestionText(event.target.value, question.uuid)}
         />
       </Col>
       <Col xs={3}>

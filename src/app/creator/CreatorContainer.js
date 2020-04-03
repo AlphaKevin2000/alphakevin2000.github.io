@@ -2,7 +2,8 @@ import { connect } from "react-redux"
 import CreatorComponent from "./CreatorComponent"
 import { 
   getQuestionsAndGenerateJSONMock,
-  handleLanguageChange
+  handleLanguageChange,
+  createJSONFromQuestionCatalog
 } from "./duck/operations"
 
 export const mapStateToProps = (state, ownProps) => ({
@@ -16,7 +17,8 @@ export const mapStateToProps = (state, ownProps) => ({
 
 export const mapDispatchToProps = {
   getQuestionsAndGenerateJSONMock,
-  handleLanguageChange
+  handleLanguageChange,
+  createJSONFromQuestionCatalog
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreatorComponent)

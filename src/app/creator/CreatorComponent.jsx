@@ -6,6 +6,7 @@ import Button from "react-bootstrap/Button"
 import Form from "react-bootstrap/Form"
 import Accordion from "react-bootstrap/Accordion"
 import Card from "react-bootstrap/Card"
+import Octicon, { Dependent }from "@primer/octicons-react"
 
 import  AmazonSettings from "./AmazonConnectConfiguratorContainer" 
 
@@ -28,8 +29,10 @@ export const CreatorComponent = props => {
     language,
     chariteData,
     connectConf,
+    createJSONFromQuestionCatalog
   } = props
 
+  // TODO: rename this
   const bla = {
     stringMap: stringMap[language],
     order: order,
@@ -50,7 +53,10 @@ export const CreatorComponent = props => {
         }
         </ButtonGroup>
         <ButtonGroup className="mr-2" size="sm">
-          <Button onClick={getQuestionsAndGenerateJSONMock}>Get Questions</Button>
+          <Button onClick={getQuestionsAndGenerateJSONMock}>Get Questions Mock</Button>
+          <Button variant="warning" onClick={createJSONFromQuestionCatalog}>
+            <Octicon><Dependent /></Octicon>
+          </Button>
         </ButtonGroup>
         {chariteData ? <AmazonSettings /> : null}
 

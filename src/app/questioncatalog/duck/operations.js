@@ -3,6 +3,7 @@ import {
   updateQuestion,
   moveQuestion,
   renameQuestion,
+  changeQuestionText,
   changeQuestionCategory,
   changeQuestionType,
   updateRadioOption,
@@ -36,6 +37,15 @@ export const handleRenameQuestion = (value, uuid) => {
     const state = getState()
     const targetQuestion = state.questioncatalog.questions.find(q => q.uuid === uuid)
     dispatch(renameQuestion(value, uuid))
+    dispatch(updateQuestion(targetQuestion))
+  }
+}
+
+export const handleChangeQuestionText = (value, uuid) => {
+  return (dispatch, getState) => {
+    const state = getState()
+    const targetQuestion = state.questioncatalog.questions.find(q => q.uuid === uuid)
+    dispatch(changeQuestionText(value, uuid))
     dispatch(updateQuestion(targetQuestion))
   }
 }
