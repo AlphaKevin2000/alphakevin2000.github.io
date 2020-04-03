@@ -29,7 +29,7 @@ export const propTypes = {
 export const QuestionComponent = props => {
 
   const { uuid, question, handleRemoveQuestion, handleToggleNextQuestionMap,
-    handleMoveQuestion, index, total, categoryMap
+    handleMoveQuestion, index, total, categoryMap, handleRenameQuestion, handleChangeQuestionCategory
   } = props
 
   return (
@@ -38,10 +38,10 @@ export const QuestionComponent = props => {
         <Badge variant={categoryMap[question.category]}>{question.category}</Badge>
       </Col>
       <Col xs={3}>
-        <FormControl defaultValue={question.id} onChange={() => alert("TBD")} />
+        <FormControl defaultValue={question.id} onChange={(event) => handleRenameQuestion(event.target.value, question.uuid)} />
       </Col>
       <Col xs={3}>
-        <FormControl as="select" onChange={() => alert("TBD")}>
+        <FormControl as="select" onChange={(event) => handleChangeQuestionCategory(event.target.value, question.uuid)}>
           {Object.keys(categoryMap).map((cat, i) => <option key={`category-question-${question.id}-${i}`} defaultValue={cat === question.category}>{cat}</option>)}
         </FormControl>
       </Col>

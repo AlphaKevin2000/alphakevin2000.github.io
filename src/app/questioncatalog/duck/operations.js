@@ -2,6 +2,8 @@ import {
   removeQuestion,
   updateQuestion,
   moveQuestion,
+  renameQuestion,
+  changeQuestionCategory,
   updateRadioOption,
   removeRadioOption,
   updateNewRadioOption,
@@ -12,6 +14,8 @@ import {
   updateNextQuestionMapOption,
 } from "./actions"
 
+// TODO: order this!
+
 export const handleRemoveQuestion = question => {
   return dispatch => {
     dispatch(removeQuestion(question))
@@ -21,6 +25,24 @@ export const handleRemoveQuestion = question => {
 export const handleMoveQuestion = (uuid, direction) => {
   return dispatch => {
     dispatch(moveQuestion(uuid, direction))
+  }
+}
+
+export const handleRenameQuestion = (value, uuid) => {
+  return (dispatch, getState) => {
+    const state = getState()
+    const targetQuestion = state.questioncatalog.questions.find(q => q.uuid === uuid)
+    dispatch(renameQuestion(value, uuid))
+    dispatch(updateQuestion(targetQuestion))
+  }
+}
+
+export const handleChangeQuestionCategory = (value, uuid) => {
+  return (dispatch, getState) => {
+    const state = getState()
+    const targetQuestion = state.questioncatalog.questions.find(q => q.uuid === uuid)
+    dispatch(changeQuestionCategory(value, uuid))
+    dispatch(updateQuestion(targetQuestion))
   }
 }
 

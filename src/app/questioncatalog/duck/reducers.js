@@ -3,6 +3,8 @@ import {
   REMOVE_QUESTION,
   UPDATE_QUESTION,
   MOVE_QUESTION,
+  RENAME_QUESTION,
+  CHANGE_QUESTION_CATEGORY,
   UPDATE_RADIO_OPTION,
   REMOVE_RADIO_OPTION,
   ADD_NEW_RADIO_OPTION,
@@ -75,6 +77,30 @@ export default (state = initialState, action) => {
       return {
         ...state,
         questions
+      }
+
+    case RENAME_QUESTION:
+
+      questions = [...state.questions]
+      targetQuestionIndex = findTargetQuestionIndex(questions, action.payload.uuid)
+      targetQuestion = questions[targetQuestionIndex]
+      editQuestion = Object.assign({}, state.editQuestion, targetQuestion)
+      editQuestion.id = action.payload.value
+      return {
+        ...state,
+        editQuestion
+      }
+
+    case CHANGE_QUESTION_CATEGORY:
+      console.log("LOOK ME BEACH", action.payload)
+      questions = [...state.questions]
+      targetQuestionIndex = findTargetQuestionIndex(questions, action.payload.uuid)
+      targetQuestion = questions[targetQuestionIndex]
+      editQuestion = Object.assign({}, state.editQuestion, targetQuestion)
+      editQuestion.category = action.payload.value
+      return {
+        ...state,
+        editQuestion
       }
 
     case UPDATE_RADIO_OPTION:

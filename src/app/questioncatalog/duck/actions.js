@@ -1,6 +1,8 @@
-export const REMOVE_QUESTION = "REMOVE_QUESTION"
 export const UPDATE_QUESTION = "UPDATE_QUESTION"
+export const REMOVE_QUESTION = "REMOVE_QUESTION"
 export const MOVE_QUESTION = "MOVE_QUESTION"
+export const RENAME_QUESTION = "RENAME_QUESTION"
+export const CHANGE_QUESTION_CATEGORY = "CHANGE_QUESTION_CATEGORY"
 export const UPDATE_RADIO_OPTION = "UPDATE_RADIO_OPTION"
 export const REMOVE_RADIO_OPTION = "REMOVE_RADIO_OPTION"
 export const ADD_NEW_RADIO_OPTION = "ADD_NEW_RADIO_OPTION"
@@ -11,15 +13,24 @@ export const UPDATE_NEXTQUESTIONMAP_OPTION = "UPDATE_NEXTQUESTIONMAP_OPTION"
 export const ADD_NEXTQUESTIONMAP_OPTION = "ADD_NEXTQUESTIONMAP_OPTION"
 
 
+export const updateQuestion = question => ({
+  type: UPDATE_QUESTION,
+  payload: { question }
+})
 
 export const removeQuestion = uuid => ({
   type: REMOVE_QUESTION,
   payload: { uuid }
 })
 
-export const updateQuestion = question => ({
-  type: UPDATE_QUESTION,
-  payload: { question }
+export const renameQuestion = (value, uuid) => ({
+  type: RENAME_QUESTION,
+  payload: { value, uuid }
+})
+
+export const changeQuestionCategory = (value, uuid) => ({
+  type: CHANGE_QUESTION_CATEGORY,
+  payload: { value, uuid }
 })
 
 export const moveQuestion = (uuid, direction) => ({

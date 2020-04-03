@@ -3,7 +3,9 @@ import QuestionComponent from "./QuestionComponent"
 import {
   handleRemoveQuestion,
   handleMoveQuestion,
-  handleToggleNextQuestionMap
+  handleToggleNextQuestionMap,
+  handleRenameQuestion,
+  handleChangeQuestionCategory
 } from "./duck/operations"
 
 
@@ -15,7 +17,9 @@ export const mapStateToProps = (state, ownProps) => ({
 export const mapDispatchToProps = {
   handleToggleNextQuestionMap,
   handleRemoveQuestion,
-  handleMoveQuestion
+  handleMoveQuestion,
+  handleRenameQuestion,
+  handleChangeQuestionCategory
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(QuestionComponent)
