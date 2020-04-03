@@ -1,10 +1,10 @@
 import { connect } from "react-redux"
 import AddQuestionComponent from "./AddQuestionComponent"
 import {
-  handleAddQuestion,
-  handleUpateQuestion,
-  handleQuestionTextChange,
-  handleQuestionTypeChange
+  handleNewQuestionAdd,
+  handleUpateNewQuestion,
+  handleNewQuestionTextChange,
+  handleNewQuestionTypeChange
 } from "./duck/operations"
 
 
@@ -13,10 +13,10 @@ export const mapStateToProps = (state, ownProps) => ({
 })
 
 export const mapDispatchToProps = {
-  handleAddQuestion,
-  handleUpateQuestion,
-  handleQuestionTextChange,
-  handleQuestionTypeChange
+  handleNewQuestionAdd,
+  handleUpateNewQuestion,
+  handleNewQuestionTextChange,
+  handleNewQuestionTypeChange
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddQuestionComponent)

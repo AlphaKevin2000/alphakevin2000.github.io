@@ -1,8 +1,8 @@
 import React from "react"
 import PropTypes from "prop-types"
 import Container from "react-bootstrap/Container"
-import Question from "./QuestionComponent"
-import AddQuestion from "./AddQuestionContainer"
+import Question from "./QuestionContainer"
+//import AddQuestion from "./AddQuestionContainer"
 
 export const defaultProps = {}
 
@@ -13,24 +13,18 @@ export const propTypes = {
 export const QuestionCatalogComponent = props => {
 
   const {
-    questions,
-    handleRemoveQuestion,
-    handleMoveQuestion
+    questions
   } = props
 
   console.log({questions})
 
   return (
     <Container>
-      <h1>QuestionCatalogComponent</h1>
-      {questions.map((question,i) => 
-        <Question key={question.uuid} uuid={question.uuid} question={question}
-          handleRemoveQuestion={handleRemoveQuestion}
-          handleMoveQuestion={handleMoveQuestion}
-          index={i} total={questions.length - 1}
-        />
+      <h1>Fraetrin kostet Nerven :) Schön wirds später! WIP</h1>
+      {questions.map(question => 
+        <Question key={question.uuid} uuid={question.uuid} question={question} />
       )}
-      <AddQuestion />
+      {/* <AddQuestion /> */}
     </Container>
   )
 }

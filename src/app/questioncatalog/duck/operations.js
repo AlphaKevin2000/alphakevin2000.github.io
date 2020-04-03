@@ -2,20 +2,27 @@
 import { uuid as uuidV4 } from "uuidv4"
 import {
   resetNewQuestion,
-  addQuestion,
+  addNewQuestion,
   removeQuestion,
   updateQuestion,
-  setQuestionText,
-  setQuestionType,
+  setNewQuestionText,
+  setNewQuestionType,
   moveQuestion,
-  addRadioOption
+  updateRadioOption,
+  removeRadioOption,
+  updateNewRadioOption,
+  addNewRadioOption,
+  removeNextQuestionMap,
+  addNextQuestionMap,
+  addNextQuestionMapOption,
+  updateNextQuestionMapOption,
 } from "./actions"
 
 
-export const handleAddQuestion = question => {
+export const handleNewQuestionAdd = question => {
   return dispatch => {
     question.uuid = uuidV4()
-    dispatch(addQuestion(question))
+    dispatch(addNewQuestion(question))
     dispatch(resetNewQuestion({text: "", type: null}))
   }
 }
@@ -26,21 +33,21 @@ export const handleRemoveQuestion = question => {
   }
 }
 
-export const handleUpateQuestion = question => {
+export const handleUpateNewQuestion = question => {
   return dispatch => {
     dispatch(updateQuestion)
   }
 }
 
-export const handleQuestionTextChange = text => {
+export const handleNewQuestionTextChange = text => {
   return dispatch => {
-    dispatch(setQuestionText(text))
+    dispatch(setNewQuestionText(text))
   }
 }
 
-export const handleQuestionTypeChange = type => {
+export const handleNewQuestionTypeChange = type => {
   return dispatch => {
-    dispatch(setQuestionType(type))
+    dispatch(setNewQuestionType(type))
   }
 }
 
@@ -50,8 +57,61 @@ export const handleMoveQuestion = (uuid, direction) => {
   }
 }
 
-export const handleAddRadioOption = option => {
+export const handleUpdateRadioOption = (value, uuid, index) => {
+  return (dispatch, getState) => {
+    const state = getState()
+    const targetQuestion = state.questioncatalog.questions.find(q => q.uuid === uuid)
+    dispatch(updateRadioOption(value, uuid, index))
+    dispatch(updateQuestion(targetQuestion))
+
+  }
+}
+
+export const handleRemoveRadioOption = (uuid, index) => {
+  return (dispatch, getState) => {
+    const state = getState()
+    const targetQuestion = state.questioncatalog.questions.find(q => q.uuid === uuid)
+    dispatch(removeRadioOption(uuid, index))
+    dispatch(updateQuestion(targetQuestion))
+  }
+}
+
+export const handleUpdateNewRadioOption = option => {
   return dispatch => {
-    dispatch(addRadioOption(option))
+    dispatch(updateNewRadioOption(option))
+  }
+}
+
+export const handleAddNewRadioOption = (option, uuid) => {
+  return (dispatch, getState) => {
+    const state = getState()
+    const targetQuestion = state.questioncatalog.questions.find(q => q.uuid === uuid)
+    dispatch(addNewRadioOption(option, uuid))
+    dispatch(addNextQuestionMapOption(uuid))
+    dispatch(updateQuestion(targetQuestion))
+  }
+}
+
+export const handleToggleNextQuestionMap = (event, uuid) => {
+  console.log(event.target.checked, uuid)
+  return (dispatch, getState) => {
+    const state = getState()
+    const targetQuestion = state.questioncatalog.questions.find(q => q.uuid === uuid)
+    if(event.target.checked) {
+      dispatch(addNextQuestionMap(uuid))
+    }
+    else {
+      dispatch(removeNextQuestionMap(uuid))
+    }
+    dispatch(updateQuestion(targetQuestion))
+  }
+}
+
+export const handleUpdateNextQuestionMapOption = (value, uuid, index) => {
+  return (dispatch, getState) => {
+    const state = getState()
+    const targetQuestion = state.questioncatalog.questions.find(q => q.uuid === uuid)
+    dispatch(updateNextQuestionMapOption(value, uuid, index))
+    dispatch(updateQuestion(targetQuestion))
   }
 }

@@ -1,92 +1,180 @@
 import { uuid } from "uuidv4"
 import {
-  RESET_NEW_QUESTION,
-  ADD_QUESTION,
   REMOVE_QUESTION,
   UPDATE_QUESTION,
-  SET_QUESTION_TEXT,
-  SET_QUESTION_TYPE,
   MOVE_QUESTION,
-  ADD_RADIO_OPTION
+
+  UPDATE_RADIO_OPTION,
+
+  REMOVE_RADIO_OPTION,
+  ADD_NEW_RADIO_OPTION,
+  UPDATE_NEW_RADIO_OPTION,
+
+  REMOVE_NEXTQUESTIONMAP,
+  ADD_NEXTQUESTIONMAP,
+  UPDATE_NEXTQUESTIONMAP_OPTION,
+  ADD_NEXTQUESTIONMAP_OPTION
 } from "./actions"
 
-import Sample from "./sample"
+
+//import Sample from "./sample"
+import SampleSmall from "./sample_small"
 
 
 export const initialState = {
-  questions: Sample.map(s => Object.assign({}, s, {uuid: uuid()})),
+  questions: SampleSmall.map(s => Object.assign({}, s, { uuid: uuid() })),
   newQuestion: {
     text: "",
     type: null,
     options: []
-  }
+  },
+  editQuestion: {
+    id: undefined,
+    category: undefined,
+    text: undefined,
+    inputType: undefined,
+    uuid: undefined,
+    options: undefined,
+    nextQuestionMap: undefined,
+  },
+  newRadioOption: "",
+  //newNextQuestionMap: undefined
 }
 
+export const findTargetQuestionIndex = (questions, uuid) => questions.findIndex(q => q.uuid === uuid)
+export const findTargetQuestion = (questions, uuid) => questions.find(q => q.uuid === uuid)
+
+/* TODO: make everything use editQuestion, so one can call UPDATE_QUESTION after things are set */
 
 export default (state = initialState, action) => {
-  let questions, newQuestion, index
+  let questions, editQuestion, index, targetQuestionIndex, targetQuestion
   switch (action.type) {
-    case RESET_NEW_QUESTION:
-      return {
-        ...state,
-        newQuestion: {
-          text: "",
-          type: "date"
-        }
-      }
-    case ADD_QUESTION:
-      questions = [...state.questions]
-      questions.push(action.payload.question)
-      return {
-        ...state,
-        questions
-      }
     case REMOVE_QUESTION:
       questions = [...state.questions].filter(q => q.uuid !== action.payload.uuid)
+
       return {
         ...state,
         questions
       }
-    case SET_QUESTION_TEXT:
-      newQuestion = Object.assign({}, state.newQuestion)
-      newQuestion.text = action.payload.text
-      return {
-        ...state,
-        newQuestion
-      }
-    case SET_QUESTION_TYPE:
-      newQuestion = Object.assign({}, state.newQuestion)
-      newQuestion.type = action.payload.type
-      return {
-        ...state,
-        newQuestion
-      }
+
     case UPDATE_QUESTION:
       questions = [...state.questions]
-      index = questions.findIndex(question => question.uuid === action.payload.question.uuid)
-      questions[index] = action.payload.question
+      targetQuestionIndex  = findTargetQuestionIndex(questions, action.payload.question.uuid)
+      questions[targetQuestionIndex] = state.editQuestion
+
       return {
         ...state,
         questions
       }
+
     case MOVE_QUESTION:
-      // NOT WORKIN YET
+      // working now and total overkill. refactor this
       let arr = [...state.questions]
       index = arr.findIndex(question => question.uuid === action.payload.uuid)
       let newIndex = index + action.payload.direction
       arr.splice(newIndex, 0, arr.splice(index, 1)[0])
       questions = arr.map(question => Object.assign({}, JSON.parse(JSON.stringify(question))))
+
       return {
         ...state,
         questions
       }
-    case ADD_RADIO_OPTION:
-      newQuestion = Object.assign({}, state.newQuestion)
-      newQuestion.options.push(action.payload.option)
+
+    case UPDATE_RADIO_OPTION:
+      questions = [...state.questions]
+      targetQuestionIndex = findTargetQuestionIndex(questions, action.payload.uuid)
+      targetQuestion = questions[targetQuestionIndex]
+      editQuestion = Object.assign({}, state.editQuestion, targetQuestion)
+      editQuestion.options[action.payload.index] = action.payload.value
+
       return {
         ...state,
-        newQuestion
+        editQuestion
       }
+
+    case ADD_NEW_RADIO_OPTION:
+      questions = [...state.questions]
+      targetQuestionIndex  = findTargetQuestionIndex(questions, action.payload.uuid)
+      targetQuestion = findTargetQuestion(questions, action.payload.uuid)
+      editQuestion = Object.assign({}, state.editQuestion, targetQuestion)
+      editQuestion.options.push(action.payload.option)
+      
+      // TODO: add action to reset newRadioOption?
+      return {
+        ...state,
+        editQuestion,
+        newRadioOption: ""
+      }
+
+    case REMOVE_RADIO_OPTION:
+      questions = [...state.questions]
+      targetQuestionIndex  = findTargetQuestionIndex(questions, action.payload.uuid)
+      targetQuestion = findTargetQuestion(questions, action.payload.uuid)
+      editQuestion = Object.assign({}, state.editQuestion, targetQuestion)
+      editQuestion.options = editQuestion.options.filter((q, i) => i !== action.payload.index)
+      editQuestion.nextQuestionMap = targetQuestion.nextQuestionMap.filter((n,i) => i !== action.payload.index)
+
+      return {
+        ...state,
+        editQuestion
+      }
+
+    case UPDATE_NEW_RADIO_OPTION:
+
+      return {
+        ...state,
+        newRadioOption: action.payload.option
+      }
+
+    case REMOVE_NEXTQUESTIONMAP:
+      questions = [...state.questions]
+      targetQuestionIndex = findTargetQuestionIndex(questions, action.payload.uuid)
+      targetQuestion = questions[targetQuestionIndex]
+      editQuestion = Object.assign({}, state.editQuestion, targetQuestion)
+      editQuestion.nextQuestionMap = undefined
+
+      return {
+        ...state,
+        editQuestion
+      }
+
+    case ADD_NEXTQUESTIONMAP:
+      questions = [...state.questions]
+      targetQuestionIndex = findTargetQuestionIndex(questions, action.payload.uuid)
+      targetQuestion = questions[targetQuestionIndex]
+      editQuestion = Object.assign({}, state.editQuestion, targetQuestion)
+      editQuestion.nextQuestionMap = editQuestion.options.map(o => "")
+      
+      return {
+        ...state,
+        editQuestion
+      }
+
+    case UPDATE_NEXTQUESTIONMAP_OPTION:
+      questions = [...state.questions]
+      targetQuestionIndex = findTargetQuestionIndex(questions, action.payload.uuid)
+      targetQuestion = questions[targetQuestionIndex]
+      editQuestion = Object.assign({}, state.editQuestion, targetQuestion)
+      editQuestion.nextQuestionMap[action.payload.index] = action.payload.value
+
+      return {
+        ...state,
+        editQuestion
+      }
+
+    case ADD_NEXTQUESTIONMAP_OPTION:
+      questions = [...state.questions]
+      targetQuestionIndex  = findTargetQuestionIndex(questions, action.payload.uuid)
+      targetQuestion = findTargetQuestion(questions, action.payload.uuid)
+      editQuestion = Object.assign({}, state.editQuestion, targetQuestion)
+      editQuestion.nextQuestionMap.push("")
+      //questions[targetQuestionIndex] = targetQuestion
+
+      return {
+        ...state,
+        editQuestion
+      }
+
     default:
       return state
   }

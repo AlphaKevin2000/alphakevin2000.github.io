@@ -1,0 +1,50 @@
+[
+  {
+      "id": "P0",
+      "category": "personalInfo",
+      "text": "How old are you?",
+      "inputType": "radio",
+      "options": [
+          "Under 40",
+          "40-50",
+          "51-60",
+          "61-70",
+          "71-80",
+          "Over 80"
+      ],
+      "nextQuestionMap": [
+          "P2",
+          "P2",
+          "P2",
+          "P1",
+          "P2",
+          "P2"
+      ]
+  },
+  {
+      "id": "P1",
+      "category": "personalInfo",
+      "text": "Are you 65 years old or older?",
+      "inputType": "radio",
+      "options": [
+          "Yes",
+          "No"
+      ]
+  },
+  {
+      "id": "P2",
+      "category": "personalInfo",
+      "text": "What is your current living situation?",
+      "inputType": "radio",
+      "options": [
+          "Living alone",
+          "Living together with family, in a shared flat, or in a supervised community facility"
+      ]
+  },
+  {
+      "id": "CZ",
+      "category": "contact",
+      "text": "What day was the last contact?",
+      "inputType": "date"
+  }
+]

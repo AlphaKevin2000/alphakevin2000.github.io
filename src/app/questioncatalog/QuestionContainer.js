@@ -2,8 +2,8 @@ import { connect } from "react-redux"
 import QuestionComponent from "./QuestionComponent"
 import {
   handleRemoveQuestion,
-  handleUpateQuestion,
-  handleMoveQuestion
+  handleMoveQuestion,
+  handleToggleNextQuestionMap
 } from "./duck/operations"
 
 
@@ -13,6 +13,9 @@ export const mapStateToProps = (state, ownProps) => ({
 })
 
 export const mapDispatchToProps = {
+  handleToggleNextQuestionMap,
+  handleRemoveQuestion,
+  handleMoveQuestion
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(QuestionComponent)
