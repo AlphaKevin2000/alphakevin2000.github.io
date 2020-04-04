@@ -16,7 +16,11 @@ import {
   REMOVE_NEXTQUESTIONMAP,
   ADD_NEXTQUESTIONMAP,
   UPDATE_NEXTQUESTIONMAP_OPTION,
-  ADD_NEXTQUESTIONMAP_OPTION
+  ADD_NEXTQUESTIONMAP_OPTION,
+  TOGGLE_NEWQUESTION_MODAL,
+  CHANGE_NEW_QUESTION,
+  ADD_QUESTION,
+  SET_ERROR_MESSAGE
 } from "./actions"
 
 
@@ -41,6 +45,8 @@ export const initialState = {
     nextQuestionMap: undefined,
   },
   newRadioOption: "",
+  showNewQuestionModal: false,
+  errorMessage: ""
   //newNextQuestionMap: undefined
 }
 
@@ -50,6 +56,7 @@ export const findTargetQuestion = (questions, uuid) => questions.find(q => q.uui
 /* 
   TODO: make everything use editQuestion, so one can call UPDATE_QUESTION after things are set
   TODO: DRY?
+  TODO: split reducer? this has become an abmomination
 */
 
 export default (state = initialState, action) => {
@@ -253,6 +260,35 @@ export default (state = initialState, action) => {
         editQuestion
       }
 
+    case TOGGLE_NEWQUESTION_MODAL:
+      return {
+        ...state,
+        showNewQuestionModal: action.payload.value
+      }
+
+    case CHANGE_NEW_QUESTION:
+      editQuestion = Object.assign({}, state.editQuestion, {[action.payload.key]: action.payload.value})
+      return {
+        ...state,
+        editQuestion
+      }
+
+    case ADD_QUESTION:
+      questions = [...state.questions]
+      questions.push(action.payload.question)
+      return {
+        ...state,
+        questions,
+        editQuestion: initialState.editQuestion,
+        showNewQuestionModal: false
+      }
+
+    case SET_ERROR_MESSAGE:
+      return {
+        ...state,
+        errorMessage: action.payload.msg
+      }
+    
     default:
       return state
   }

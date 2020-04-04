@@ -15,6 +15,8 @@ export const AddRadioOptionComponent = props => {
     handleRemoveRadioOption
   } = props
 
+  console.log({question})
+
   const content = question.options === undefined
     ? null
     : (

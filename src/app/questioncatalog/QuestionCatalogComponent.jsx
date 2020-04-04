@@ -2,7 +2,7 @@ import React from "react"
 import PropTypes from "prop-types"
 import Container from "react-bootstrap/Container"
 import Question from "./QuestionContainer"
-//import AddQuestion from "./AddQuestionContainer"
+import AddQuestion from "./AddQuestionContainer"
 
 export const defaultProps = {}
 
@@ -24,7 +24,7 @@ export const QuestionCatalogComponent = props => {
       {questions.map(question => 
         <Question key={question.uuid} uuid={question.uuid} question={question} />
       )}
-      {/* <AddQuestion /> */}
+      <AddQuestion />
     </Container>
   )
 }

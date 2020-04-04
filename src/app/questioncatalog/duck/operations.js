@@ -1,3 +1,4 @@
+import { uuid } from "uuidv4"
 import {
   removeQuestion,
   updateQuestion,
@@ -16,6 +17,10 @@ import {
   addNextQuestionMap,
   addNextQuestionMapOption,
   updateNextQuestionMapOption,
+  toggleNewQuestionModal,
+  changeNewQuestion,
+  addQuestion,
+  setErrorMessage
 } from "./actions"
 
 // TODO: order this!
@@ -140,5 +145,39 @@ export const handleUpdateNextQuestionMapOption = (value, uuid, index) => {
     const targetQuestion = state.questioncatalog.questions.find(q => q.uuid === uuid)
     dispatch(updateNextQuestionMapOption(value, uuid, index))
     dispatch(updateQuestion(targetQuestion))
+  }
+}
+
+export const handleToggleNewQuestionModal = value => {
+  return dispatch => {
+    dispatch(toggleNewQuestionModal(value))
+  }
+}
+
+export const handleChangeNewQuestion = (value, key) => {
+  return (dispatch, getState) => {
+    dispatch(changeNewQuestion(value, key))
+    if(key === "inputType") {
+      // need so change options
+      value === "date"
+       ? dispatch(changeNewQuestion(undefined, "options"))
+       : dispatch(changeNewQuestion([], "options"))
+    }
+  }
+}
+
+export const handleAddQuestion = () => {
+  return (dispatch, getState) => {
+    const state = getState()
+    const { editQuestion, questions } = state.questioncatalog
+    const isUniqueQuestion = questions.find(q => q.id === editQuestion.id) === undefined // there is no such question
+    if (isUniqueQuestion) {
+      const newQuestionUUID = uuid()
+      const newQuestion = Object.assign({}, editQuestion, {uuid: newQuestionUUID})
+      dispatch(addQuestion(newQuestion))
+    } else {
+      // display error so user can change question id
+      dispatch(setErrorMessage(`Question with name ${editQuestion.id} already exists!`))
+    }
   }
 }

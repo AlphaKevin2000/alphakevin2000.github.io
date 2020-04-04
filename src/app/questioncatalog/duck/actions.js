@@ -15,6 +15,11 @@ export const REMOVE_NEXTQUESTIONMAP = "REMOVE_NEXTQUESTIONMAP"
 export const ADD_NEXTQUESTIONMAP = "ADD_NEXTQUESTIONMAP"
 export const UPDATE_NEXTQUESTIONMAP_OPTION = "UPDATE_NEXTQUESTIONMAP_OPTION"
 export const ADD_NEXTQUESTIONMAP_OPTION = "ADD_NEXTQUESTIONMAP_OPTION"
+/* START NEW QUESTION ACTION TYPES */
+export const TOGGLE_NEWQUESTION_MODAL = "TOGGLE_NEWQUESTION_MODAL"
+export const CHANGE_NEW_QUESTION = "CHANGE_NEW_QUESTION"
+export const ADD_QUESTION = "ADD_QUESTION"
+export const SET_ERROR_MESSAGE = "SET_ERROR_MESSAGE"
 
 
 // TODO: action to set question type ['radio', 'date']
@@ -104,4 +109,24 @@ export const updateNextQuestionMapOption = (value, uuid, index) => ({
 export const addNextQuestionMapOption = (uuid) => ({
   type: ADD_NEXTQUESTIONMAP_OPTION,
   payload: { uuid }
+})
+
+export const toggleNewQuestionModal = value => ({
+  type: TOGGLE_NEWQUESTION_MODAL,
+  payload: { value }
+})
+
+export const changeNewQuestion = (value, key) => ({
+  type: CHANGE_NEW_QUESTION,
+  payload: { value, key }
+})
+
+export const addQuestion = question => ({
+  type: ADD_QUESTION,
+  payload: { question }
+})
+
+export const setErrorMessage = msg => ({
+  type: SET_ERROR_MESSAGE,
+  payload: { msg }
 })
