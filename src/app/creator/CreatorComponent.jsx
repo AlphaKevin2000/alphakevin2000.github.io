@@ -42,7 +42,7 @@ export const CreatorComponent = props => {
 
   return (
     <Container>
-      <h1>Hello World</h1>
+      <h1>TODO: Add tooltips or some general usage guide</h1>
       <ButtonToolbar>
         <ButtonGroup className="mr-2" size="sm">
         {

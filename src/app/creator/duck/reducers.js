@@ -7,7 +7,8 @@ import {
   SET_CREATED_AMAZON_CONNECT_DATA,
   ADD_UUID,
   ADD_KEY,
-  SET_QUESTION_COUNT
+  SET_QUESTION_COUNT,
+  SET_BASENAME
 } from "./actions"
 
 export const initialState = {
@@ -18,7 +19,7 @@ export const initialState = {
   connectConf: undefined,
   uuidList: [],
   lambdaKeys: {"lambdaKeys": []},
-  basename: "generated_charite_data"
+  basename: ""
 }
 
 export default (state = initialState, action) => {
@@ -76,6 +77,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         quesitonCount: action.payload.questionCount
+      }
+    case SET_BASENAME:
+      return {
+        ...state,
+        basename: action.payload.value
       }
     default:
       return state

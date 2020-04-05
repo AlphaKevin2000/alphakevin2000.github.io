@@ -9,7 +9,8 @@ import {
   setCreatedJSON,
   setAmazonConnectData,
   addKey,
-  setQuestionCount
+  setQuestionCount,
+  setBasename
 } from "./actions"
 
 import cf from "./amazon-connect/contactflow"
@@ -95,6 +96,12 @@ export const createJSON = () => {
       }
     })
     dispatch(setCreatedJSON(data))
+  }
+}
+
+export const handleSetBasename = value => {
+  return dispatch => {
+    dispatch(setBasename(value))
   }
 }
 
