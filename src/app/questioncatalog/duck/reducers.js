@@ -17,6 +17,12 @@ import {
   ADD_NEXTQUESTIONMAP,
   UPDATE_NEXTQUESTIONMAP_OPTION,
   ADD_NEXTQUESTIONMAP_OPTION,
+
+  REMOVE_SCOREMAP,
+  ADD_SCOREMAP,
+  UPDATE_SCORENMAP_OPTION,
+  ADD_SCOREMAP_OPTION,
+
   TOGGLE_NEWQUESTION_MODAL,
   CHANGE_NEW_QUESTION,
   ADD_QUESTION,
@@ -24,12 +30,14 @@ import {
 } from "./actions"
 
 
-//import Sample from "./sample"
+import Sample from "./sample"
 import SampleSmall from "./sample_small"
 
 
+
+
 export const initialState = {
-  questions: SampleSmall.map(s => Object.assign({}, s, { uuid: uuid() })),
+  questions: Sample.map(s => Object.assign({}, s, { uuid: uuid() })),
   newQuestion: {
     text: "",
     type: null,
@@ -43,6 +51,7 @@ export const initialState = {
     uuid: undefined,
     options: undefined,
     nextQuestionMap: undefined,
+    scoreMap: undefined
   },
   newRadioOption: "",
   showNewQuestionModal: false,
@@ -172,8 +181,13 @@ export default (state = initialState, action) => {
       editQuestion = Object.assign({}, state.editQuestion, targetQuestion)
       editQuestion.options = editQuestion.options.filter((q, i) => i !== action.payload.index)
 
+      // TODO: MOVE THIS!
       editQuestion.nextQuestionMap = editQuestion.nextQuestionMap !== undefined
         ? targetQuestion.nextQuestionMap.filter((n,i) => i !== action.payload.index)
+        : undefined
+
+      editQuestion.scoreMap = editQuestion.scoreMap !== undefined
+        ? targetQuestion.scoreMap.filter((n,i) => i !== action.payload.index)
         : undefined
 
       return {
@@ -254,6 +268,55 @@ export default (state = initialState, action) => {
         ? []
         : editQuestion.nextQuestionMap */
       editQuestion.nextQuestionMap.push("")
+
+      return {
+        ...state,
+        editQuestion
+      }
+
+    case REMOVE_SCOREMAP:
+      questions = [...state.questions]
+      targetQuestionIndex = findTargetQuestionIndex(questions, action.payload.uuid)
+      targetQuestion = questions[targetQuestionIndex]
+      editQuestion = Object.assign({}, state.editQuestion, targetQuestion)
+      editQuestion.scoreMap = undefined
+
+      return {
+        ...state,
+        editQuestion
+      }
+    case ADD_SCOREMAP:
+      questions = [...state.questions]
+      targetQuestionIndex = findTargetQuestionIndex(questions, action.payload.uuid)
+      targetQuestion = questions[targetQuestionIndex]
+      editQuestion = Object.assign({}, state.editQuestion, targetQuestion)
+      editQuestion.scoreMap = editQuestion.options.map(o => "")
+      
+      return {
+        ...state,
+        editQuestion
+      }
+    case UPDATE_SCORENMAP_OPTION:
+      questions = [...state.questions]
+      targetQuestionIndex = findTargetQuestionIndex(questions, action.payload.uuid)
+      targetQuestion = questions[targetQuestionIndex]
+      editQuestion = Object.assign({}, state.editQuestion, targetQuestion)
+      editQuestion.scoreMap[action.payload.index] = action.payload.value
+
+      return {
+        ...state,
+        editQuestion
+      }
+
+    case ADD_SCOREMAP_OPTION:
+      questions = [...state.questions]
+      targetQuestionIndex  = findTargetQuestionIndex(questions, action.payload.uuid)
+      targetQuestion = findTargetQuestion(questions, action.payload.uuid)
+      editQuestion = Object.assign({}, state.editQuestion, targetQuestion)
+      /* editQuestion.nextQuestionMap =  editQuestion.nextQuestionMap === undefined
+        ? []
+        : editQuestion.nextQuestionMap */
+      editQuestion.scoreMap.push("")
 
       return {
         ...state,

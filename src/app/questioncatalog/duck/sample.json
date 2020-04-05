@@ -151,7 +151,6 @@
       "text": "What was the highest temperature, approx.?",
       "inputType": "radio",
       "options": [
-          null,
           "38°C",
           "39°C",
           "40°C",

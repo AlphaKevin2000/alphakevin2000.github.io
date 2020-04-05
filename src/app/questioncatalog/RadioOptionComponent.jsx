@@ -5,7 +5,7 @@ import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
 import Octicon, { Trashcan, Plus }from "@primer/octicons-react"
 
-export const AddRadioOptionComponent = props => {
+export const RadioOptionComponent = props => {
   const {
     question,
     newRadioOption,
@@ -15,15 +15,13 @@ export const AddRadioOptionComponent = props => {
     handleRemoveRadioOption
   } = props
 
-  console.log({question})
-
   const content = question.options === undefined
     ? null
     : (
 
-        <Col xs={6}>
-            {question.options.map((opt, i) =>
-              <Row key={`newQuestion-option-${i}`}>
+        <Col xs={4}>
+            {question.options.map((opt, i) => 
+                <Row key={`newQuestion-option-${question.id}-${i}`}>
                 <Col xs={6}>
                   <FormControl value={opt} onChange={(event) => handleUpdateRadioOption(event.target.value, question.uuid, i)} />
                 </Col>
@@ -48,4 +46,4 @@ export const AddRadioOptionComponent = props => {
   return content
 }
 
-export default AddRadioOptionComponent
+export default RadioOptionComponent

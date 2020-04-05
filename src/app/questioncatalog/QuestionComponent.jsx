@@ -9,6 +9,7 @@ import Col from "react-bootstrap/Col"
 import Octicon, { ArrowDown, ArrowUp, Trashcan }from "@primer/octicons-react"
 import RadioOption from "./RadioOptionContainer"
 import NextQuestionMap from "./NextQuestionMapContainer"
+import Score from "./ScoreContainer"
 
 
 /* https://primer.style/octicons/packages/react */
@@ -37,6 +38,7 @@ export const QuestionComponent = props => {
     question,
     handleRemoveQuestion,
     handleToggleNextQuestionMap,
+    handleToggleScoreMap,
     handleMoveQuestion,
     index,
     total,
@@ -74,6 +76,12 @@ export const QuestionComponent = props => {
           checked={question.nextQuestionMap !== undefined}
           onChange={(event) => handleToggleNextQuestionMap(event, question.uuid)}
         />
+        <Form.Check
+          type="checkbox"
+          label="scored"
+          checked={question.scoreMap !== undefined}
+          onChange={(event) => handleToggleScoreMap(event, question.uuid)}
+        />
       </Col>
       <Col xs={9}>
         <FormControl
@@ -95,6 +103,7 @@ export const QuestionComponent = props => {
         </Button>
       </Col>
       <RadioOption existingQuestion={question} />
+      <Score existingQuestion={question} />
       <NextQuestionMap existingQuestion={question} />
     </Row>
     

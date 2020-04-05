@@ -17,6 +17,12 @@ import {
   addNextQuestionMap,
   addNextQuestionMapOption,
   updateNextQuestionMapOption,
+
+  removeScoreMap,
+  addScoreMap,
+  addScoreMapOption,
+  updateScoreMapOption,
+
   toggleNewQuestionModal,
   changeNewQuestion,
   addQuestion,
@@ -71,7 +77,7 @@ export const changeChangeQuestionType = (value, uuid) => {
     // time for sagas?
     dispatch(changeQuestionType(value, uuid))
     dispatch(updateQuestion(targetQuestion))
-    if(value === "date") {
+    if (value === "date") {
       dispatch(removeOptions(uuid))
       dispatch(updateQuestion(targetQuestion))
       dispatch(removeNextQuestionMap(uuid))
@@ -120,7 +126,11 @@ export const handleAddNewRadioOption = (option, uuid) => {
     if (targetQuestion.nextQuestionMap !== undefined) {
       dispatch(addNextQuestionMapOption(uuid))
     }
-    
+    dispatch(updateQuestion(targetQuestion))
+    if (targetQuestion.scoreMap !== undefined) {
+      dispatch(addScoreMapOption(uuid))
+    }
+
     dispatch(updateQuestion(targetQuestion))
   }
 }
@@ -129,7 +139,7 @@ export const handleToggleNextQuestionMap = (event, uuid) => {
   return (dispatch, getState) => {
     const state = getState()
     const targetQuestion = state.questioncatalog.questions.find(q => q.uuid === uuid)
-    if(event.target.checked) {
+    if (event.target.checked) {
       dispatch(addNextQuestionMap(uuid))
     }
     else {
@@ -148,6 +158,42 @@ export const handleUpdateNextQuestionMapOption = (value, uuid, index) => {
   }
 }
 
+export const handleRemoveScoreMap = () => {
+
+}
+
+export const handleAddScoreMap = () => {
+
+}
+
+export const handleAddScoreMapOption = () => {
+
+}
+
+export const handleToggleScoreMap = (event, uuid) => {
+  return (dispatch, getState) => {
+    const state = getState()
+    const targetQuestion = state.questioncatalog.questions.find(q => q.uuid === uuid)
+    if (event.target.checked) {
+      dispatch(addScoreMap(uuid))
+    }
+    else {
+      dispatch(removeScoreMap(uuid))
+    }
+    dispatch(updateQuestion(targetQuestion))
+  }
+}
+
+export const handleUpdateScoreMapOption = (value, uuid, index) => {
+  return (dispatch, getState) => {
+    const state = getState()
+    const targetQuestion = state.questioncatalog.questions.find(q => q.uuid === uuid)
+    dispatch(updateScoreMapOption(value, uuid, index))
+    dispatch(updateQuestion(targetQuestion))
+  }
+}
+
+
 export const handleToggleNewQuestionModal = value => {
   return dispatch => {
     dispatch(toggleNewQuestionModal(value))
@@ -157,11 +203,11 @@ export const handleToggleNewQuestionModal = value => {
 export const handleChangeNewQuestion = (value, key) => {
   return (dispatch, getState) => {
     dispatch(changeNewQuestion(value, key))
-    if(key === "inputType") {
+    if (key === "inputType") {
       // need so change options
       value === "date"
-       ? dispatch(changeNewQuestion(undefined, "options"))
-       : dispatch(changeNewQuestion([], "options"))
+        ? dispatch(changeNewQuestion(undefined, "options"))
+        : dispatch(changeNewQuestion([], "options"))
     }
   }
 }
@@ -173,7 +219,7 @@ export const handleAddQuestion = () => {
     const isUniqueQuestion = questions.find(q => q.id === editQuestion.id) === undefined // there is no such question
     if (isUniqueQuestion) {
       const newQuestionUUID = uuid()
-      const newQuestion = Object.assign({}, editQuestion, {uuid: newQuestionUUID})
+      const newQuestion = Object.assign({}, editQuestion, { uuid: newQuestionUUID })
       dispatch(addQuestion(newQuestion))
     } else {
       // display error so user can change question id

@@ -4,6 +4,7 @@ import {
   handleRemoveQuestion,
   handleMoveQuestion,
   handleToggleNextQuestionMap,
+  handleToggleScoreMap,
   handleRenameQuestion,
   handleChangeQuestionText,
   handleChangeQuestionCategory,
@@ -20,6 +21,7 @@ export const mapStateToProps = (state, ownProps) => ({
 
 export const mapDispatchToProps = {
   handleToggleNextQuestionMap,
+  handleToggleScoreMap,
   handleRemoveQuestion,
   handleMoveQuestion,
   handleRenameQuestion,

@@ -1,4 +1,5 @@
 import React from "react"
+import { Link } from "react-router-dom"
 import Container from "react-bootstrap/Container"
 import ButtonToolbar from "react-bootstrap/ButtonToolbar"
 import ButtonGroup from "react-bootstrap/ButtonGroup"
@@ -42,6 +43,7 @@ export const CreatorComponent = props => {
 
   return (
     <Container>
+      <div style={{textAlign: "center", color: "white !important"}}><Link to="/questions"><Button>Back to Generator</Button></Link></div>
       <h1>TODO: Add tooltips or some general usage guide</h1>
       <ButtonToolbar>
         <ButtonGroup className="mr-2" size="sm">

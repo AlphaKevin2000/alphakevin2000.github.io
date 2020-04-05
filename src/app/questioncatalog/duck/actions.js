@@ -15,6 +15,13 @@ export const REMOVE_NEXTQUESTIONMAP = "REMOVE_NEXTQUESTIONMAP"
 export const ADD_NEXTQUESTIONMAP = "ADD_NEXTQUESTIONMAP"
 export const UPDATE_NEXTQUESTIONMAP_OPTION = "UPDATE_NEXTQUESTIONMAP_OPTION"
 export const ADD_NEXTQUESTIONMAP_OPTION = "ADD_NEXTQUESTIONMAP_OPTION"
+
+export const REMOVE_SCOREMAP = "REMOVE_SCOREMAP"
+export const ADD_SCOREMAP = "ADD_SCOREMAP"
+export const UPDATE_SCORENMAP_OPTION = "UPDATE_SCOREMAP_OPTION"
+export const ADD_SCOREMAP_OPTION = "ADD_SCOREMAP_OPTION"
+
+
 /* START NEW QUESTION ACTION TYPES */
 export const TOGGLE_NEWQUESTION_MODAL = "TOGGLE_NEWQUESTION_MODAL"
 export const CHANGE_NEW_QUESTION = "CHANGE_NEW_QUESTION"
@@ -110,6 +117,27 @@ export const addNextQuestionMapOption = (uuid) => ({
   type: ADD_NEXTQUESTIONMAP_OPTION,
   payload: { uuid }
 })
+
+export const removeScoreMap = uuid => ({
+  type: REMOVE_SCOREMAP,
+  payload: { uuid }
+})
+
+export const addScoreMap = uuid => ({
+  type: ADD_SCOREMAP,
+  payload: { uuid }
+})
+
+export const updateScoreMapOption = (value, uuid, index) => ({
+  type: UPDATE_SCORENMAP_OPTION,
+  payload: { value, uuid, index }
+})
+
+export const addScoreMapOption = uuid => ({
+  type: ADD_SCOREMAP_OPTION,
+  payload: { uuid }
+})
+
 
 export const toggleNewQuestionModal = value => ({
   type: TOGGLE_NEWQUESTION_MODAL,

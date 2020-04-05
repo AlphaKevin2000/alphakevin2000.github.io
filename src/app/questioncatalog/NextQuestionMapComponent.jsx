@@ -13,7 +13,7 @@ export const NextQuestionMapComponent = props => {
   const content = question.nextQuestionMap === undefined
     ? null
     : (
-      <Col xs={6}>
+      <Col xs={4}>
         {question.nextQuestionMap.map((opt, i) =>
         <Row key={`nextQuestion-option-${i}`}>
           <Col xs={6}>Option {question.options[i]} leads to Question: </Col>

@@ -7,10 +7,10 @@ export default function App() {
   return (
     <HashRouter basename='/'>
       <div>
-        <ul>
+        {/* <ul>
           <li><Link to="/">Create Amazon Connect</Link></li>
           <li><Link to="/questions">Create Questions</Link></li>
-        </ul>
+        </ul> */}
         <hr />
         <Route exact path="/" component={Creator} />
         <Route path="/questions" component={QuestionCatalog} />
