@@ -23,7 +23,8 @@ export const defaultProps = {
     illnesses: "dark",
     medication: "secondary"
   },
-  inputTypes: ["radio", "date"]
+  inputTypes: ["radio", "date"],
+  categories: ["contact", "personalInfo", "symptoms", "respiratorySymptoms", "illnesses", "medication"]
 }
 
 export const propTypes = {
@@ -43,6 +44,7 @@ export const QuestionComponent = props => {
     index,
     total,
     categoryMap,
+    categories,
     inputTypes,
     handleRenameQuestion,
     handleChangeQuestionText,
@@ -57,16 +59,16 @@ export const QuestionComponent = props => {
         <Badge variant="secondary">{question.inputType}</Badge>
       </Col>
       <Col xs={3}>
-        <FormControl defaultValue={question.id} onChange={(event) => handleRenameQuestion(event.target.value, question.uuid)} />
+        <FormControl value={question.id} onChange={(event) => handleRenameQuestion(event.target.value, question.uuid)} />
       </Col>
       <Col xs={3}>
-        <FormControl as="select" onChange={(event) => handleChangeQuestionCategory(event.target.value, question.uuid)}>
-          {Object.keys(categoryMap).map((cat, i) => <option key={`category-question-${question.id}-${i}`} defaultValue={cat === question.category}>{cat}</option>)}
+        <FormControl as="select" onChange={(event) => handleChangeQuestionCategory(event.target.value, question.uuid)} value={question.category}>
+          {Object.keys(categoryMap).map((cat, i) => <option key={`category-question-${question.id}-${i}`}>{cat}</option>)}
         </FormControl>
       </Col>
       <Col xs={3}>
-        <FormControl as="select" onChange={(event) => changeChangeQuestionType(event.target.value, question.uuid)}>
-          {inputTypes.map((t, i) => <option key={`inputType-question-${question.id}-${i}`} defaultValue={t === question.inputType}>{t}</option>)}
+        <FormControl as="select" onChange={(event) => changeChangeQuestionType(event.target.value, question.uuid)} value={question.inputType}>
+          {inputTypes.map((t, i) => <option key={`inputType-question-${question.id}-${i}`}>{t}</option>)}
         </FormControl>
       </Col>
       <Col xs={2}>
@@ -76,12 +78,16 @@ export const QuestionComponent = props => {
           checked={question.nextQuestionMap !== undefined}
           onChange={(event) => handleToggleNextQuestionMap(event, question.uuid)}
         />
-        <Form.Check
+        { question.options
+          ? <Form.Check
           type="checkbox"
           label="scored"
           checked={question.scoreMap !== undefined}
           onChange={(event) => handleToggleScoreMap(event, question.uuid)}
         />
+          : null
+        }
+        
       </Col>
       <Col xs={9}>
         <FormControl

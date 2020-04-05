@@ -21,7 +21,7 @@ export const propTypes = {
 }
 
 export const ContactFlowQuestion = ({
-    language, errorText, repeatText, index,
+    language, errorText, repeatText, index, getState,
     dispatch, uuidMap, xxxMap, question, addKey, name, basename,
     positionX = defaultProps.positionX,
     positionY = defaultProps.positionY,
@@ -29,7 +29,13 @@ export const ContactFlowQuestion = ({
     offsetY = defaultProps.offsetY
   }) => {
 
-      console.log(`hello question ${question.id} has index ${index}`)
+      //console.log(`hello question ${question.id} has index ${index}`)
+      
+      // REMOVE THIS! REFACTOR
+      /* if(question.hasOwnProperty("scoreMap")) {
+        console.log("YOOOOOOOOOOO", question.scoreMap)
+      } */
+
 
       const endUUID = uuid()
       const repeatUUID = uuid()

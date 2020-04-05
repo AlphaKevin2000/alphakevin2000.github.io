@@ -33,6 +33,8 @@ export const ContactFlowStore = ({
   let key = `${question.category}_${question.id}`
   dispatch(addKey(key))
 
+  //alert(question.scoreMap)
+
   const blyatUUID = uuid()
 
   let contactFlowAttribute = ContactFlowAttribute({
@@ -47,7 +49,7 @@ export const ContactFlowStore = ({
   })
   modules.push(contactFlowAttribute)
   let useFullText = generateTextFromOptions(question)
-  //console.log(useFullText)
+
   const wtf = {
     id: ownUUID,
     type: "StoreUserInput",

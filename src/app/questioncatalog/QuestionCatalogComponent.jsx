@@ -5,6 +5,7 @@ import Container from "react-bootstrap/Container"
 import Button from "react-bootstrap/Button"
 import Question from "./QuestionContainer"
 import AddQuestion from "./AddQuestionContainer"
+import ScoreThreshold from "./ScoreThresholdContainer"
 
 export const defaultProps = {}
 
@@ -19,7 +20,7 @@ export const validUUID = uuid => uuid.match(/^[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0
 
 export const simpleSanityCheck = questions => {
   return questions.every(q => {
-    console.log(q)
+    //console.log(q)
     return validUUID(q.uuid)
       && validString(q.id)
       && validString(q.category)
@@ -41,8 +42,8 @@ export const QuestionCatalogComponent = props => {
 
   return (
     <Container>
-      <div style={{textAlign: "center", color: "white !important"}}><Link to="/"><Button disabled={!valid}>Create Amazon Connect</Button></Link></div>
-      
+      <div style={{textAlign: "center"}}><Link to="/"><Button disabled={!valid}>Create Amazon Connect</Button></Link></div>
+      <ScoreThreshold/>
       {questions.map(question => 
         <Question key={question.uuid} uuid={question.uuid} question={question} />
       )}

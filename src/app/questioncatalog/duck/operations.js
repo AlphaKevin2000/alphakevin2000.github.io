@@ -26,7 +26,11 @@ import {
   toggleNewQuestionModal,
   changeNewQuestion,
   addQuestion,
-  setErrorMessage
+  setErrorMessage,
+
+  updateRecomThreshold,
+  updateRecomText
+
 } from "./actions"
 
 // TODO: order this!
@@ -193,7 +197,6 @@ export const handleUpdateScoreMapOption = (value, uuid, index) => {
   }
 }
 
-
 export const handleToggleNewQuestionModal = value => {
   return dispatch => {
     dispatch(toggleNewQuestionModal(value))
@@ -225,5 +228,19 @@ export const handleAddQuestion = () => {
       // display error so user can change question id
       dispatch(setErrorMessage(`Question with name ${editQuestion.id} already exists!`))
     }
+  }
+}
+
+
+export const handleUpdateRecomThreshold = (value, category) => {
+  return (dispatch, getState) => {
+    dispatch(updateRecomThreshold(value, category))
+  }
+}
+
+
+export const handleUpdateRecomText = (value, category, key) => {
+  return (dispatch, getState) => {
+    dispatch(updateRecomText(value, category, key))
   }
 }

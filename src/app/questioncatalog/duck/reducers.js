@@ -1,5 +1,7 @@
 import { uuid } from "uuidv4"
 import {
+
+
   REMOVE_QUESTION,
   UPDATE_QUESTION,
   MOVE_QUESTION,
@@ -26,7 +28,11 @@ import {
   TOGGLE_NEWQUESTION_MODAL,
   CHANGE_NEW_QUESTION,
   ADD_QUESTION,
-  SET_ERROR_MESSAGE
+  SET_ERROR_MESSAGE,
+
+  UPDATE_RECOM_THRESHOLD,
+  UPDATE_RECOM_TEXT
+
 } from "./actions"
 
 
@@ -55,7 +61,61 @@ export const initialState = {
   },
   newRadioOption: "",
   showNewQuestionModal: false,
-  errorMessage: ""
+  errorMessage: "",
+  categoryMap: {
+    contact: "danger",
+    personalInfo: "success",
+    symptoms: "warning",
+    respiratorySymptoms: "primary",
+    illnesses: "dark",
+    medication: "secondary"
+  },
+  inputTypes: ["radio", "date"],
+  categories: ["contact", "personalInfo", "symptoms", "respiratorySymptoms", "illnesses", "medication"],
+  scoreThresholdMap: {
+    contact: {
+      threshold: 0,
+      recoms: {
+        "isDanger": "lorem",
+        "isSafe": "ipsum"
+      }
+    },
+    personalInfo: {
+      threshold: 0,
+      recoms: {
+        isDanger: "lorem",
+        isSafe: "ipsum"
+      }
+    },
+    symptoms: {
+      threshold: 0,
+      recoms: {
+        isDanger: "lorem",
+        isSafe: "ipsum"
+      }
+    },
+    respiratorySymptoms: {
+      threshold: 0,
+      recoms: {
+        isDanger: "lorem",
+        isSafe: "ipsum"
+      }
+    },
+    illnesses: {
+      threshold: 0,
+      recoms: {
+        isDanger: "lorem",
+        isSafe: "ipsum"
+      }
+    },
+    medication: {
+      threshold: 0,
+      recoms: {
+        isDanger: "lorem",
+        isSafe: "ipsum"
+      }
+    }
+  }
   //newNextQuestionMap: undefined
 }
 
@@ -69,7 +129,7 @@ export const findTargetQuestion = (questions, uuid) => questions.find(q => q.uui
 */
 
 export default (state = initialState, action) => {
-  let questions, editQuestion, index, targetQuestionIndex, targetQuestion
+  let questions, editQuestion, index, targetQuestionIndex, targetQuestion, scoreThresholdMap
   switch (action.type) {
     case REMOVE_QUESTION:
       questions = [...state.questions].filter(q => q.uuid !== action.payload.uuid)
@@ -351,7 +411,29 @@ export default (state = initialState, action) => {
         ...state,
         errorMessage: action.payload.msg
       }
-    
+
+    case UPDATE_RECOM_THRESHOLD:
+      
+      scoreThresholdMap = Object.assign({}, state.scoreThresholdMap)
+      scoreThresholdMap[action.payload.category].threshold = action.payload.value
+
+      return {
+        ...state,
+        scoreThresholdMap
+      }
+
+    case UPDATE_RECOM_TEXT:
+
+      scoreThresholdMap = Object.assign({}, state.scoreThresholdMap)
+      console.log(action.payload)
+
+      scoreThresholdMap[action.payload.category].recoms[action.payload.key] = action.payload.text
+
+      return {
+        ...state,
+        scoreThresholdMap
+      }
+
     default:
       return state
   }

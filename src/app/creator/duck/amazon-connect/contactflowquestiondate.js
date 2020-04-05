@@ -85,6 +85,8 @@ export const ContactFlowQuestionDate = ({
         }
         console.log(`${question.id} leads to question number ${fooName}`)
 
+        alert(basename)
+
         const contactFlowTransfer = ContactFlowTransfer({
           ownUUID: t.uuid,
           errorUUID: errorUUID,

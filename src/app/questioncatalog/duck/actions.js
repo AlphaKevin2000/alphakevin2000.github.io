@@ -29,6 +29,9 @@ export const ADD_QUESTION = "ADD_QUESTION"
 export const SET_ERROR_MESSAGE = "SET_ERROR_MESSAGE"
 
 
+export const UPDATE_RECOM_THRESHOLD = "UPDATE_RECOM_THRESHOLD"
+export const UPDATE_RECOM_TEXT = "UPDATE_RECOM_TEXT"
+
 // TODO: action to set question type ['radio', 'date']
 // TODO later: so many actions have same structure => DRY 
 
@@ -157,4 +160,14 @@ export const addQuestion = question => ({
 export const setErrorMessage = msg => ({
   type: SET_ERROR_MESSAGE,
   payload: { msg }
+})
+
+export const updateRecomText = (text, category, key) => ({
+  type: UPDATE_RECOM_TEXT,
+  payload: {text, category, key}
+})
+
+export const updateRecomThreshold = (value, category) => ({
+  type: UPDATE_RECOM_THRESHOLD,
+  payload: {value, category }
 })
