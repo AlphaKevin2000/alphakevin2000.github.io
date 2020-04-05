@@ -29,7 +29,8 @@ export const ContactFlowStaticEnd = ({
 
     const staticEnd = EmptyContactFlow({
       startUUID: lambdaUUID,
-      name: name
+      name: name,
+      description: "end"
     })
     const endModules = []
 

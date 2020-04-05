@@ -34,9 +34,12 @@ export const ContactFlowStaticStart = ({
     const voiceUUID = uuid()
     const greetingUUID = uuid()
 
+    alert(name)
+
     const staticStart = EmptyContactFlow({
       startUUID: loggingUUUID,
-      name: name
+      name: name,
+      description: "start"
     })
     const startModules = []
 

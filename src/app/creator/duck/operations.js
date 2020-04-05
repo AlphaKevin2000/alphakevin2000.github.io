@@ -164,6 +164,7 @@ export const createContactFlow = () => {
       if (question.inputType === 'radio') {
         contactFlow = cf.ContactFlowQuestion({
           name: contactFlowName,
+          basename: basename,
           getState: getState,
           uuidMap: uuidMap,
           xxxMap: xxxMap,
