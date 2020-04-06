@@ -7,7 +7,7 @@ import {
 
 
 export const mapStateToProps = (state, ownProps) => ({
-  questions: state.questioncatalog.questions
+  questions: state.questioncatalog.questions.questions
 })
 
 export const mapDispatchToProps = {

@@ -3,29 +3,10 @@ import FormControl from "react-bootstrap/FormControl"
 import Col from "react-bootstrap/Col"
 
 
-/* 
-"personalInfo": {
-    "threshold": 2,
-    "recoms": {
-      "isDanger": "Lorem",
-      "isSafe": "Ipusm"
-    }  
-  },
-  "contact": {
-    "threshold": 1,
-    "recoms": {
-      "isDanger": "Hell",
-      "isSafe": "yeah"
-    }
-  }
-
-*/
-
 export const ScoreComponent = props => {
   const {
     handleUpdateScoreMapOption,
     question,
-    questions
   } = props
   const content = question.scoreMap === undefined
     ? null

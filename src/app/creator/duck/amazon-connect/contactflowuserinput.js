@@ -73,7 +73,6 @@ export const ContactFlowUserInput = ({
 
   /*  each dynamic branch needs a SetAttributes */
   const dynamicBranches = question.options.map((option, i) => {
-    //alert(question.scoreMap)
     let conditionMetadataUUID = uuid()
     let val = i + 1
     const conditionMetadataObj = {

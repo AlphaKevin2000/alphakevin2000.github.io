@@ -1,14 +1,18 @@
 export const UPDATE_QUESTION = "UPDATE_QUESTION"
 export const REMOVE_QUESTION = "REMOVE_QUESTION"
+export const ADD_QUESTION = "ADD_QUESTION"
 export const MOVE_QUESTION = "MOVE_QUESTION"
+export const CHANGE_QUESTION_ATTRIBUTE = "CHANGE_QUESTION_ATTRIBUTE" // should make CHANGE_x obsolete
 export const RENAME_QUESTION = "RENAME_QUESTION"
 export const CHANGE_QUESTION_TEXT = "CHANGE_QUESTION_TEXT"
 export const CHANGE_QUESTION_CATEGORY = "CHANGE_QUESTION_CATEGORY"
 export const CHANGE_QUESTION_TYPE = "CHANGE_QUESTION_TYPE"
+
 export const UPDATE_RADIO_OPTION = "UPDATE_RADIO_OPTION"
 export const REMOVE_RADIO_OPTION = "REMOVE_RADIO_OPTION"
 export const ADD_NEW_RADIO_OPTION = "ADD_NEW_RADIO_OPTION"
 export const UPDATE_NEW_RADIO_OPTION = "UPDATE_NEW_RADIO_OPTION"
+
 export const REMOVE_OPTIONS = "REMOVE_OPTIONS"
 export const ADD_OPTIONS = "ADD_OPTIONS"
 export const REMOVE_NEXTQUESTIONMAP = "REMOVE_NEXTQUESTIONMAP"
@@ -21,19 +25,42 @@ export const ADD_SCOREMAP = "ADD_SCOREMAP"
 export const UPDATE_SCORENMAP_OPTION = "UPDATE_SCOREMAP_OPTION"
 export const ADD_SCOREMAP_OPTION = "ADD_SCOREMAP_OPTION"
 
-
-/* START NEW QUESTION ACTION TYPES */
 export const TOGGLE_NEWQUESTION_MODAL = "TOGGLE_NEWQUESTION_MODAL"
-export const CHANGE_NEW_QUESTION = "CHANGE_NEW_QUESTION"
-export const ADD_QUESTION = "ADD_QUESTION"
-export const SET_ERROR_MESSAGE = "SET_ERROR_MESSAGE"
+export const CHANGE_NEWQUESTION_ATTRIBUTE = "CHANGE_NEWQUESTION_ATTRIBUTE"
 
+export const SET_ERROR_MESSAGE = "SET_ERROR_MESSAGE"
+export const SET_INFO_MESSAGE = "SET_INFO_MESSAGE"
+export const SET_SUCCESS_MESSAGE = "SET_SUCCESS_MESSAGE"
 
 export const UPDATE_RECOM_THRESHOLD = "UPDATE_RECOM_THRESHOLD"
 export const UPDATE_RECOM_TEXT = "UPDATE_RECOM_TEXT"
 
 // TODO: action to set question type ['radio', 'date']
 // TODO later: so many actions have same structure => DRY 
+
+export const questionActionTypes = {
+  UPDATE_QUESTION,
+  REMOVE_QUESTION,
+  ADD_QUESTION,
+  MOVE_QUESTION,
+  CHANGE_QUESTION_ATTRIBUTE
+}
+
+export const newQuestionActionTypes = {
+  TOGGLE_NEWQUESTION_MODAL,
+  CHANGE_NEWQUESTION_ATTRIBUTE
+}
+
+export const messageActionTypes = {
+  SET_ERROR_MESSAGE,
+  SET_INFO_MESSAGE,
+  SET_SUCCESS_MESSAGE
+}
+
+export const scoreThresholdActionTypes = {
+  UPDATE_RECOM_THRESHOLD,
+  UPDATE_RECOM_TEXT
+}
 
 
 export const updateQuestion = question => ({
@@ -46,24 +73,9 @@ export const removeQuestion = uuid => ({
   payload: { uuid }
 })
 
-export const renameQuestion = (value, uuid) => ({
-  type: RENAME_QUESTION,
-  payload: { value, uuid }
-})
-
-export const changeQuestionText = (value, uuid) => ({
-  type: CHANGE_QUESTION_TEXT,
-  payload: { value, uuid }
-})
-
-export const changeQuestionCategory = (value, uuid) => ({
-  type: CHANGE_QUESTION_CATEGORY,
-  payload: { value, uuid }
-})
-
-export const changeQuestionType = (value, uuid) => ({
-  type: CHANGE_QUESTION_TYPE,
-  payload: { value, uuid }
+export const changeQuestionAttribute = (value, attribute, uuid) => ({
+  type: CHANGE_QUESTION_ATTRIBUTE,
+  payload: { value, attribute, uuid }
 })
 
 export const moveQuestion = (uuid, direction) => ({
@@ -147,8 +159,8 @@ export const toggleNewQuestionModal = value => ({
   payload: { value }
 })
 
-export const changeNewQuestion = (value, key) => ({
-  type: CHANGE_NEW_QUESTION,
+export const changeNewQuestionAttribute = (value, key) => ({
+  type: CHANGE_NEWQUESTION_ATTRIBUTE,
   payload: { value, key }
 })
 

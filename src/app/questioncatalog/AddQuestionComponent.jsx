@@ -21,8 +21,7 @@ export const defaultProps = {
 export const AddQuestionComponent = props => {
 
   const {
-    showNewQuestionModal,
-    editQuestion,
+    newQuestion,
     handleToggleNewQuestionModal,
     handleChangeNewQuestion,
     handleAddQuestion,
@@ -30,7 +29,7 @@ export const AddQuestionComponent = props => {
     questionTypes,
     categories
   } = props
-  const { id, category, text, inputType } = editQuestion
+  const { id, category, text, inputType, showNewQuestionModal } = newQuestion
   const requiredData = [id, category, text, inputType]
 
   return (
@@ -40,7 +39,6 @@ export const AddQuestionComponent = props => {
       </Button>
       <Modal show={showNewQuestionModal} onHide={() => handleToggleNewQuestionModal(false)}
         size="lg"
-        aria-labelledby="contained-modal-title-vcenter"
         centered
       >
         <Modal.Header closeButton>
@@ -82,7 +80,7 @@ export const AddQuestionComponent = props => {
 
         </Modal.Body>
         <Modal.Footer className="justify-content-between">
-          <Button variant="success" disabled={requiredData.some(d => d === undefined)} block onClick={handleAddQuestion}>
+          <Button variant="success" disabled={requiredData.some(d => ["", null, undefined].includes(d))} block onClick={handleAddQuestion}>
             Add Question
           </Button>
         </Modal.Footer>

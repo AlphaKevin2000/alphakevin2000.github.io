@@ -21,7 +21,7 @@ export const getSomething = questions => {
 export const mapStateToProps = (state, ownProps) => ({
   scoreThresholdMap: state.questioncatalog.scoreThresholdMap,
   categories: state.questioncatalog.categories,
-  totalScoreQuestions: getSomething([...state.questioncatalog.questions])
+  totalScoreQuestions: getSomething([...state.questioncatalog.questions.questions])
 })
 
 export const mapDispatchToProps = {

@@ -22,8 +22,6 @@ export const ContactFlowStaticEnd = ({
     name = defaultProps.name
   }) => {
 
-    //alert(name)
-
     const finishUUID = uuid()
     const endErrorUUID = uuid()
     const lambdaUUID = uuid()

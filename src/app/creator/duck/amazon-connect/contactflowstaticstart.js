@@ -36,8 +36,6 @@ export const ContactFlowStaticStart = ({
     const scoreMapUUID = uuid()
     const greetingUUID = uuid()
 
-    //alert(scoreMap)
-
     const staticStart = EmptyContactFlow({
       startUUID: loggingUUUID,
       name: name,

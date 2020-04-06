@@ -8,9 +8,8 @@ import {
 
 
 export const mapStateToProps = (state, ownProps) => ({
-  showNewQuestionModal: state.questioncatalog.showNewQuestionModal,
-  editQuestion: state.questioncatalog.editQuestion,
-  errorMessage : state.questioncatalog.errorMessage
+  newQuestion: state.questioncatalog.newQuestion,
+  errorMessage : state.questioncatalog.messages.errorMessage
 })
 
 export const mapDispatchToProps = {

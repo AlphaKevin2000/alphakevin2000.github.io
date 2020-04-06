@@ -6,8 +6,8 @@ import {
 
 
 export const mapStateToProps = (state, ownProps) => ({
-  question: ownProps.existingQuestion ? state.questioncatalog.questions.find(q => q === ownProps.existingQuestion) : state.questioncatalog.newQuestion,
-  questions: state.questioncatalog.questions
+  question: ownProps.existingQuestion ? state.questioncatalog.questions.questions.find(q => q === ownProps.existingQuestion) : state.questioncatalog.newQuestion,
+  questions: state.questioncatalog.questions.questions
 })
 
 export const mapDispatchToProps = {

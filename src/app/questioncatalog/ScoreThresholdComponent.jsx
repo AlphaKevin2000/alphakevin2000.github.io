@@ -7,7 +7,6 @@ import Button from "react-bootstrap/Button"
 import Badge from "react-bootstrap/badge"
 
 export const ScoreThresholdMapComponent = props => {
-  console.log(props)
   const {
     scoreThresholdMap,
     handleUpdateRecomThreshold,

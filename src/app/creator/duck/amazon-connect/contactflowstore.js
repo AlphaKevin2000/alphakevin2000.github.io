@@ -33,8 +33,6 @@ export const ContactFlowStore = ({
   let key = `${question.category}_${question.id}`
   dispatch(addKey(key))
 
-  //alert(question.scoreMap)
-
   const blyatUUID = uuid()
 
   let contactFlowAttribute = ContactFlowAttribute({

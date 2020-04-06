@@ -9,8 +9,8 @@ import {
 
 
 export const mapStateToProps = (state, ownProps) => ({
-  question: ownProps.existingQuestion ? state.questioncatalog.questions.find(q => q === ownProps.existingQuestion) : state.questioncatalog.newQuestion,
-  newRadioOption: state.questioncatalog.newRadioOption
+  question: ownProps.existingQuestion ? state.questioncatalog.questions.questions.find(q => q === ownProps.existingQuestion) : state.questioncatalog.newQuestion,
+  newRadioOption: state.questioncatalog.newRadioOption.newRadioOption
 })
 
 export const mapDispatchToProps = {

@@ -5,7 +5,7 @@ import {
   handleMoveQuestion,
   handleToggleNextQuestionMap,
   handleToggleScoreMap,
-  handleRenameQuestion,
+  handleChangeQuestionID,
   handleChangeQuestionText,
   handleChangeQuestionCategory,
   changeChangeQuestionType
@@ -15,8 +15,8 @@ import {
 
 
 export const mapStateToProps = (state, ownProps) => ({
-  index: state.questioncatalog.questions.findIndex(q => q.uuid === ownProps.uuid),
-  total: state.questioncatalog.questions.length - 1
+  index: state.questioncatalog.questions.questions.findIndex(q => q.uuid === ownProps.uuid),
+  total: state.questioncatalog.questions.questions.length - 1
 })
 
 export const mapDispatchToProps = {
@@ -24,7 +24,7 @@ export const mapDispatchToProps = {
   handleToggleScoreMap,
   handleRemoveQuestion,
   handleMoveQuestion,
-  handleRenameQuestion,
+  handleChangeQuestionID,
   handleChangeQuestionCategory,
   changeChangeQuestionType,
   handleChangeQuestionText

@@ -1,36 +1,15 @@
 import { uuid } from "uuidv4"
 import {
   removeQuestion,
-  updateQuestion,
-  moveQuestion,
-  renameQuestion,
-  changeQuestionText,
-  changeQuestionCategory,
-  changeQuestionType,
-  updateRadioOption,
-  removeRadioOption,
-  updateNewRadioOption,
-  addNewRadioOption,
-  removeOptions,
-  addOptions,
-  removeNextQuestionMap,
-  addNextQuestionMap,
-  addNextQuestionMapOption,
-  updateNextQuestionMapOption,
-
-  removeScoreMap,
-  addScoreMap,
-  addScoreMapOption,
-  updateScoreMapOption,
-
-  toggleNewQuestionModal,
-  changeNewQuestion,
   addQuestion,
+  moveQuestion,
+  changeQuestionAttribute,
+  updateNewRadioOption,
+  toggleNewQuestionModal,
+  changeNewQuestionAttribute,
   setErrorMessage,
-
   updateRecomThreshold,
   updateRecomText
-
 } from "./actions"
 
 // TODO: order this!
@@ -41,78 +20,107 @@ export const handleRemoveQuestion = question => {
   }
 }
 
+export const handleAddQuestion = () => {
+  return (dispatch, getState) => {
+    const state = getState()
+    const { questions } = state.questioncatalog.questions
+    let newQuestion = state.questioncatalog.newQuestion
+    const isUniqueQuestion = questions.find(q => q.id === newQuestion.id) === undefined // there is no such question
+    if (isUniqueQuestion) {
+      const newQuestionUUID = uuid()
+      newQuestion = Object.assign({}, newQuestion, { uuid: newQuestionUUID })
+      dispatch(addQuestion(newQuestion))
+      dispatch(toggleNewQuestionModal(false))
+    } else {
+      // display error so user can change question id
+      dispatch(setErrorMessage(`Question with name ${newQuestion.id} already exists!`))
+    }
+  }
+}
+
 export const handleMoveQuestion = (uuid, direction) => {
   return dispatch => {
     dispatch(moveQuestion(uuid, direction))
   }
 }
 
-export const handleRenameQuestion = (value, uuid) => {
-  return (dispatch, getState) => {
-    const state = getState()
-    const targetQuestion = state.questioncatalog.questions.find(q => q.uuid === uuid)
-    dispatch(renameQuestion(value, uuid))
-    dispatch(updateQuestion(targetQuestion))
+export const handleChangeQuestionID = (value, uuid) => {
+  return dispatch => {
+    dispatch(changeQuestionAttribute(value, "id", uuid))
   }
 }
 
 export const handleChangeQuestionText = (value, uuid) => {
-  return (dispatch, getState) => {
-    const state = getState()
-    const targetQuestion = state.questioncatalog.questions.find(q => q.uuid === uuid)
-    dispatch(changeQuestionText(value, uuid))
-    dispatch(updateQuestion(targetQuestion))
+  return dispatch => {
+    dispatch(changeQuestionAttribute(value, "text", uuid))
   }
 }
 
 export const handleChangeQuestionCategory = (value, uuid) => {
-  return (dispatch, getState) => {
-    const state = getState()
-    const targetQuestion = state.questioncatalog.questions.find(q => q.uuid === uuid)
-    dispatch(changeQuestionCategory(value, uuid))
-    dispatch(updateQuestion(targetQuestion))
+  return dispatch => {
+    dispatch(changeQuestionAttribute(value, "category", uuid))
   }
 }
 
 export const changeChangeQuestionType = (value, uuid) => {
-  return (dispatch, getState) => {
-    const state = getState()
-    const targetQuestion = state.questioncatalog.questions.find(q => q.uuid === uuid)
-    // time for sagas?
-    dispatch(changeQuestionType(value, uuid))
-    dispatch(updateQuestion(targetQuestion))
-    if (value === "date") {
-      dispatch(removeOptions(uuid))
-      dispatch(updateQuestion(targetQuestion))
-      dispatch(removeNextQuestionMap(uuid))
+  return dispatch => {
+    dispatch(changeQuestionAttribute(value, "inputType", uuid))
+    dispatch(changeQuestionAttribute(undefined, "scoreMap", uuid))
+    dispatch(changeQuestionAttribute(undefined, "nextQuestionMap", uuid))
+    if(value === "radio") {
+      dispatch(changeQuestionAttribute([], "options", uuid))
+    } else {
+      dispatch(changeQuestionAttribute(undefined, "options", uuid))
     }
-    else {
-      dispatch(addOptions(uuid))
-    }
-    // date ? options [], nextQuesitonMap [] : null
-    dispatch(updateQuestion(targetQuestion))
-    dispatch(removeNextQuestionMap(uuid))
-
-    dispatch(updateQuestion(targetQuestion))
   }
 }
 
 export const handleUpdateRadioOption = (value, uuid, index) => {
   return (dispatch, getState) => {
     const state = getState()
-    const targetQuestion = state.questioncatalog.questions.find(q => q.uuid === uuid)
-    dispatch(updateRadioOption(value, uuid, index))
-    dispatch(updateQuestion(targetQuestion))
-
+    const targetQuestion = state.questioncatalog.questions.questions.find(q => q.uuid === uuid)
+    const options = targetQuestion.options
+    options[index] = value
+    dispatch(changeQuestionAttribute(options, "options", uuid))
   }
 }
 
 export const handleRemoveRadioOption = (uuid, index) => {
   return (dispatch, getState) => {
     const state = getState()
-    const targetQuestion = state.questioncatalog.questions.find(q => q.uuid === uuid)
-    dispatch(removeRadioOption(uuid, index))
-    dispatch(updateQuestion(targetQuestion))
+    const targetQuestion = state.questioncatalog.questions.questions.find(q => q.uuid === uuid)
+    const options = targetQuestion.options.filter((opt,i) => i !== index)
+    if(targetQuestion.hasOwnProperty("nextQuestionMap")) {
+      const nextQuestionMap = targetQuestion.nextQuestionMap.filter((opt,i) => i !== index)
+      dispatch(changeQuestionAttribute(nextQuestionMap, "nextQuestionMap", uuid))
+    }
+    if(targetQuestion.hasOwnProperty("scoreMap")) {
+      const scoreMap = targetQuestion.scoreMap.filter((opt,i) => i !== index)
+      dispatch(changeQuestionAttribute(scoreMap, "scoreMap", uuid))
+    }
+    dispatch(changeQuestionAttribute(options, "options", uuid))
+    
+  }
+}
+
+export const handleAddNewRadioOption = (option, uuid) => {
+  return (dispatch, getState) => {
+    const state = getState()
+    const targetQuestion = state.questioncatalog.questions.questions.find(q => q.uuid === uuid)
+    if(targetQuestion.hasOwnProperty("nextQuestionMap")) {
+      const nextQuestionMap = targetQuestion.nextQuestionMap
+      nextQuestionMap.push("")
+      dispatch(changeQuestionAttribute(nextQuestionMap, "nextQuestionMap", uuid))
+    }
+    if(targetQuestion.hasOwnProperty("scoreMap")) {
+      const scoreMap = targetQuestion.scoreMap
+      scoreMap.push(0)
+      dispatch(changeQuestionAttribute(scoreMap, "scoreMap", uuid))
+    }
+    const options = targetQuestion.options
+    options.push(option)
+    dispatch(changeQuestionAttribute(options, "options", uuid))
+    dispatch(updateNewRadioOption(""))
   }
 }
 
@@ -122,78 +130,52 @@ export const handleUpdateNewRadioOption = option => {
   }
 }
 
-export const handleAddNewRadioOption = (option, uuid) => {
+export const handleToggleNextQuestionMap = (event, uuid) => {
   return (dispatch, getState) => {
-    const state = getState()
-    const targetQuestion = state.questioncatalog.questions.find(q => q.uuid === uuid)
-    dispatch(addNewRadioOption(option, uuid))
-    if (targetQuestion.nextQuestionMap !== undefined) {
-      dispatch(addNextQuestionMapOption(uuid))
+    if (event.target.checked) {
+      const state = getState()
+      const targetQuestion = state.questioncatalog.questions.questions.find(q => q.uuid === uuid)
+      const nextQuestionMap = targetQuestion.options.map(opt => 0)
+      dispatch(changeQuestionAttribute(nextQuestionMap, "nextQuestionMap", uuid))
     }
-    dispatch(updateQuestion(targetQuestion))
-    if (targetQuestion.scoreMap !== undefined) {
-      dispatch(addScoreMapOption(uuid))
+    else {
+      dispatch(changeQuestionAttribute(undefined, "nextQuestionMap", uuid))
     }
-
-    dispatch(updateQuestion(targetQuestion))
   }
 }
 
-export const handleToggleNextQuestionMap = (event, uuid) => {
+export const handleToggleScoreMap = (event, uuid) => {
   return (dispatch, getState) => {
-    const state = getState()
-    const targetQuestion = state.questioncatalog.questions.find(q => q.uuid === uuid)
     if (event.target.checked) {
-      dispatch(addNextQuestionMap(uuid))
+      const state = getState()
+      const targetQuestion = state.questioncatalog.questions.questions.find(q => q.uuid === uuid)
+      const options = targetQuestion.options.map(opt => 0)
+
+      dispatch(changeQuestionAttribute(options, "scoreMap", uuid))
     }
     else {
-      dispatch(removeNextQuestionMap(uuid))
+      dispatch(changeQuestionAttribute(undefined, "scoreMap", uuid))
     }
-    dispatch(updateQuestion(targetQuestion))
   }
 }
 
 export const handleUpdateNextQuestionMapOption = (value, uuid, index) => {
   return (dispatch, getState) => {
     const state = getState()
-    const targetQuestion = state.questioncatalog.questions.find(q => q.uuid === uuid)
-    dispatch(updateNextQuestionMapOption(value, uuid, index))
-    dispatch(updateQuestion(targetQuestion))
-  }
-}
-
-export const handleRemoveScoreMap = () => {
-
-}
-
-export const handleAddScoreMap = () => {
-
-}
-
-export const handleAddScoreMapOption = () => {
-
-}
-
-export const handleToggleScoreMap = (event, uuid) => {
-  return (dispatch, getState) => {
-    const state = getState()
-    const targetQuestion = state.questioncatalog.questions.find(q => q.uuid === uuid)
-    if (event.target.checked) {
-      dispatch(addScoreMap(uuid))
-    }
-    else {
-      dispatch(removeScoreMap(uuid))
-    }
-    dispatch(updateQuestion(targetQuestion))
+    const targetQuestion = state.questioncatalog.questions.questions.find(q => q.uuid === uuid)
+    const nextQuestionMap = targetQuestion.nextQuestionMap
+    nextQuestionMap[index] = value
+    dispatch(changeQuestionAttribute(nextQuestionMap, "nextQuestionMap", uuid))
   }
 }
 
 export const handleUpdateScoreMapOption = (value, uuid, index) => {
   return (dispatch, getState) => {
     const state = getState()
-    const targetQuestion = state.questioncatalog.questions.find(q => q.uuid === uuid)
-    dispatch(updateScoreMapOption(value, uuid, index))
-    dispatch(updateQuestion(targetQuestion))
+    const targetQuestion = state.questioncatalog.questions.questions.find(q => q.uuid === uuid)
+    const scoreMap = targetQuestion.scoreMap
+    scoreMap[index] = value
+    dispatch(changeQuestionAttribute(scoreMap, "scoreMap", uuid))
   }
 }
 
@@ -204,30 +186,8 @@ export const handleToggleNewQuestionModal = value => {
 }
 
 export const handleChangeNewQuestion = (value, key) => {
-  return (dispatch, getState) => {
-    dispatch(changeNewQuestion(value, key))
-    if (key === "inputType") {
-      // need so change options
-      value === "date"
-        ? dispatch(changeNewQuestion(undefined, "options"))
-        : dispatch(changeNewQuestion([], "options"))
-    }
-  }
-}
-
-export const handleAddQuestion = () => {
-  return (dispatch, getState) => {
-    const state = getState()
-    const { editQuestion, questions } = state.questioncatalog
-    const isUniqueQuestion = questions.find(q => q.id === editQuestion.id) === undefined // there is no such question
-    if (isUniqueQuestion) {
-      const newQuestionUUID = uuid()
-      const newQuestion = Object.assign({}, editQuestion, { uuid: newQuestionUUID })
-      dispatch(addQuestion(newQuestion))
-    } else {
-      // display error so user can change question id
-      dispatch(setErrorMessage(`Question with name ${editQuestion.id} already exists!`))
-    }
+  return dispatch => {
+    dispatch(changeNewQuestionAttribute(value, key))
   }
 }
 

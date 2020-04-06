@@ -23,7 +23,7 @@ export const RadioOptionComponent = props => {
             {question.options.map((opt, i) => 
                 <Row key={`newQuestion-option-${question.id}-${i}`}>
                 <Col xs={6}>
-                  <FormControl value={opt} onChange={(event) => handleUpdateRadioOption(event.target.value, question.uuid, i)} />
+                  <FormControl as="textarea" value={opt} onChange={(event) => handleUpdateRadioOption(event.target.value, question.uuid, i)} />
                 </Col>
                 <Col xs={6}>
                   <Button variant="danger" onClick={() => handleRemoveRadioOption(question.uuid, i)}>
@@ -33,7 +33,8 @@ export const RadioOptionComponent = props => {
               </Row>
             )}
             <FormControl
-              placeholder="Enter answer text"
+              as="textarea"
+              placeholder="TODO: open modal on button click to enter radio option text "
               value={newRadioOption}
               onChange={(event) => handleUpdateNewRadioOption(event.target.value)}
             />

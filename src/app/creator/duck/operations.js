@@ -138,7 +138,7 @@ export const createContactFlow = () => {
     let state = getState()
 
     const basename = state.creator.basename
-    const questions = state.creator.chariteData
+    const questions = state.creator.chariteData.questions
     const language = state.creator.language
     const scoreMap = state.questioncatalog.scoreThresholdMap
 
