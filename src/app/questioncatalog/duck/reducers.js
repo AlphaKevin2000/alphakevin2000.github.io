@@ -21,15 +21,9 @@ export const initialStateQuestions = {
   questions: Sample.map(s => Object.assign({}, s, { uuid: uuid() }))
 }
 
-/* 
-  TODO: DRY?
-  TODO: split reducer? this has become an abmomination
-*/
-
 export const questionsReducer = (state = initialStateQuestions, action) => {
   let questions, index, targetQuestionIndex, targetQuestion
   const {
-    UPDATE_QUESTION,
     REMOVE_QUESTION,
     ADD_QUESTION,
     MOVE_QUESTION,
@@ -37,16 +31,6 @@ export const questionsReducer = (state = initialStateQuestions, action) => {
   } = questionActionTypes
 
   switch (action.type) {
-    case UPDATE_QUESTION:
-      questions = [...state.questions]
-      targetQuestionIndex = findTargetQuestionIndex(questions, action.payload.question.uuid)
-      questions[targetQuestionIndex] = state.editQuestion
-
-      return {
-        ...state,
-        questions
-      }
-
     case REMOVE_QUESTION:
       questions = [...state.questions].filter(q => q.uuid !== action.payload.uuid)
 
@@ -66,7 +50,6 @@ export const questionsReducer = (state = initialStateQuestions, action) => {
       return {
         ...state,
         questions,
-        editQuestion: initialStateEditQuestion,
         showNewQuestionModal: false
       }
 
@@ -116,45 +99,45 @@ export const categoriesReducer = (state = initialStateCategories, action) => {
 
 export const initialStateScoreThresholdMap = {
   contact: {
-    threshold: 0,
+    threshold: 14, //tage
     recoms: {
-      isDanger: "lorem",
-      isSafe: "ipsum"
+      isDanger: "Contact last 14 days",
+      isSafe: "No contact last 14 days"
     }
   },
   personalInfo: {
     threshold: 0,
     recoms: {
-      isDanger: "lorem",
-      isSafe: "ipsum"
+      isDanger: "",
+      isSafe: ""
     }
   },
   symptoms: {
     threshold: 0,
     recoms: {
-      isDanger: "lorem",
-      isSafe: "ipsum"
+      isDanger: "",
+      isSafe: ""
     }
   },
   respiratorySymptoms: {
     threshold: 0,
     recoms: {
-      isDanger: "lorem",
-      isSafe: "ipsum"
+      isDanger: "",
+      isSafe: ""
     }
   },
   illnesses: {
     threshold: 0,
     recoms: {
-      isDanger: "lorem",
-      isSafe: "ipsum"
+      isDanger: "",
+      isSafe: ""
     }
   },
   medication: {
     threshold: 0,
     recoms: {
-      isDanger: "lorem",
-      isSafe: "ipsum"
+      isDanger: "",
+      isSafe: ""
     }
   }
 }
@@ -184,24 +167,6 @@ export const scoreThresholdMapReducer = (state = initialStateScoreThresholdMap, 
   }
 }
 
-export const initialStateEditQuestion = {
-  id: undefined,
-  category: undefined,
-  text: undefined,
-  inputType: undefined,
-  uuid: undefined,
-  options: undefined,
-  nextQuestionMap: undefined,
-  scoreMap: undefined
-}
-
-export const editQuestionReducer = (state = initialStateEditQuestion, action) => {
-  switch (action.type) {
-    default:
-      return state
-  }
-}
-
 export const initialStateCategoryBadges = {
   contact: "danger",
   personalInfo: "success",
@@ -223,7 +188,8 @@ export const initialStateNewQuestion = {
   text: "",
   inputType: "",
   category: "",
-  showNewQuestionModal: false
+  showNewQuestionModal: false,
+  uuid: uuid()
 }
 
 export const newQuestionReducer = (state = initialStateNewQuestion, action) => {
@@ -293,7 +259,6 @@ export default combineReducers({
   questions: questionsReducer,
   categories: categoriesReducer,
   scoreThresholdMap: scoreThresholdMapReducer,
-  editQuestion: editQuestionReducer,
   categoryBadges: categoryBadgesReducer,
   newQuestion: newQuestionReducer,
   messages: messagesReducer,

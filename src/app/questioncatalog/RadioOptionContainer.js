@@ -1,10 +1,7 @@
 import { connect } from "react-redux"
 import RadioOptionComponent from "./RadioOptionComponent"
 import {
-  handleUpdateRadioOption,
-  handleUpdateNewRadioOption,
-  handleAddNewRadioOption,
-  handleRemoveRadioOption
+  radioOptionOperations
 } from "./duck/operations"
 
 
@@ -14,10 +11,7 @@ export const mapStateToProps = (state, ownProps) => ({
 })
 
 export const mapDispatchToProps = {
-  handleUpdateRadioOption,
-  handleUpdateNewRadioOption,
-  handleAddNewRadioOption,
-  handleRemoveRadioOption
+  ...radioOptionOperations
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(RadioOptionComponent)

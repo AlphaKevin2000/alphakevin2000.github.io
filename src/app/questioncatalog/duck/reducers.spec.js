@@ -5,8 +5,6 @@ import quesitonCatalogReducer, {
   categoriesReducer,
   initialStateScoreThresholdMap,
   scoreThresholdMapReducer,
-  initialStateEditQuestion,
-  editQuestionReducer,
   initialStateCategoryBadges,
   categoryBadgesReducer,
   initialStateNewQuestion,
@@ -16,7 +14,9 @@ import quesitonCatalogReducer, {
   initialStateNewRadioOption,
   newRadioOptionReducer,
   initialStateInputTypes,
-  inputTypesReducer
+  inputTypesReducer,
+  findTargetQuestionIndex,
+  findTargetQuestion
 } from "./reducers"
 import {
   questionActionTypes,
@@ -24,6 +24,21 @@ import {
 } from "./actions"
 
 //import Sample from "./sample"
+
+describe("findTargetQuestionIndex", () => {
+  let questions = initialStateQuestions.questions
+  it.each([0,1,3,5])("returns expected index %i", i => {
+    expect(findTargetQuestionIndex(questions, questions[i].uuid)).toEqual(i)
+  })
+  
+})
+
+describe("findTargetQuestion", () => {
+  let questions = initialStateQuestions.questions
+  it.each([0,1,3,5])("returns expected question", i => {
+    expect(findTargetQuestion(questions, questions[i].uuid)).toEqual(questions[i])
+  })
+})
 
 describe("initialStateQuestions", () => {
   it("has expected key", () => {
@@ -50,14 +65,6 @@ describe("questionsReducer", () => {
   it("has initialState equal to initialStateQuestions", () => {
     expect(questionsReducer(undefined, {})).toEqual(initialState)
   })
-  /* it("should handle UPDATE_QUESTION", () => {
-    question = initialState.questions[0]
-    action = {
-      type: questionActionTypes.UPDATE_QUESTION,
-      payload: { question }
-    }
-    expect(questionsReducer(undefined, action)).toEqual({})
-  }) */
   it("should handle ADD_QUESTION new question", () => {
     question = {
       "uuid": "some-fake-uuid",
@@ -168,39 +175,40 @@ describe("initialStateScoreThresholdMap", () => {
   ]
   it.each(categories)("%s has expected keys & values", cat => {
     expect(initialStateScoreThresholdMap).toHaveProperty(cat)
-    expect(initialStateScoreThresholdMap).toHaveProperty([cat, "threshold"], 0)
+    expect(initialStateScoreThresholdMap).toHaveProperty([cat, "threshold"])
     expect(initialStateScoreThresholdMap).toHaveProperty([cat, "recoms"])
-    expect(initialStateScoreThresholdMap).toHaveProperty([cat, "recoms", "isDanger"], "lorem")
-    expect(initialStateScoreThresholdMap).toHaveProperty([cat, "recoms", "isSafe"], "ipsum")
+    expect(initialStateScoreThresholdMap).toHaveProperty([cat, "recoms", "isDanger"])
+    expect(initialStateScoreThresholdMap).toHaveProperty([cat, "recoms", "isSafe"])
   })
 })
 
 describe("scoreThresholdMapReducer", () => {
-  let initialState
+  let initialState, action
   beforeEach(() => {
     initialState = initialStateScoreThresholdMap
   })
   it("has initialState euqal to initialStateCategories", () => {
     expect(scoreThresholdMapReducer(undefined, {})).toEqual(initialState)
   })
-})
-
-describe("initialStateEditQuestion", () => {
-  const keys = [
-    "id", "category", "text", "inputType", "uuid", "options", "nextQuestionMap", "scoreMap"
-  ]
-  it.each(keys)("%s has expected keys & values", cat => {
-    expect(initialStateEditQuestion).toHaveProperty(cat)
+  it("should handle UPDATE_RECOM_THRESHOLD", () => {
+    action = {
+      type: "UPDATE_RECOM_THRESHOLD",
+      payload: { value: 0.2, category: "contact" }
+    }
+    expect(scoreThresholdMapReducer(undefined, action))
+      .toHaveProperty(["contact", "threshold"], 0.2)
   })
-})
-
-describe("editQuestionReducer", () => {
-  let initialState
-  beforeEach(() => {
-    initialState = initialStateEditQuestion
-  })
-  it("has initialState euqal to initialStateCategories", () => {
-    expect(editQuestionReducer(undefined, {})).toEqual(initialState)
+  it("should handle UPDATE_RECOM_TEXT", () => {
+    action = {
+      type: "UPDATE_RECOM_TEXT",
+      payload: {
+        text: "abc",
+        category: "contact",
+        key: "isDanger"
+      }
+    }
+    expect(scoreThresholdMapReducer(undefined, action))
+      .toHaveProperty(["contact", "recoms", "isDanger"], "abc")
   })
 })
 
@@ -242,12 +250,38 @@ describe("initialStateNewQuestion", () => {
 })
 
 describe("newQuestionReducer", () => {
-  let initialState
+  let initialState, action
   beforeEach(() => {
     initialState = initialStateNewQuestion
   })
   it("has initialState euqal to initialStateNewQuestion", () => {
     expect(newQuestionReducer(undefined, {})).toEqual(initialState)
+  })
+  it("should handle TOGGLE_NEWQUESTION_MODAL", () => {
+    action = {
+      type: "TOGGLE_NEWQUESTION_MODAL",
+      payload: { value: true }
+    }
+    expect(newQuestionReducer(undefined, action)).toHaveProperty("showNewQuestionModal", true)
+    action = {
+      type: "TOGGLE_NEWQUESTION_MODAL",
+      payload: { value: false }
+    }
+    expect(newQuestionReducer(undefined, action)).toHaveProperty("showNewQuestionModal", false)
+  })
+  it.each([
+    ["lorem", "text"],
+    ["id", "P1"]
+  ])("should handle CHANGE_NEWQUESTION_ATTRIBUTE", (a,b) => {
+    action = {
+      type: "CHANGE_NEWQUESTION_ATTRIBUTE",
+      payload: {
+        value: a,
+        key: b,
+      }
+    }
+    expect(newQuestionReducer(undefined, action))
+      .toHaveProperty(b, a)
   })
 })
 
@@ -297,6 +331,16 @@ describe("newRadioOptionReducer", () => {
   it("has initialState euqal to initialStateNewRadioOption", () => {
     expect(newRadioOptionReducer(undefined, {})).toEqual(initialState)
   })
+  it("should handle UPDATE_NEW_RADIO_OPTION", () => {
+    let action = {
+      type: "UPDATE_NEW_RADIO_OPTION",
+      payload: {
+        option: "abc"
+      }
+    }
+    expect(newRadioOptionReducer(undefined, action))
+      .toHaveProperty(["newRadioOption"], "abc")
+  })
 })
 
 describe("initialStateInputTypes", () => {
@@ -327,7 +371,6 @@ describe("quesitonCatalogReducer", () => {
     expect(quesitonCatalogReducer(undefined, {})).toHaveProperty("questions")
     expect(quesitonCatalogReducer(undefined, {})).toHaveProperty("categories")
     expect(quesitonCatalogReducer(undefined, {})).toHaveProperty("scoreThresholdMap")
-    expect(quesitonCatalogReducer(undefined, {})).toHaveProperty("editQuestion")
     expect(quesitonCatalogReducer(undefined, {})).toHaveProperty("categoryBadges")
     expect(quesitonCatalogReducer(undefined, {})).toHaveProperty("newQuestion")
     expect(quesitonCatalogReducer(undefined, {})).toHaveProperty("messages")

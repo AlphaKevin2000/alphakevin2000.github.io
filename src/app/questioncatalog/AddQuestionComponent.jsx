@@ -80,7 +80,8 @@ export const AddQuestionComponent = props => {
 
         </Modal.Body>
         <Modal.Footer className="justify-content-between">
-          <Button variant="success" disabled={requiredData.some(d => ["", null, undefined].includes(d))} block onClick={handleAddQuestion}>
+          <Button variant="success" disabled={requiredData.some(d => ["", null, undefined].includes(d))} block
+            onClick={() => handleAddQuestion(id)}>
             Add Question
           </Button>
         </Modal.Footer>

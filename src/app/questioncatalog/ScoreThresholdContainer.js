@@ -1,15 +1,14 @@
 import { connect } from "react-redux"
 import ScoreThresholdComponent from "./ScoreThresholdComponent"
 import {
-  handleUpdateRecomThreshold,
-  handleUpdateRecomText
+  logicOperations
 } from "./duck/operations"
 
 
 // move & rename this
 export const getSomething = questions => {
   const totalScoreQuestions = {}
-  // blyat // TODO: compete in the next obfuscating contest...
+  // TODO: compete in the next obfuscating contest...
   questions
     .filter(q => q.hasOwnProperty("scoreMap"))
     .forEach(f => totalScoreQuestions.hasOwnProperty(f.category) ? totalScoreQuestions[f.category]++ : totalScoreQuestions[f.category] = 1)
@@ -25,8 +24,7 @@ export const mapStateToProps = (state, ownProps) => ({
 })
 
 export const mapDispatchToProps = {
-  handleUpdateRecomThreshold,
-  handleUpdateRecomText
+  ...logicOperations
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ScoreThresholdComponent)

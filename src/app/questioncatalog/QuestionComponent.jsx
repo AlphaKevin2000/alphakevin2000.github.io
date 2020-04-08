@@ -15,16 +15,6 @@ import Score from "./ScoreContainer"
 /* https://primer.style/octicons/packages/react */
 
 export const defaultProps = {
-  categoryMap: {
-    contact: "danger",
-    personalInfo: "success",
-    symptoms: "warning",
-    respiratorySymptoms: "primary",
-    illnesses: "dark",
-    medication: "secondary"
-  },
-  inputTypes: ["radio", "date"],
-  categories: ["contact", "personalInfo", "symptoms", "respiratorySymptoms", "illnesses", "medication"]
 }
 
 export const propTypes = {
@@ -37,18 +27,18 @@ export const QuestionComponent = props => {
   const {
     uuid,
     question,
-    handleRemoveQuestion,
-    handleToggleNextQuestionMap,
-    handleToggleScoreMap,
-    handleMoveQuestion,
     index,
     total,
     categoryMap,
     inputTypes,
+    handleRemoveQuestion,
+    handleMoveQuestion,
+    handleToggleNextQuestionMap,
+    handleToggleScoreMap,
     handleChangeQuestionID,
     handleChangeQuestionText,
     handleChangeQuestionCategory,
-    changeChangeQuestionType
+    handleChangeQuestionType
   } = props
 
   return (
@@ -66,7 +56,7 @@ export const QuestionComponent = props => {
         </FormControl>
       </Col>
       <Col xs={3}>
-        <FormControl as="select" onChange={(event) => changeChangeQuestionType(event.target.value, uuid)} value={question.inputType}>
+        <FormControl as="select" onChange={(event) => handleChangeQuestionType(event.target.value, uuid)} value={question.inputType}>
           {inputTypes.map((t, i) => <option key={`inputType-question-${question.id}-${i}`}>{t}</option>)}
         </FormControl>
       </Col>
@@ -77,13 +67,13 @@ export const QuestionComponent = props => {
             type="checkbox"
             label="fork"
             checked={question.nextQuestionMap !== undefined}
-            onChange={(event) => handleToggleNextQuestionMap(event, uuid)}
+            onChange={(event) => handleToggleNextQuestionMap(event.target.checked, uuid)}
           />
           <Form.Check
             type="checkbox"
             label="scored"
             checked={question.scoreMap !== undefined}
-            onChange={(event) => handleToggleScoreMap(event, uuid)}
+            onChange={(event) => handleToggleScoreMap(event.target.checked, uuid)}
           />
         </Col>
         : null
@@ -108,8 +98,8 @@ export const QuestionComponent = props => {
         </Button>
       </Col>
       <RadioOption existingQuestion={question} />
-      <Score existingQuestion={question} />
       <NextQuestionMap existingQuestion={question} />
+      <Score existingQuestion={question} />
     </Row>
 
   )

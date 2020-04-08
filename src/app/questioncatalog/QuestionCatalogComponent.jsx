@@ -2,10 +2,12 @@ import React from "react"
 import PropTypes from "prop-types"
 import { Link } from "react-router-dom"
 import Container from "react-bootstrap/Container"
+import Navbar from "react-bootstrap/Navbar"
 import Button from "react-bootstrap/Button"
 import Question from "./QuestionContainer"
 import AddQuestion from "./AddQuestionContainer"
-import ScoreThreshold from "./ScoreThresholdContainer"
+//import ScoreThreshold from "./ScoreThresholdContainer"
+import logo from "./logo.png"
 
 export const defaultProps = {}
 
@@ -32,19 +34,37 @@ export const simpleSanityCheck = questions => {
   })
 }  */
 
+export const isVisibleQuestion = (question, key, arr) => arr.includes(question[key])
+
 export const QuestionCatalogComponent = props => {
 
   const {
     questions
   } = props
   const valid = true//simpleSanityCheck(questions)
-  
+
 
   return (
+
     <Container>
-      <div style={{textAlign: "center"}}><Link to="/amazon"><Button disabled={!valid}>Create Amazon Connect</Button></Link></div>
-      <ScoreThreshold/>
-      {questions.map(question => 
+      <Navbar bg="dark" variant="dark" fixed="top">
+        <Navbar.Brand href="#home">
+          <img alt="" // TODO: add alt
+            src={logo}
+            width="30"
+            height="30"
+            className="d-inline-block align-top"
+          />{' '}
+          FOO
+        </Navbar.Brand>
+        <Link to="/amazon"><Button disabled={!valid}>Create Amazon Connect</Button></Link>
+        <AddQuestion />
+      </Navbar>
+      <div></div>
+      {/* <ScoreThreshold /> */}
+      {questions
+        //.filter(q => isVisibleQuestion(q, "category", ["contact", "personalInfo"]))
+        .map(question =>
         <Question key={question.uuid} uuid={question.uuid} question={question} />
       )}
       <AddQuestion />

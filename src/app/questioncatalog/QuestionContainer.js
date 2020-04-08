@@ -1,14 +1,7 @@
 import { connect } from "react-redux"
 import QuestionComponent from "./QuestionComponent"
 import {
-  handleRemoveQuestion,
-  handleMoveQuestion,
-  handleToggleNextQuestionMap,
-  handleToggleScoreMap,
-  handleChangeQuestionID,
-  handleChangeQuestionText,
-  handleChangeQuestionCategory,
-  changeChangeQuestionType
+  questionOperations
 } from "./duck/operations"
 
 // TODO: bundle opereation e.g import questionContainerOperations from ./duck/operations
@@ -16,18 +9,13 @@ import {
 
 export const mapStateToProps = (state, ownProps) => ({
   index: state.questioncatalog.questions.questions.findIndex(q => q.uuid === ownProps.uuid),
-  total: state.questioncatalog.questions.questions.length - 1
+  total: state.questioncatalog.questions.questions.length - 1,
+  categoryMap: state.questioncatalog.categoryBadges,
+  inputTypes: state.questioncatalog.inputTypes.inputTypes
 })
 
 export const mapDispatchToProps = {
-  handleToggleNextQuestionMap,
-  handleToggleScoreMap,
-  handleRemoveQuestion,
-  handleMoveQuestion,
-  handleChangeQuestionID,
-  handleChangeQuestionCategory,
-  changeChangeQuestionType,
-  handleChangeQuestionText
+  ...questionOperations
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(QuestionComponent)

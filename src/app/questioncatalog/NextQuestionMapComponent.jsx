@@ -16,7 +16,7 @@ export const NextQuestionMapComponent = props => {
       <Col xs={4}>
         {question.nextQuestionMap.map((opt, i) =>
         <Row key={`nextQuestion-option-${i}`}>
-          <Col xs={6}>Option {question.options[i]} leads to Question: </Col>
+          <Col xs={6}>Followup question </Col>
           <Col xs={6}>
           <FormControl as="select"
             value={opt}
