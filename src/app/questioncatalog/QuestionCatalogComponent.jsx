@@ -48,9 +48,9 @@ export const QuestionCatalogComponent = props => {
 
   return (
 
-    <Container>
+    <Container style={{backgroundColor:"#ffffff"}}>
       <Navbar bg="dark" variant="dark" fixed="top">
-        <Navbar.Brand href="#home">
+        <Navbar.Brand href="/">
           <img alt="" // TODO: add alt
             src={logo}
             width="30"
@@ -60,6 +60,7 @@ export const QuestionCatalogComponent = props => {
           FOO
         </Navbar.Brand>
         <Link to="/amazon"><Button disabled={!valid}>Create Amazon Connect</Button></Link>
+        <Link to="/statements"><Button disabled={!valid}>Create Statements</Button></Link>
         <NewQuestion />
       </Navbar>
       <div></div>
