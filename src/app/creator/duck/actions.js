@@ -8,6 +8,7 @@ export const ADD_CONTACT_FLOW = "ADD_CONTACT_FLOW"
 export const ADD_UUID = "ADD_UUID"
 export const ADD_KEY = "ADD_KEY"
 export const SET_QUESTION_COUNT = "SET_QUESTION_COUNT"
+export const SET_BASENAME = "SET_BASENAME"
 
 export const setQuestionnaireStrings = stringMap => ({
   type: SET_QUESTIONNAIRE_STRING_MAP,
@@ -57,4 +58,9 @@ export const addKey = key => ({
 export const setQuestionCount = questionCount => ({
   type: SET_QUESTION_COUNT,
   payload: { questionCount }
+})
+
+export const setBasename = value => ({
+  type: SET_BASENAME,
+  payload: { value }
 })

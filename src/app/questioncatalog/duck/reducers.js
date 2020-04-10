@@ -1,93 +1,86 @@
-import { uuid } from "uuidv4"
+import { combineReducers } from "redux"
+import reduceReducers  from "reduce-reducers"
+import newQuestionReducer from "../components/newquestion/duck"
+import scoreThresholdMapReducer from "../components/logic/duck"
+import questionsReducer from "../components/question/duck"
 import {
-  RESET_NEW_QUESTION,
-  ADD_QUESTION,
-  REMOVE_QUESTION,
-  UPDATE_QUESTION,
-  SET_QUESTION_TEXT,
-  SET_QUESTION_TYPE,
-  MOVE_QUESTION,
-  ADD_RADIO_OPTION
+  UPDATE_NEW_RADIO_OPTION,
+  messageActionTypes,
 } from "./actions"
 
-import Sample from "./sample"
+export const initialStateCategories = ["contact", "personalInfo", "symptoms", "respiratorySymptoms", "illnesses", "medication"]
 
 
-export const initialState = {
-  questions: Sample.map(s => Object.assign({}, s, {uuid: uuid()})),
-  newQuestion: {
-    text: "",
-    type: null,
-    options: []
+export const categoriesReducer = (state = initialStateCategories, action) => {
+  switch (action.type) {
+    default:
+      return state
   }
 }
 
+export const initialStateCategoryBadges = {
+  contact: "danger",
+  personalInfo: "success",
+  symptoms: "warning",
+  respiratorySymptoms: "primary",
+  illnesses: "dark",
+  medication: "secondary"
+}
 
-export default (state = initialState, action) => {
-  let questions, newQuestion, index
+export const categoryBadgesReducer = (state = initialStateCategoryBadges, action) => {
   switch (action.type) {
-    case RESET_NEW_QUESTION:
+    default:
+      return state
+  }
+}
+
+export const initialStateMessages = {
+  errorMessage: "",
+  infoMessage: "",
+  successMessage: ""
+}
+
+export const messagesReducer = (state = initialStateMessages, action) => {
+  switch (action.type) {
+    case messageActionTypes.SET_ERROR_MESSAGE:
       return {
         ...state,
-        newQuestion: {
-          text: "",
-          type: "date"
-        }
-      }
-    case ADD_QUESTION:
-      questions = [...state.questions]
-      questions.push(action.payload.question)
-      return {
-        ...state,
-        questions
-      }
-    case REMOVE_QUESTION:
-      questions = [...state.questions].filter(q => q.uuid !== action.payload.uuid)
-      return {
-        ...state,
-        questions
-      }
-    case SET_QUESTION_TEXT:
-      newQuestion = Object.assign({}, state.newQuestion)
-      newQuestion.text = action.payload.text
-      return {
-        ...state,
-        newQuestion
-      }
-    case SET_QUESTION_TYPE:
-      newQuestion = Object.assign({}, state.newQuestion)
-      newQuestion.type = action.payload.type
-      return {
-        ...state,
-        newQuestion
-      }
-    case UPDATE_QUESTION:
-      questions = [...state.questions]
-      index = questions.findIndex(question => question.uuid === action.payload.question.uuid)
-      questions[index] = action.payload.question
-      return {
-        ...state,
-        questions
-      }
-    case MOVE_QUESTION:
-      // NOT WORKIN YET
-      let arr = [...state.questions]
-      index = arr.findIndex(question => question.uuid === action.payload.uuid)
-      let newIndex = index + action.payload.direction
-      arr.splice(newIndex, 0, arr.splice(index, 1)[0])
-      questions = arr.map(question => Object.assign({}, JSON.parse(JSON.stringify(question))))
-      return {
-        ...state,
-        questions
-      }
-    case ADD_RADIO_OPTION:
-      newQuestion = Object.assign({}, state.newQuestion)
-      newQuestion.options.push(action.payload.option)
-      return {
-        ...state,
-        newQuestion
+        errorMessage: action.payload.msg
       }
     default:
       return state
   }
 }
+
+export const initialStateNewRadioOption = ""
+
+export const newRadioOptionReducer = (state = initialStateNewRadioOption, action) => {
+  switch (action.type) {
+    case UPDATE_NEW_RADIO_OPTION:
+      return action.payload.option
+    default:
+      return state
+  }
+}
+
+export const initialStateInputTypes = ["radio", "date"]
+
+export const inputTypesReducer = (state = initialStateInputTypes, action) => {
+  switch (action.type) {
+    default:
+      return state
+  }
+}
+
+export const questionCatalogReducer = combineReducers({
+  categories: categoriesReducer,
+  categoryMap: categoryBadgesReducer,
+  messages: messagesReducer,
+  newRadioOption: newRadioOptionReducer,
+  inputTypes: inputTypesReducer,
+  scoreThresholdMap: scoreThresholdMapReducer,
+  newQuestion: newQuestionReducer,
+  questions: questionsReducer
+})
+
+export default reduceReducers(questionCatalogReducer)

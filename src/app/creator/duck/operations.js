@@ -9,7 +9,8 @@ import {
   setCreatedJSON,
   setAmazonConnectData,
   addKey,
-  setQuestionCount
+  setQuestionCount,
+  setBasename
 } from "./actions"
 
 import cf from "./amazon-connect/contactflow"
@@ -98,6 +99,20 @@ export const createJSON = () => {
   }
 }
 
+export const handleSetBasename = value => {
+  return dispatch => {
+    dispatch(setBasename(value))
+  }
+}
+
+export const createJSONFromQuestionCatalog = () => {
+  return (dispatch, getState) => {
+    const state = getState()
+    const data = state.questioncatalog.questions
+    dispatch(setCreatedJSON(data))
+  }
+}
+
 export const downloadJSON = (jsonMap, language) => {
   const zip = new JSZip();
  
@@ -123,8 +138,9 @@ export const createContactFlow = () => {
     let state = getState()
 
     const basename = state.creator.basename
-    const questions = state.creator.chariteData
+    const questions = state.creator.chariteData.questions
     const language = state.creator.language
+    const scoreMap = state.questioncatalog.scoreThresholdMap
 
     const questionIDList = []
     questions.forEach(question => {
@@ -143,12 +159,13 @@ export const createContactFlow = () => {
     let qCount = 0
 
     questions.forEach((question, i) => {
-      
+
       const contactFlowName = `${basename}_${i}`//`question_${i}_${language}`
       let contactFlow
       if (question.inputType === 'radio') {
         contactFlow = cf.ContactFlowQuestion({
           name: contactFlowName,
+          basename: basename,
           getState: getState,
           uuidMap: uuidMap,
           xxxMap: xxxMap,
@@ -163,6 +180,7 @@ export const createContactFlow = () => {
       } else {
         contactFlow = cf.ContactFlowQuestionDate({
           name: contactFlowName,
+          basename: basename,
           getState: getState,
           uuidMap: uuidMap,
           xxxMap: xxxMap,
@@ -186,14 +204,16 @@ export const createContactFlow = () => {
       name: staticStartName,
       text: defaultText.greetingText[language],
       language: language,
-      firstQuestionName: `${basename}_0`
+      firstQuestionName: `${basename}_0`,
+      scoreMap: scoreMap
     })
     dispatch(setAmazonConnectData({[staticStartName]: staticStart}))    
 
-    state = getState()
+    //state = getState()
 
     const staticEndName = `${basename}_end`//`question_end_${language}` "automated_charite_data_end_en"//
     const staticEnd = cf.ContactFlowStaticEnd({name: staticEndName, getState: getState, language: language})
     dispatch(setAmazonConnectData({[staticEndName]: staticEnd}))
+    console.log("blyat", getState())
   }
 }

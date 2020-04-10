@@ -84,6 +84,7 @@ export const ContactFlowUserInput = ({
     let key = `${question.category}_${question.id}`
     dispatch(addKey(key))
 
+
     let contactFlowAttribute = ContactFlowAttribute({
       ownUUID: optionsUUIDMap[i],
       errorUUID: errorUUID,
@@ -91,7 +92,8 @@ export const ContactFlowUserInput = ({
       value: val,
       positionX: positionX + 250,
       positionY: positionY + i * 200,
-      transitionUUID: transitionUUIDs[i].uuid
+      transitionUUID: transitionUUIDs[i].uuid,
+      score: question.hasOwnProperty("scoreMap") ? question.scoreMap[i] : undefined
     })
     modules.push(contactFlowAttribute)
 

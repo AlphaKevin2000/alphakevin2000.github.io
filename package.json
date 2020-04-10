@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@primer/octicons-react": "^9.6.0",
     "cross-fetch": "^3.0.4",
     "js-file-download": "^0.4.10",
     "jszip": "^3.2.2",
@@ -12,6 +13,7 @@
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.1",
+    "reduce-reducers": "^1.0.4",
     "redux": "^4.0.5",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
@@ -39,5 +41,8 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "https://alphakevin2000.github.io/build"
+  "homepage": "https://alphakevin2000.github.io/build",
+  "devDependencies": {
+    "redux-mock-store": "^1.5.4"
+  }
 }

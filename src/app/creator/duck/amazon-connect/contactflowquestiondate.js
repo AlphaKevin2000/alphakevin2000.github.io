@@ -20,7 +20,7 @@ export const propTypes = {
 
 export const ContactFlowQuestionDate = ({
     language, errorText, repeatText, index,
-    dispatch, uuidMap, xxxMap, question, addKey, name,
+    dispatch, uuidMap, xxxMap, question, addKey, name, basename,
     positionX = defaultProps.positionX,
     positionY = defaultProps.positionY
   }) => {
@@ -78,10 +78,10 @@ export const ContactFlowQuestionDate = ({
         if (fooName !== "end") {
           let nextQuestion = xxxMap.find(x => x.key === fooName)
           fooName = xxxMap.indexOf(nextQuestion)
-          resourceName = `generated_charite_data_${fooName}`
+          resourceName = `${basename}_${fooName}`//`generated_charite_data_${fooName}`
         }  else {
           // remove this. its a workaround for 100 max contactflows @ amazon connect
-          resourceName = "generated_charite_data_end"
+          resourceName = `${basename}_end`//"generated_charite_data_end"
         }
         console.log(`${question.id} leads to question number ${fooName}`)
 

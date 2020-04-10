@@ -19,7 +19,7 @@ export const propTypes = {
 export const ContactFlowAttribute = ({
     ownUUID, errorUUID, transitionUUID, value, key, positionX, positionY,
     namespace = defaultProps.namespace
-  }) => {
+  }) => {  
 
   return {
     id: ownUUID,

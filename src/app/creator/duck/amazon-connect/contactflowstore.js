@@ -47,7 +47,7 @@ export const ContactFlowStore = ({
   })
   modules.push(contactFlowAttribute)
   let useFullText = generateTextFromOptions(question)
-  //console.log(useFullText)
+
   const wtf = {
     id: ownUUID,
     type: "StoreUserInput",

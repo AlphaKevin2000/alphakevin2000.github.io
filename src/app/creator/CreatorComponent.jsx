@@ -1,4 +1,5 @@
 import React from "react"
+import { Link } from "react-router-dom"
 import Container from "react-bootstrap/Container"
 import ButtonToolbar from "react-bootstrap/ButtonToolbar"
 import ButtonGroup from "react-bootstrap/ButtonGroup"
@@ -6,6 +7,7 @@ import Button from "react-bootstrap/Button"
 import Form from "react-bootstrap/Form"
 import Accordion from "react-bootstrap/Accordion"
 import Card from "react-bootstrap/Card"
+import Octicon, { Dependent }from "@primer/octicons-react"
 
 import  AmazonSettings from "./AmazonConnectConfiguratorContainer" 
 
@@ -28,8 +30,10 @@ export const CreatorComponent = props => {
     language,
     chariteData,
     connectConf,
+    createJSONFromQuestionCatalog
   } = props
 
+  // TODO: rename this
   const bla = {
     stringMap: stringMap[language],
     order: order,
@@ -39,7 +43,8 @@ export const CreatorComponent = props => {
 
   return (
     <Container>
-      <h1>Hello World</h1>
+      <div style={{textAlign: "center", color: "white !important"}}><Link to="/questions"><Button>Back to Generator</Button></Link></div>
+      <h1>TODO: Add tooltips or some general usage guide</h1>
       <ButtonToolbar>
         <ButtonGroup className="mr-2" size="sm">
         {
@@ -50,7 +55,10 @@ export const CreatorComponent = props => {
         }
         </ButtonGroup>
         <ButtonGroup className="mr-2" size="sm">
-          <Button onClick={getQuestionsAndGenerateJSONMock}>Get Questions</Button>
+          <Button onClick={getQuestionsAndGenerateJSONMock}>Get Questions Mock</Button>
+          <Button variant="warning" onClick={createJSONFromQuestionCatalog}>
+            <Octicon><Dependent /></Octicon>
+          </Button>
         </ButtonGroup>
         {chariteData ? <AmazonSettings /> : null}
 

@@ -21,15 +21,21 @@ export const propTypes = {
 }
 
 export const ContactFlowQuestion = ({
-    language, errorText, repeatText, index,
-    dispatch, uuidMap, xxxMap, question, addKey, name,
+    language, errorText, repeatText, index, getState,
+    dispatch, uuidMap, xxxMap, question, addKey, name, basename,
     positionX = defaultProps.positionX,
     positionY = defaultProps.positionY,
     offsetX = defaultProps.offsetX,
     offsetY = defaultProps.offsetY
   }) => {
 
-      console.log(`hello question ${question.id} has index ${index}`)
+      //console.log(`hello question ${question.id} has index ${index}`)
+      
+      // REMOVE THIS! REFACTOR
+      /* if(question.hasOwnProperty("scoreMap")) {
+        console.log("YOOOOOOOOOOO", question.scoreMap)
+      } */
+
 
       const endUUID = uuid()
       const repeatUUID = uuid()
@@ -91,17 +97,18 @@ export const ContactFlowQuestion = ({
           fooName =  uniqueTransferUUIDs.length === 1 ? xxxMap[nextIndex].key : t.key
         }
   
+        
+
         let resourceName
         if (fooName !== "end") {
           let nextQuestion = xxxMap.find(x => x.key === fooName)
           fooName = xxxMap.indexOf(nextQuestion)
-          resourceName = `generated_charite_data_${fooName}`
+          resourceName = `${basename}_${fooName}`//`generated_charite_data_${fooName}`
         } else {
           // remove this. its a workaround for 100 max contactflows @ amazon connect
-          resourceName = "generated_charite_data_end"
+          resourceName = `${basename}_end`//"generated_charite_data_end"
         }
         console.log(`${question.id} leads to question number ${fooName}`)
-
         const contactFlowTransfer = ContactFlowTransfer({
           ownUUID: t.uuid,
           errorUUID: errorUUID,

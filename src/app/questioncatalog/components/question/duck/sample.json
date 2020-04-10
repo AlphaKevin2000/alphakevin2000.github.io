@@ -1,0 +1,390 @@
+[
+  {
+      "id": "P0",
+      "category": "personalInfo",
+      "text": "How old are you?",
+      "inputType": "radio",
+      "options": [
+          "Under 40",
+          "40-50",
+          "51-60",
+          "61-70",
+          "71-80",
+          "Over 80"
+      ],
+      "nextQuestionMap": [
+          "P2",
+          "P2",
+          "P2",
+          "P1",
+          "P2",
+          "P2"
+      ]
+  },
+  {
+      "id": "P1",
+      "category": "personalInfo",
+      "text": "Are you 65 years old or older?",
+      "inputType": "radio",
+      "options": [
+          "Yes",
+          "No"
+      ]
+  },
+  {
+      "id": "P2",
+      "category": "personalInfo",
+      "text": "What is your current living situation?",
+      "inputType": "radio",
+      "options": [
+          "Living alone",
+          "Living together with family, in a shared flat, or in a supervised community facility"
+      ]
+  },
+  {
+      "id": "P3",
+      "category": "personalInfo",
+      "comment": "Care services or support that you provide in connection with your professional activity are not meant.",
+      "text": "At least once a week, do you privately care for people with age-related conditions, chronic illnesses, or frailty?",
+      "inputType": "radio",
+      "options": [
+          "Yes",
+          "No"
+      ]
+  },
+  {
+      "id": "P4",
+      "category": "personalInfo",
+      "text": "Do you work in one of the following areas?",
+      "inputType": "radio",
+      "options": [
+          "In the medical field",
+          "In a community facility (school, day care center, university, home etc.)",
+          "No, in none of the above"
+      ]
+  },
+  {
+      "id": "P5",
+      "category": "personalInfo",
+      "text": "Do you smoke?",
+      "inputType": "radio",
+      "options": [
+          "Yes",
+          "No"
+      ]
+  },
+  {
+      "id": "P6",
+      "category": "personalInfo",
+      "text": "Are you pregnant?",
+      "inputType": "radio",
+      "options": [
+          "Yes",
+          "No",
+          "I don't know"
+      ]
+  },
+  {
+      "id": "C0",
+      "category": "contact",
+      "comment": "Close contact with a confirmed case means:\n<ul><li>Face-to-face contact for longer than 15 minutes</li><li>Direct, physical contact (touching, shaking hands, kissing)</li><li>Being within 1.5 meters of the person for more than 15 minutes</li><li>Contact with or exchange of body fluids</li><li>Living in the same apartment</li></ul>\n\nChoose \"no\" if you have worn adequate protective measures (mask, smock) on contact.",
+      "text": "Have you had close contact with a confirmed case?",
+      "inputType": "radio",
+      "options": [
+          "Yes",
+          "No"
+      ],
+      "nextQuestionMap": [
+          "CZ",
+          "S0"
+      ],
+      "scoreMap": [
+          1,
+          0
+      ]
+  },
+  {
+      "id": "CZ",
+      "category": "contact",
+      "text": "What day was the last contact?",
+      "inputType": "date"
+  },
+  {
+      "id": "S0",
+      "category": "symptoms",
+      "text": "Have you had a fever (over 38°C) in the past 24 hours?",
+      "inputType": "radio",
+      "options": [
+          "Yes",
+          "No"
+      ],
+      "nextQuestionMap": [
+          "S2",
+          "S1"
+      ],
+      "scoreMap": [
+          1,
+          0
+      ]
+  },
+  {
+      "id": "S1",
+      "category": "symptoms",
+      "text": "Have you had a fever (over 38°C) in the past 4 days?",
+      "inputType": "radio",
+      "options": [
+          "Yes",
+          "No"
+      ],
+      "nextQuestionMap": [
+          "S2",
+          "S3"
+      ],
+      "scoreMap": [
+          1,
+          0
+      ]
+  },
+  {
+      "id": "S2",
+      "category": "symptoms",
+      "text": "What was the highest temperature, approx.?",
+      "inputType": "radio",
+      "options": [
+          "38°C",
+          "39°C",
+          "40°C",
+          "41°C",
+          "42°C",
+          "More than 42°C",
+          "I don't know"
+      ]
+  },
+  {
+      "id": "S3",
+      "category": "symptoms",
+      "text": "In the past 24 hours, have you had chills?",
+      "inputType": "radio",
+      "options": [
+          "Yes",
+          "No"
+      ],
+      "scoreMap": [
+          1,
+          0
+      ]
+  },
+  {
+      "id": "S4",
+      "category": "symptoms",
+      "text": "In the past 24 hours, have you felt tired or worn out?",
+      "inputType": "radio",
+      "options": [
+          "Yes",
+          "No"
+      ],
+      "scoreMap": [
+          1,
+          0
+      ]
+  },
+  {
+      "id": "S5",
+      "category": "symptoms",
+      "text": "In the past 24 hours, have you had body aches?",
+      "inputType": "radio",
+      "options": [
+          "Yes",
+          "No"
+      ],
+      "scoreMap": [
+          1,
+          0
+      ]
+  },
+  {
+      "id": "S6",
+      "category": "respiratorySymptoms",
+      "comment": "The question relates to cold symptoms and excludes chronic cough, seasonal or allergy-related cough.\nIf you have a chronic cough, please compare your current coughing to your regular problems.",
+      "text": "In the past 24 hours, have you had a persistent cough?",
+      "inputType": "radio",
+      "options": [
+          "Yes",
+          "No"
+      ],
+      "scoreMap": [
+          1,
+          0
+      ]
+  },
+  {
+      "id": "S7",
+      "category": "respiratorySymptoms",
+      "comment": "The question relates to cold symptoms and excludes chronic runny nose, seasonal or allergy-related runny nose. If you have chronic sniffling, please compare your current conditions with your existing problems.",
+      "text": "In the past 24 hours, have you had a runny nose?",
+      "inputType": "radio",
+      "options": [
+          "Yes",
+          "No"
+      ],
+      "scoreMap": [
+          1,
+          0
+      ]
+  },
+  {
+      "id": "S8",
+      "category": "symptoms",
+      "comment": "If you have a chronic bowel disease, please compare your current bowel symptoms to your bowel patterns under your existing medical condition.",
+      "text": "In the past 24 hours, have you had diarrhea?",
+      "inputType": "radio",
+      "options": [
+          "Yes",
+          "No"
+      ],
+      "scoreMap": [
+          1,
+          0
+      ]
+  },
+  {
+      "id": "S9",
+      "category": "respiratorySymptoms",
+      "text": "In the past 24 hours, have you had a sore throat?",
+      "inputType": "radio",
+      "options": [
+          "Yes",
+          "No"
+      ],
+      "scoreMap": [
+          1,
+          0
+      ]
+  },
+  {
+      "id": "SA",
+      "category": "symptoms",
+      "text": "In the past 24 hours, have you had a headache?",
+      "inputType": "radio",
+      "options": [
+          "Yes",
+          "No"
+      ],
+      "scoreMap": [
+          1,
+          0
+      ]
+  },
+  {
+      "id": "SB",
+      "category": "respiratorySymptoms",
+      "comment": "Check the box if you:\n<ul><li>Become breathless faster than usual or have difficulty breathing with light loads, such as a walk or climbing a short flight of stairs</li><li>Experience difficulty breathing or shortness of breath when sitting or lying down</li><li>Have a feeling of breathlessness/shortness of breath when getting up from bed or a chair</li></ul>\n\nIf you have chronic lung disease, compare your current breathing problems with your existing breathing problems.",
+      "text": "In the past 24 hours, did you feel that you were more quickly out of breath than usual?",
+      "inputType": "radio",
+      "options": [
+          "Yes",
+          "No"
+      ],
+      "scoreMap": [
+          1,
+          0
+      ]
+  },
+  {
+      "id": "SC",
+      "category": "symptoms",
+      "text": "Have you had any taste and/or smell loss in the last 24 hours?",
+      "inputType": "radio",
+      "options": [
+          "Yes",
+          "No"
+      ],
+      "scoreMap": [
+          1,
+          0
+      ]
+  },
+  {
+      "id": "SZ",
+      "category": "symptoms",
+      "text": "With regard to all questions about symptoms: since when have you had the symptoms you specified?",
+      "inputType": "date"
+  },
+  {
+      "id": "D0",
+      "category": "illnesses",
+      "text": "Have you been diagnosed with chronic lung disease by a doctor?",
+      "inputType": "radio",
+      "options": [
+          "Yes",
+          "No",
+          "I don't know"
+      ]
+  },
+  {
+      "id": "D1",
+      "category": "illnesses",
+      "text": "Have you been diagnosed with diabetes by a doctor?",
+      "inputType": "radio",
+      "options": [
+          "Yes",
+          "No",
+          "I don't know"
+      ]
+  },
+  {
+      "id": "D2",
+      "category": "illnesses",
+      "text": "Have you been diagnosed with heart disease by a doctor?",
+      "inputType": "radio",
+      "options": [
+          "Yes",
+          "No",
+          "I don't know"
+      ]
+  },
+  {
+      "id": "D3",
+      "category": "illnesses",
+      "text": "Have you been diagnosed with adipositas (obesity) by a doctor?",
+      "inputType": "radio",
+      "options": [
+          "Yes",
+          "No",
+          "I don't know"
+      ]
+  },
+  {
+      "id": "M0",
+      "category": "medication",
+      "text": "Are you currently taking steroids?",
+      "inputType": "radio",
+      "options": [
+          "Yes",
+          "No",
+          "I don't know"
+      ]
+  },
+  {
+      "id": "M1",
+      "category": "medication",
+      "comment": "You take or get immunosuppresives after an organ transplant, in the therapy of an autoimmune disease, or during chemotherapy.",
+      "text": "Are you currently taking immunosuppressants?",
+      "inputType": "radio",
+      "options": [
+          "Yes",
+          "No",
+          "I don't know"
+      ]
+  },
+  {
+      "id": "M2",
+      "category": "medication",
+      "text": "Have you been vaccinated against flu between October 2019 and today?",
+      "inputType": "radio",
+      "options": [
+          "Yes",
+          "No"
+      ]
+  }
+]

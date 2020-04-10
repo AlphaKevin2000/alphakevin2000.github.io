@@ -8,7 +8,7 @@ import { ContactFlowLogging } from "./contactflowlogging"
 import { ContactFlowVoice } from "./contactflowvoice"
 import { ContactFlowPlayPrompt } from "./contactflowplayprompt"
 import { defaultText } from "../questions/defaultText"
-
+import { ContactFlowAttribute } from "./contactflowattribute"
 
 export const defaultProps = {
   name: "automated_charite_data_start",
@@ -24,6 +24,7 @@ export const propTypes = {
 export const ContactFlowStaticStart = ({
     language,
     firstQuestionName,
+    scoreMap,
     name = defaultProps.name,
     text = defaultProps.text
   }) => {
@@ -32,11 +33,13 @@ export const ContactFlowStaticStart = ({
     const startEndUUID = uuid()
     const startTransferUUID = uuid()
     const voiceUUID = uuid()
+    const scoreMapUUID = uuid()
     const greetingUUID = uuid()
 
     const staticStart = EmptyContactFlow({
       startUUID: loggingUUUID,
-      name: name
+      name: name,
+      description: "start"
     })
     const startModules = []
 
@@ -69,11 +72,23 @@ export const ContactFlowStaticStart = ({
 
     const startVoice = ContactFlowVoice({
       ownUUID: voiceUUID,
-      transitionUUID: greetingUUID,
+      transitionUUID: scoreMapUUID,
       errorUUID: startErrorUUID,
       voiceType: defaultText.defaultVoice[language]
     })
     startModules.push(startVoice)
+
+    let scoreMapAttribute = ContactFlowAttribute({
+      ownUUID: scoreMapUUID,
+      errorUUID: startErrorUUID,
+      key: "scoreMap",
+      value: JSON.stringify(scoreMap),
+      positionX: 250,
+      positionY: 200,
+      transitionUUID: greetingUUID
+      //score: question.hasOwnProperty("scoreMap") ? question.scoreMap[i] : undefined
+    })
+    startModules.push(scoreMapAttribute)
 
     const startGreeting = ContactFlowPlayPrompt({
       ownUUID: greetingUUID,
