@@ -4,9 +4,9 @@ import { Link } from "react-router-dom"
 import Container from "react-bootstrap/Container"
 import Navbar from "react-bootstrap/Navbar"
 import Button from "react-bootstrap/Button"
-import Question from "./QuestionContainer"
-import AddQuestion from "./AddQuestionContainer"
-//import ScoreThreshold from "./ScoreThresholdContainer"
+import Question from "./components/question/QuestionContainer"
+import NewQuestion from "./components/newquestion/NewQuestionContainer"
+import ScoreThreshold from "./components/logic/ScoreThresholdContainer"
 import logo from "./logo.png"
 
 export const defaultProps = {}
@@ -44,6 +44,8 @@ export const QuestionCatalogComponent = props => {
   const valid = true//simpleSanityCheck(questions)
 
 
+  console.log("YO", questions)
+
   return (
 
     <Container>
@@ -58,16 +60,14 @@ export const QuestionCatalogComponent = props => {
           FOO
         </Navbar.Brand>
         <Link to="/amazon"><Button disabled={!valid}>Create Amazon Connect</Button></Link>
-        <AddQuestion />
+        <NewQuestion />
       </Navbar>
       <div></div>
-      {/* <ScoreThreshold /> */}
-      {questions
-        //.filter(q => isVisibleQuestion(q, "category", ["contact", "personalInfo"]))
-        .map(question =>
+      <ScoreThreshold />
+      {questions.map(question =>
         <Question key={question.uuid} uuid={question.uuid} question={question} />
       )}
-      <AddQuestion />
+      <NewQuestion />
     </Container>
   )
 }
