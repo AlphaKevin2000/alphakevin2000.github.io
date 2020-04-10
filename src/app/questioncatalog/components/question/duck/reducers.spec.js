@@ -20,7 +20,6 @@ describe("findTargetQuestionIndex", () => {
 
 describe("findTargetQuestion", () => {
   let questions = initialStateQuestions
-  console.log({questions})
   it.each([0,1,3,5])("returns expected question", i => {
     expect(findTargetQuestion(questions, questions[i].uuid)).toEqual(questions[i])
   })
