@@ -67,7 +67,7 @@ describe("radioOptionOperations", () => {
     store.dispatch(handleUpdateNewRadioOption("foobar"))
     expect(store.getActions()).toEqual(expectedActions)
   })
-  it("handleAddNewRadioOption no nextQuesitonMap no scoreMap", () => {
+  it("handleAddNewRadioOption no nextQuesitonMap", () => {
     expectedActions = [
       {
         type: CHANGE_QUESTION_ATTRIBUTE,
@@ -82,12 +82,20 @@ describe("radioOptionOperations", () => {
         payload: {
           option: ""
         }
+      },
+      {
+        type: CHANGE_QUESTION_ATTRIBUTE,
+        payload: {
+          value: false,
+          attribute: "showModal",
+          uuid: "some-uuid"
+        }
       }
     ]
     store.dispatch(handleAddNewRadioOption("D", "some-uuid"))
     expect(store.getActions()).toEqual(expectedActions)
   })
-  it("handleAddNewRadioOption with nextQuesitonMap no scoreMap", () => {
+  it("handleAddNewRadioOption with nextQuesitonMap", () => {
     expectedActions = [
       {
         type: CHANGE_QUESTION_ATTRIBUTE,
@@ -109,48 +117,19 @@ describe("radioOptionOperations", () => {
         type: UPDATE_NEW_RADIO_OPTION,
         payload: {
           option: ""
+        }
+      },
+      {
+        type: CHANGE_QUESTION_ATTRIBUTE,
+        payload: {
+          value: false,
+          attribute: "showModal",
+          uuid: "some-uuid2"
         }
       }
     ]
 
     store.dispatch(handleAddNewRadioOption("D", "some-uuid2"))
-    expect(store.getActions()).toEqual(expectedActions)
-  })
-  it("handleAddNewRadioOption with nextQuesitonMap scoreMap", () => {
-    expectedActions = [
-      {
-        type: CHANGE_QUESTION_ATTRIBUTE,
-        payload: {
-          value: ["P1", "P2", "P3", ""],
-          attribute: "nextQuestionMap",
-          uuid: "some-uuid3"
-        }
-      },
-      {
-        type: CHANGE_QUESTION_ATTRIBUTE,
-        payload: {
-          value: [0, 1, 0, 0],
-          attribute: "scoreMap",
-          uuid: "some-uuid3"
-        }
-      },
-      {
-        type: CHANGE_QUESTION_ATTRIBUTE,
-        payload: {
-          value: ["a", "b", "c", "D"],
-          attribute: "options",
-          uuid: "some-uuid3"
-        }
-      },
-      {
-        type: UPDATE_NEW_RADIO_OPTION,
-        payload: {
-          option: ""
-        }
-      }
-    ]
-
-    store.dispatch(handleAddNewRadioOption("D", "some-uuid3"))
     expect(store.getActions()).toEqual(expectedActions)
   })
   it("handleRemoveRadioOption", () => {

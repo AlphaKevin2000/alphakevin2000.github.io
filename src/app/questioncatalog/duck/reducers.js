@@ -1,12 +1,13 @@
 import { combineReducers } from "redux"
 import reduceReducers  from "reduce-reducers"
 import newQuestionReducer from "../components/newquestion/duck"
-import scoreThresholdMapReducer from "../components/logic/duck"
 import questionsReducer from "../components/question/duck"
 import {
   UPDATE_NEW_RADIO_OPTION,
   messageActionTypes,
+  CHANGE_FONT,
 } from "./actions"
+
 
 export const initialStateCategories = ["contact", "personalInfo", "symptoms", "respiratorySymptoms", "illnesses", "medication"]
 
@@ -72,15 +73,33 @@ export const inputTypesReducer = (state = initialStateInputTypes, action) => {
   }
 }
 
+export const initialStateFonts = {
+  activeFont: {
+    name: "",
+    category: ""
+  }
+}
+
+export const fontsReducer = ( state = initialStateFonts, action) => {
+  switch (action.type) {
+    case CHANGE_FONT:
+      return {
+        activeFont: action.payload.font
+      }
+    default:
+      return state
+  }
+}
+
 export const questionCatalogReducer = combineReducers({
   categories: categoriesReducer,
   categoryMap: categoryBadgesReducer,
   messages: messagesReducer,
   newRadioOption: newRadioOptionReducer,
   inputTypes: inputTypesReducer,
-  scoreThresholdMap: scoreThresholdMapReducer,
   newQuestion: newQuestionReducer,
-  questions: questionsReducer
+  questions: questionsReducer,
+  fonts: fontsReducer
 })
 
 export default reduceReducers(questionCatalogReducer)

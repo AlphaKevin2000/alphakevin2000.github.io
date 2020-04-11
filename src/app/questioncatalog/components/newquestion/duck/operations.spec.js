@@ -71,7 +71,7 @@ describe("newQuestionOperations", () => {
     store.dispatch(ops.handleChangeNewQuestion(v,k))
     expect(store.getActions()).toEqual(expectedActions)
   })
-  it("handleAddQuestion once", () => {
+  /* it("handleAddQuestion once", () => {
     expectedActions = [
       {
         type: ADD_QUESTION,
@@ -89,8 +89,8 @@ describe("newQuestionOperations", () => {
     ]
     store.dispatch(ops.handleAddQuestion("D"))
     expect(store.getActions()).toEqual(expectedActions)
-  })
-  it("handleAddQuestion exists", () => {
+  }) */
+  /* it("handleAddQuestion exists", () => {
     expectedActions = [
       {
         type: SET_ERROR_MESSAGE,
@@ -101,5 +101,5 @@ describe("newQuestionOperations", () => {
     ]
     store.dispatch(ops.handleAddQuestion("A"))
     expect(store.getActions()).toEqual(expectedActions)
-  })
+  }) */
 })

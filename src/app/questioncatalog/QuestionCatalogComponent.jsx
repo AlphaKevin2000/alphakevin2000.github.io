@@ -4,12 +4,16 @@ import { Link } from "react-router-dom"
 import Container from "react-bootstrap/Container"
 import Navbar from "react-bootstrap/Navbar"
 import Button from "react-bootstrap/Button"
+import ButtonWithModal from "../widgets/ButtonWithModal"
 import Question from "./components/question/QuestionContainer"
 import NewQuestion from "./components/newquestion/NewQuestionContainer"
-import ScoreThreshold from "./components/logic/ScoreThresholdContainer"
-import logo from "./logo.png"
+import Select from "../widgets/Select"
 
-export const defaultProps = {}
+import Fonts from "./my-fonts.json"
+
+export const defaultProps = {
+  fonts: Fonts
+}
 
 export const propTypes = {
   questions: PropTypes.array
@@ -39,35 +43,38 @@ export const isVisibleQuestion = (question, key, arr) => arr.includes(question[k
 export const QuestionCatalogComponent = props => {
 
   const {
-    questions
+    questions,
+    categories,
+    newQuestion,
+    handleToggleNewQuestionModal,
+    handleAddQuestion,
+    fonts,
+    activeFont,
+    handleChangeFont
   } = props
+  const { id, showNewQuestionModal } = newQuestion
   const valid = true//simpleSanityCheck(questions)
 
-
-  console.log("YO", questions)
+  console.log({ fonts })
 
   return (
 
-    <Container>
-      <Navbar bg="dark" variant="dark" fixed="top">
-        <Navbar.Brand href="#home">
-          <img alt="" // TODO: add alt
-            src={logo}
-            width="30"
-            height="30"
-            className="d-inline-block align-top"
-          />{' '}
-          FOO
-        </Navbar.Brand>
-        <Link to="/amazon"><Button disabled={!valid}>Create Amazon Connect</Button></Link>
+    <Container style={{ fontFamily: `${activeFont.name}, ${activeFont.category}` }}>
+
+      <Button onClick={() => handleChangeFont(fonts[Math.floor(Math.random() * fonts.length)])}>random font</Button>
+      <Select options={fonts.map(f => f.name)} keyPrefix="fonts" value={activeFont.name}
+        onChangeHandler={(event) => handleChangeFont(fonts.find(f => f.name === event.target.value))} />
+
+      <ButtonWithModal show={showNewQuestionModal} toggleAction={handleToggleNewQuestionModal}
+        toggleButtonText="Add question" actionButtonText="Add"
+        action={() => handleAddQuestion(id)}>
         <NewQuestion />
-      </Navbar>
-      <div></div>
-      <ScoreThreshold />
+      </ButtonWithModal>
       {questions.map(question =>
         <Question key={question.uuid} uuid={question.uuid} question={question} />
       )}
-      <NewQuestion />
+      <link href={`https://fonts.googleapis.com/css?family=${activeFont.name.replace(/ /g, "+")}&display=swap`} rel="stylesheet"></link>
+    
     </Container>
   )
 }

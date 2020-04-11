@@ -2,7 +2,7 @@ import { connect } from "react-redux"
 import NextQuestionMapComponent from "./NextQuestionMapComponent"
 import {
   handleUpdateNextQuestionMapOption
-} from "./duck/operations"
+} from "../duck/operations"
 
 
 export const mapStateToProps = (state, ownProps) => ({
