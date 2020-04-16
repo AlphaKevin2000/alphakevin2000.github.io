@@ -2,7 +2,7 @@ import React from "react"
 import Button from "react-bootstrap/Button"
 import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
-import Octicon, { Trashcan, Plus }from "@primer/octicons-react"
+import Octicon, { Trashcan }from "@primer/octicons-react"
 import DynamicTextArea from "../../../../widgets/DynamicTextarea"
 
 export const RadioOptionComponent = props => {

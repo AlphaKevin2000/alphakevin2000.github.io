@@ -1,4 +1,5 @@
-import React from "react"
+import React, {useRef} from "react"
+import { useDrag, useDrop, DragPreviewImage } from "react-dnd"
 import PropTypes from "prop-types"
 import FormControl from "react-bootstrap/FormControl"
 import Form from "react-bootstrap/Form"
@@ -12,10 +13,21 @@ import NextQuestionMap from "./components/NextQuestionMapContainer"
 import Select from "../../../widgets/Select"
 import ButtonWithModal from "../../../widgets/ButtonWithModal"
 import DynamicTextArea from "../../../widgets/DynamicTextarea"
-
+import { pogChamp } from "../../../india/pogchamp"
 /* https://primer.style/octicons/packages/react */
 
+
+const ItemTypes = {
+  Question: "question"
+}
+
 export const defaultProps = {
+  style: {
+    margin: "25px",
+    padding: "25px",
+    border: "solid red 1px",
+    cursor: "move"
+  }
 }
 
 export const propTypes = {
@@ -35,6 +47,7 @@ export const QuestionComponent = props => {
     inputTypes,
     handleRemoveQuestion,
     handleMoveQuestion,
+    handleMoveQuestionDnD,
     handleToggleNextQuestionMap,
     handleChangeQuestionID,
     handleChangeQuestionText,
@@ -46,8 +59,40 @@ export const QuestionComponent = props => {
     handleToggleModal
   } = props
 
+
+  const ref = useRef(null)
+  const [{isOver}, drop] = useDrop({
+    accept: ItemTypes.Question,
+    collect: (monitor) => ({
+      isOver: monitor.isOver()
+    }),
+    drop(item, monitor) {
+      if (!ref.current) {
+        return
+      }
+      const dragIndex = item.index
+      const dropIndex = props.index
+      handleMoveQuestionDnD(dragIndex, dropIndex)
+    }
+  })
+
+  const blin = props.uuid
+
+  const [{ isDragging }, drag, preview] = useDrag({
+    item: { type: ItemTypes.Question, blin, index },
+    collect: (monitor) => ({
+      isDragging: monitor.isDragging(),
+
+    }),
+  })
+
+  drag(drop(ref))
+  let style
+  style = isDragging ? Object.assign({}, props.style, {background: "#9aeaac"}) : props.style
+  style = isOver ? Object.assign({}, props.style, {background: "#44944e"}) : style
   return (
-    <div style={{ border: "solid red 1px" }}>
+    <div style={style} ref={ref}>
+      <DragPreviewImage connect={preview} src={pogChamp} />
       <Row>
         <Col xs={1}>
           <Badge variant={categoryMap[question.category]}>{question.category}</Badge>

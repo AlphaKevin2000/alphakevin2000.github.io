@@ -9,7 +9,8 @@ export const defaultProps = {
 }
 
 export const DynamicTextArea = props => {
-  const rows = props.value.split("").filter(char => char === "\n").length + 1
+  //const rows = props.value.split("").filter(char => char === "\n").length + 1
+  const rows = Math.ceil(props.value.split("").length / props.cols)
   return <FormControl as="textarea" rows={rows} cols={props.cols} placeholder={props.placeholder}
            value={props.value} onChange={props.onChangeHandler} />
 }

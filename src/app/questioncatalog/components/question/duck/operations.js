@@ -1,6 +1,7 @@
 import {
   removeQuestion,
   moveQuestion,
+  moveQuestionDnD,
   changeQuestionAttribute,
   toggleModal,
   updateNewRadioOption
@@ -17,6 +18,12 @@ export const handleRemoveQuestion = uuid => {
 export const handleMoveQuestion = (uuid, direction) => {
   return dispatch => {
     dispatch(moveQuestion(uuid, direction))
+  }
+}
+
+export const handleMoveQuestionDnD = (dragIndex, dropIndex) => {
+  return dispatch => {
+    dispatch(moveQuestionDnD(dragIndex, dropIndex))
   }
 }
 
@@ -99,6 +106,7 @@ export const handleUpdateNextQuestionMapOption = (value, uuid, index) => {
 export const questionOperations = {
   handleRemoveQuestion,
   handleMoveQuestion,
+  handleMoveQuestionDnD,
   handleToggleNextQuestionMap,
   handleToggleScoreMap,
   handleChangeQuestionID,

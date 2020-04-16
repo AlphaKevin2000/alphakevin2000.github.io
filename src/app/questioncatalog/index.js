@@ -1,1 +1,1 @@
-export { default as QuestionCatalog } from './QuestionCatalogContainer';
+export { default as QuestionCatalog } from './DnDWrapper';

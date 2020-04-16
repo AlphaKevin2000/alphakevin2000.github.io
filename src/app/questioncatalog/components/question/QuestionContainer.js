@@ -10,7 +10,7 @@ import { handleAddNewRadioOption, handleUpdateNewRadioOption } from "./duck/oper
 
 
 export const mapStateToProps = (state, ownProps) => ({
-  index: state.questioncatalog.questions.findIndex(q => q.uuid === ownProps.uuid),
+  //index: state.questioncatalog.questions.findIndex(q => q.uuid === ownProps.uuid),
   total: state.questioncatalog.questions.length - 1,
   categoryMap: state.questioncatalog.categoryMap,
   categories: state.questioncatalog.categories,

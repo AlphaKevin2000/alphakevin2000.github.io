@@ -7,7 +7,6 @@ import {
 } from "./actions"
 
 import Sample from "./sample"
-import { TOGGLE_MODAL_STATEMENT } from "../../../../statements/components/statement/duck/actions"
 //import SampleSmall from "./sample_small"
 
 // TODO: Move this
@@ -23,6 +22,7 @@ export const questionsReducer = (state = initialStateQuestions, action) => {
     REMOVE_QUESTION,
     ADD_QUESTION,
     MOVE_QUESTION,
+    MOVE_QUESTION_DND,
     CHANGE_QUESTION_ATTRIBUTE,
     TOGGLE_QUESTION_OPTION_MODAL
   } = questionActionTypes
@@ -56,6 +56,15 @@ export const questionsReducer = (state = initialStateQuestions, action) => {
       questions = arr.map(question => Object.assign({}, JSON.parse(JSON.stringify(question))))
 
       return questions
+
+    case MOVE_QUESTION_DND:
+      let { dragIndex, dropIndex } = action.payload
+      questions = [...state]
+      questions.splice(dropIndex, 0, questions.splice(dragIndex, 1)[0])
+      questions.forEach((item,i) => item.index = i)
+
+      return questions
+
 
 
     case CHANGE_QUESTION_ATTRIBUTE:

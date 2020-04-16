@@ -6,6 +6,7 @@ import { Creator } from "./creator"
 import { QuestionCatalog } from "./questioncatalog"
 import { DemoPageComponent } from "./demopage/DemoPageComponent"
 import { StatementCatalog } from "./statements"
+import { India } from "./india"
 import logo from "./logo.png"
 
 
@@ -17,7 +18,7 @@ const DefaultContainer = () => (
   <div>
     <Navbar bg="dark" variant="dark" fixed="top" >
       <Link to="/">
-        <Navbar.Brand href="/">
+        <Navbar.Brand>
           <img alt="" // TODO: add alt
             src={logo}
             width="30"
@@ -34,6 +35,7 @@ const DefaultContainer = () => (
     <Route exact path="/amazon" component={Creator} />
     <Route exact path="/questions" component={QuestionCatalog} />
     <Route exact path="/statements" component={StatementCatalog} />
+    <Route exact path="/india" component={India} />
   </div>
 )
 
