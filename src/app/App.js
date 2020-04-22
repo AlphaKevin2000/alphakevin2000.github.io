@@ -6,7 +6,7 @@ import { Creator } from "./creator"
 import { QuestionCatalog } from "./questioncatalog"
 import { DemoPageComponent } from "./demopage/DemoPageComponent"
 import { StatementCatalog } from "./statements"
-import { India } from "./india"
+import { Lex } from "./lex"
 import logo from "./logo.png"
 
 
@@ -35,7 +35,7 @@ const DefaultContainer = () => (
     <Route exact path="/amazon" component={Creator} />
     <Route exact path="/questions" component={QuestionCatalog} />
     <Route exact path="/statements" component={StatementCatalog} />
-    <Route exact path="/india" component={India} />
+    <Route exact path="/lex" component={Lex} />
   </div>
 )
 

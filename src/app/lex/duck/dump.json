@@ -1,0 +1,156 @@
+{
+  "bots": null,
+  "bot": {
+    "name": "TutorialBotX",
+    "description": null,
+    "intents": [
+      {
+        "intentName": "CustomFallBackIntent",
+        "intentVersion": "5"
+      },
+      {
+        "intentName": "HelloIntent",
+        "intentVersion": "9"
+      },
+      {
+        "intentName": "WhatsYourName",
+        "intentVersion": "4"
+      }
+    ],
+    "abortStatement": {
+      "messages": [
+        {
+          "contentType": "PlainText",
+          "content": "hallo, leider kaputt",
+          "groupNumber": 1
+        }
+      ],
+      "responseCard": "string"
+    },
+    "status": "READY",
+    "failureReason": null,
+    "lastUpdatedDate": "2020-04-20T10: 59: 41.154Z",
+    "createdDate": "2020-04-20T10: 20: 57.999Z",
+    "idleSessionTTLInSeconds": 300,
+    "voiceId": "Matthew",
+    "checksum": "9f1f88fb-9502-4f47-954b-6c9bd4851dda",
+    "version": "$LATEST",
+    "locale": "en-US",
+    "childDirected": false,
+    "detectSentiment": false
+  },
+  "error": null,
+  "botname": "TutorialBotX",
+  "botversion": "$LATEST",
+  "intents": [
+    {
+      "name": "CustomFallBackIntent",
+      "description": null,
+      "slots": [],
+      "sampleUtterances": [],
+      "conclusionStatement": {
+        "messages": [
+          {
+            "contentType": "PlainText",
+            "content": "Heiliges Kanonenrohr",
+            "groupNumber": 1
+          }
+        ],
+        "responseCard": null
+      },
+      "fulfillmentActivity": {
+        "type": "ReturnIntent"
+      },
+      "parentIntentSignature": "AMAZON.FallbackIntent",
+      "lastUpdatedDate": "2020-04-20T10: 10: 48.430Z",
+      "createdDate": "2020-04-15T18: 20: 08.130Z",
+      "version": "$LATEST",
+      "checksum": "0c5ddd16-2120-40f0-8b7d-9868461d3c1b"
+    },
+    {
+      "name": "HelloIntent",
+      "description": null,
+      "slots": [
+        {
+          "name": "Name",
+          "description": null,
+          "slotConstraint": "Required",
+          "slotType": "AMAZON.DE_FIRST_NAME",
+          "slotTypeVersion": null,
+          "valueElicitationPrompt": {
+            "messages": [
+              {
+                "contentType": "PlainText",
+                "content": "Oh, we are sorry! The reason for not being able to collect your garbage was that the garbage truck could not reach you because of parked vehicles. The driver is allowed to decide not to drive through and so the bin remained full. When should we come again?",
+                "groupNumber": null
+              }
+            ],
+            "maxAttempts": 1,
+            "responseCard": "{\"version\":1,\"contentType\":\"application/vnd.amazonaws.card.generic\"}"
+          },
+          "priority": 1,
+          "sampleUtterances": [
+            "Ich heisse {Name}",
+            "In two days, I will put it out {Name}"
+          ],
+          "responseCard": null,
+          "obfuscationSetting": "DEFAULT_OBFUSCATION"
+        }
+      ],
+      "sampleUtterances": [
+        "Servus",
+        "Guten Tag",
+        "Hello, my garbage didn't pick up "
+      ],
+      "conclusionStatement": {
+        "messages": [
+          {
+            "contentType": "PlainText",
+            "content": "All right, we'll come again on May 6, 2020. ",
+            "groupNumber": 1
+          }
+        ],
+        "responseCard": null
+      },
+      "fulfillmentActivity": {
+        "type": "ReturnIntent"
+      },
+      "parentIntentSignature": null,
+      "lastUpdatedDate": "2020-04-20T11:05:36.116Z",
+      "createdDate": "2020-04-15T18:14:31.325Z",
+      "version": "$LATEST",
+      "checksum": "8b36c30e-30ef-4211-af64-f43b4e7bba49"
+    },
+    {
+      "name": "WhatsYourName",
+      "description": null,
+      "slots": [],
+      "sampleUtterances": [
+        "Wie heisst du"
+      ],
+      "conclusionStatement": {
+        "messages": [
+          {
+            "contentType": "PlainText",
+            "content": "Mein Name ist Sam Bot",
+            "groupNumber": 1
+          },
+          {
+            "contentType": "PlainText",
+            "content": "Du kannst mich Sam Bot nennen",
+            "groupNumber": 1
+          }
+        ],
+        "responseCard": null
+      },
+      "fulfillmentActivity": {
+        "type": "ReturnIntent"
+      },
+      "parentIntentSignature": null,
+      "lastUpdatedDate": "2020-04-19T14:00:21.482Z",
+      "createdDate": "2020-04-15T18:11:09.279Z",
+      "version": "$LATEST",
+      "checksum": "2e18b0a5-5811-46e7-94ff-8c86e2aa865f"
+    }
+  ]
+}
