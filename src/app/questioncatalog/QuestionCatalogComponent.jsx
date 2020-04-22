@@ -36,7 +36,6 @@ export const QuestionCatalogComponent = props => {
   /* { fontFamily: `${activeFont.name}, ${activeFont.category}` } */
 
   return (
-
     <Container style={style}>
 
       {/* <Button onClick={() => handleChangeFont(fonts[Math.floor(Math.random() * fonts.length)])}>random font</Button>
