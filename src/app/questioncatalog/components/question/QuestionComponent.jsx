@@ -13,7 +13,7 @@ import NextQuestionMap from "./components/NextQuestionMapContainer"
 import Select from "../../../widgets/Select"
 import ButtonWithModal from "../../../widgets/ButtonWithModal"
 import DynamicTextArea from "../../../widgets/DynamicTextarea"
-import { pogChamp } from "../../../india/pogchamp"
+import { pogChamp } from "./pogchamp"
 /* https://primer.style/octicons/packages/react */
 
 
