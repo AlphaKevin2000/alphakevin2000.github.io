@@ -13,7 +13,16 @@ export const defaultProps = {
     "respiratorySymptoms",
     "illnesses",
     "medication"
-  ]
+  ],
+  style: {
+    margin: "25px",
+    padding: "25px",
+    backgroundColor: "#1abc9c",
+    border: "solid #eee 2px",
+    color: "#2c3e50",
+    borderRadius: "25px",
+    textAlign: "center"
+  }
 }
 
 export const NewQuestionComponent = props => {
@@ -22,12 +31,13 @@ export const NewQuestionComponent = props => {
     newQuestion,
     handleChangeNewQuestion,
     questionTypes,
-    categories
+    categories,
+    style
   } = props
   const { id, category, text, inputType } = newQuestion
 
   return (
-    <div style={{textAlign: "center"}}>
+    <div style={style}>
           <Row>
             <Col xs={6}>
               <FormControl placeholder="Enter new question name"

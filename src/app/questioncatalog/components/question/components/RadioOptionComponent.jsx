@@ -22,7 +22,7 @@ export const RadioOptionComponent = props => {
                   <DynamicTextArea value={opt} onChangeHandler={(event) => handleUpdateRadioOption(event.target.value, question.uuid, i)} />
                 </Col>
                 <Col xs={6}>
-                  <Button variant="danger" onClick={() => handleRemoveRadioOption(question.uuid, i)}>
+                  <Button variant="outline-darkness" onClick={() => handleRemoveRadioOption(question.uuid, i)}>
                     <Octicon><Trashcan /></Octicon>
                   </Button>
                 </Col>

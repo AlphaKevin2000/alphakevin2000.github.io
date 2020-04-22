@@ -25,7 +25,10 @@ export const defaultProps = {
   style: {
     margin: "25px",
     padding: "25px",
-    border: "solid red 1px",
+    backgroundColor: "#1abc9c",
+    border: "solid #eee 2px",
+    color: "#2c3e50",
+    borderRadius: "25px",
     cursor: "move"
   }
 }
@@ -88,8 +91,9 @@ export const QuestionComponent = props => {
 
   drag(drop(ref))
   let style
-  style = isDragging ? Object.assign({}, props.style, {background: "#9aeaac"}) : props.style
-  style = isOver ? Object.assign({}, props.style, {background: "#44944e"}) : style
+  style = isDragging ? Object.assign({}, props.style, {backgroundColor: "#9aeaac"}) : props.style
+  style = isOver ? Object.assign({}, props.style, {backgroundColor: "#44944e"}) : style
+  console.log("the style", style)
   return (
     <div style={style} ref={ref}>
       <DragPreviewImage connect={preview} src={pogChamp} />
@@ -112,15 +116,15 @@ export const QuestionComponent = props => {
             options={inputTypes} keyPrefix="inputType-question"/>
         </Col>
         <Col xs={2}>
-          <Button variant="outline-secondary" disabled={index === 0} 
+          <Button variant="outline-darkness" disabled={index === 0} 
             onClick={() => handleMoveQuestion(uuid, -1)}>
             <Octicon><ArrowUp /></Octicon>
           </Button>
-          <Button variant="outline-secondary" disabled={total === index}
+          <Button variant="outline-darkness" disabled={total === index}
             onClick={() => handleMoveQuestion(uuid, 1)}>
             <Octicon><ArrowDown /></Octicon>
           </Button>
-          <Button variant="danger" onClick={() => handleRemoveQuestion(uuid)}>
+          <Button variant="outline-darkness" onClick={() => handleRemoveQuestion(uuid)}>
             <Octicon><Trashcan /></Octicon>
           </Button>
         </Col>
@@ -150,6 +154,7 @@ export const QuestionComponent = props => {
             <Col xs={4}>
             <ButtonWithModal show={question.showModal} toggleAction={handleToggleModal} parentUUID={question.uuid}
               toggleButtonText="Add option" actionButtonText="Add"
+              toggleButtonVariant="outline-darkness" actionButtonVariant="outline-light"
               requiredData={[newRadioOption]}
               action={() => handleAddNewRadioOption(newRadioOption, question.uuid)}>
               <DynamicTextArea value={newRadioOption} placeholder="Enter option text"

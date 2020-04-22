@@ -15,7 +15,7 @@ const LoginContainer = () => (
 )
 
 const DefaultContainer = () => (
-  <div>
+  <div className="defaultContainer">
     <Navbar bg="dark" variant="dark" fixed="top" >
       <Link to="/">
         <Navbar.Brand>

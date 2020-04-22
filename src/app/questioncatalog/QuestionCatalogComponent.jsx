@@ -7,7 +7,12 @@ import NewQuestion from "./components/newquestion/NewQuestionContainer"
 import Fonts from "./my-fonts.json"
 
 export const defaultProps = {
-  fonts: Fonts
+  fonts: Fonts,
+  style: {
+    backgroundColor: "#2c3e50",
+    border: "solid #eee 2px",
+    borderRadius: "25px"
+  }
 }
 
 export const propTypes = {
@@ -24,20 +29,23 @@ export const QuestionCatalogComponent = props => {
     handleToggleNewQuestionModal,
     handleAddQuestion,
     activeFont,
+    style
   } = props
   const { id, showNewQuestionModal } = newQuestion
 
+  /* { fontFamily: `${activeFont.name}, ${activeFont.category}` } */
 
   return (
 
-    <Container style={{ fontFamily: `${activeFont.name}, ${activeFont.category}` }}>
+    <Container style={style}>
 
       {/* <Button onClick={() => handleChangeFont(fonts[Math.floor(Math.random() * fonts.length)])}>random font</Button>
       <Select options={fonts.map(f => f.name)} keyPrefix="fonts" value={activeFont.name}
         onChangeHandler={(event) => handleChangeFont(fonts.find(f => f.name === event.target.value))} /> */}
 
       <ButtonWithModal show={showNewQuestionModal} toggleAction={handleToggleNewQuestionModal}
-        toggleButtonText="Add question" actionButtonText="Add"
+        toggleButtonText="Add question" actionButtonText="Add" toggleButtonVariant="outline-light"
+        actionButtonVariant="outline-light"
         action={() => handleAddQuestion(id)}>
         <NewQuestion />
       </ButtonWithModal>
