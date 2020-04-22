@@ -21,6 +21,9 @@ export const handleChangeOperand = (operand, condition, statement) => {
 
 export const handleChangeSelected = (value, condition, statement) => {
   return (dispatch, getState) => {
+    if (["", undefined].includes(value)) {
+      return
+    }
     //console.log(value, condition, statement)
     const state = getState()
     const statements = state.statements.statements.statements

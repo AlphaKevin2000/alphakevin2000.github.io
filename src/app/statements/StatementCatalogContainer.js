@@ -31,7 +31,8 @@ export const mapStateToProps = (state, ownProps) => ({
   newStatementName: state.statements.catalog.newStatementName,
   showModal: state.statements.catalog.showModal,
   answers: state.statements.catalog.answers,
-  blin: getQuestions(state)
+  blin: getQuestions(state),
+  conditions: state.statements.conditions.conditions
 })
 
 export const mapDispatchToProps = {

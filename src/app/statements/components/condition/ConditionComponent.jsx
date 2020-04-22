@@ -47,9 +47,10 @@ export const ConditionComponent = props => {
           ? null
           : <Row className="justify-content-md-center">
               <Col xs={4}>
-              <FormControl as="select" onChange={(event) => handleChangeCombination(event.target.value, condition, statement)}>
-              <option value="">please select</option>
-              {combinations.map((com, j) => <option key={`${condition.name}-combi-${j}`}>{com}</option>) }
+              <FormControl style={{fontWeight: "bold", color: ["", undefined].includes(condition.combination) ? "red" : "green"}} as="select"
+                onChange={(event) => handleChangeCombination(event.target.value, condition, statement)} value={condition.combination}>
+                <option value="">please select</option>
+                {combinations.map((com, j) => <option key={`${condition.name}-combi-${j}`}>{com}</option>) }
               </FormControl>
               </Col>
             </Row>

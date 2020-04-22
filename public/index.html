@@ -10,14 +10,45 @@
   </head>
   <style>
     body {
-      background: #eee;
+      background: rgb(26,188,156);
+      background: linear-gradient( rgba(26,188,156,1) 0%, rgba(44,62,80,1) 44%);
       padding-top: 70px;
+      min-height: 100vh;
+    }
+
+    .modal-content {
+      background: rgb(44,62,80);
+      border: solid #eee 2px;
+    }
+
+    .btn-outline-darkness {
+      color: rgb(44,62,80);
+      border-color: rgb(44,62,80);
+    }
+
+    .btn-outline-darkness:hover {
+      color: #eee;
+      background-color: rgb(44,62,80);
+      border-color: rgb(44,62,80);
+    }
+
+    .btn-outline-light {
+      color: rgb(26,188,156);
+      border-color: rgb(26,188,156);
+    }
+
+    .btn-outline-light:hover {
+      color: #eee;
+      background-color: rgb(26,188,156);
+      border-color: rgb(26,188,156);
     }
 
     .badge-custom {
       color: #fff;
       background-color: #00ff6a;
     }
+
+    
   </style>
   <body>
     <div id="root"></div>

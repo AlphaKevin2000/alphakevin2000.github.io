@@ -14,7 +14,7 @@ export const findTargetQuestionIndex = (questions, uuid) => questions.findIndex(
 export const findTargetQuestion = (questions, uuid) => questions.find(q => q.uuid === uuid)
 
 
-export const initialStateQuestions = Sample.map(s => Object.assign({}, s, { uuid: uuid() }))
+export const initialStateQuestions = Sample.map(s => Object.assign({}, s, { uuid: uuid(), showModal: false }))
 
 export const questionsReducer = (state = initialStateQuestions, action) => {
   let questions, index, targetQuestionIndex, targetQuestion
@@ -22,7 +22,9 @@ export const questionsReducer = (state = initialStateQuestions, action) => {
     REMOVE_QUESTION,
     ADD_QUESTION,
     MOVE_QUESTION,
-    CHANGE_QUESTION_ATTRIBUTE
+    MOVE_QUESTION_DND,
+    CHANGE_QUESTION_ATTRIBUTE,
+    TOGGLE_QUESTION_OPTION_MODAL
   } = questionActionTypes
 
   switch (action.type) {
@@ -55,6 +57,15 @@ export const questionsReducer = (state = initialStateQuestions, action) => {
 
       return questions
 
+    case MOVE_QUESTION_DND:
+      let { dragIndex, dropIndex } = action.payload
+      questions = [...state]
+      questions.splice(dropIndex, 0, questions.splice(dragIndex, 1)[0])
+      questions.forEach((item,i) => item.index = i)
+
+      return questions
+
+
 
     case CHANGE_QUESTION_ATTRIBUTE:
       questions = [...state]
@@ -65,6 +76,14 @@ export const questionsReducer = (state = initialStateQuestions, action) => {
 
       return questions
 
+    case TOGGLE_QUESTION_OPTION_MODAL:
+      questions = [...state]
+      targetQuestionIndex = findTargetQuestionIndex(questions, action.payload.uuid)
+      targetQuestion = questions[targetQuestionIndex]
+      targetQuestion.showModal = action.payload.showModal
+      questions[targetQuestionIndex] = Object.assign({}, targetQuestion)
+
+      return questions
 
     default:
       return state

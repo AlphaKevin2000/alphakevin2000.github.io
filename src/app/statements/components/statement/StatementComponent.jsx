@@ -2,7 +2,7 @@ import React from "react"
 import { uuid } from "uuidv4"
 import FormControl from "react-bootstrap/FormControl"
 import { Condition } from "../condition"
-import ButtonWithModal from "../widgets/ButtonWithModal"
+import ButtonWithModal from "../../../widgets/ButtonWithModal"
 
 
 export const StatementComponent = props => {

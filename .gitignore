@@ -1,2 +1,4 @@
 node_modules
 coverage/
+src/app/lex/duck/aws-credentials.json
+src/app/amzn_connect/
