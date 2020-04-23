@@ -1,5 +1,5 @@
 {
   "welcomeBtn": "Demo di lancio",
   "welcomeHeading": "Ciao mondo",
-  "welcomeText": "Si tratta di una semplice unità eroe, un semplice componente in stile jumbotron per richiamare l'attenzione su contenuti o informazioni in primo piano."
+  "welcomeText": "Per avere un prodotto utilizzabile, abbiamo dovuto creare un'interfaccia che permettesse ai medici di inviare i questionari da soli. Era essenziale considerare la struttura di Amazon Connect in background e, allo stesso tempo, fornire una valutazione alla fine del processo. D'altra parte, lo strumento non deve diventare troppo complesso e incomprensibile. Purtroppo, il compito di sviluppare un tale strumento è molto tecnico e richiede molto tempo. Il risultato potrebbe sembrare relativamente poco spettacolare, ma è ancora la parte più ambiziosa che abbiamo realizzato finora. Abbiamo dovuto adattare le nostre soluzioni hardcoded, su cui abbiamo lavorato nelle ultime due settimane, in modo da poter gestire gli input flessibili. Per la soluzione, abbiamo utilizzato un framework redux react, che crea file JSON alla fine, che vengono poi caricati nuovamente in amazon connect. Nell'istanza di Amazon, i flussi di contatti vengono creati dal file Json, che definiscono come si svolgerà la conversazione. Oltre ai flussi di contatti, vengono impostati anche i parametri per la valutazione Json."
 }

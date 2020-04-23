@@ -1,5 +1,5 @@
 {
   "welcomeBtn": "Demonstração de lançamento",
   "welcomeHeading": "Olá mundo",
-  "welcomeText": "Esta é uma unidade heróica simples, uma componente simples estilo jumbotron para chamar mais atenção aos conteúdos ou informações em destaque."
+  "welcomeText": "Para termos um produto utilizável, tivemos de criar uma interface que permitisse aos próprios médicos submeterem questionários. Era essencial considerar a estrutura Amazon Connect em segundo plano e, ao mesmo tempo, fornecer uma avaliação no final do processo. Por outro lado, a ferramenta não deve tornar-se demasiado complexa e incompreensível. Infelizmente, a tarefa de desenvolver uma ferramenta deste tipo é muito técnica e demorada. O resultado pode parecer relativamente pouco espectacular, mas continua a ser a parte mais ambiciosa que já implementámos. Tivemos de adaptar as nossas soluções codificadas, nas quais temos estado a trabalhar nas últimas duas semanas, de modo a que possa lidar com inputs flexíveis. Para a solução, utilizámos um quadro redutor de reacções, que cria ficheiros JSON no final, que são depois carregados de volta para a ligação amazon. No caso da Amazónia, os fluxos de contacto são criados a partir do ficheiro Json, que define a forma como a conversa irá decorrer. Para além dos fluxos de contacto, são também definidos os parâmetros para a avaliação Json."
 }

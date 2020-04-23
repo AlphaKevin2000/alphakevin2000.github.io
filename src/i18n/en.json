@@ -1,5 +1,5 @@
 {
   "welcomeBtn": "Launch Demo",
   "welcomeHeading": "Hello World!",
-  "welcomeText": "This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information."
+  "welcomeText": "To have a usable product, we had to create an interface that allows doctors to submit questionnaires themselves. It was essential to consider the Amazon Connect structure in the background and, at the same time, provide an evaluation at the end of the process. On the other hand, the tool should not become too complex and incomprehensible. Unfortunately, the task of developing such a tool is very technical and time-consuming. The result might look relatively unspectacular, but is still the most ambitious part we have implemented yet. We had to adapt our hardcoded solutions, which we have been working on over the last two weeks so that it can handle flexible inputs. For the solution, we used a react redux framework, which creates JSON files at the end, which are then loaded back into amazon connect. In the Amazon instance, contact flows are created from the Json file, which define how the conversation will take place. In addition to the contact flows, the parameters for the evaluation Json are also set."
 }
