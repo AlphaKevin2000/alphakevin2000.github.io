@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button"
 
 export const BotSelectComponent = props => {
   const {
-    availableBots,
+    bots,
     bot,
     botname,
     botversion,
@@ -12,7 +12,11 @@ export const BotSelectComponent = props => {
     handleNewBot,
     handleBotVersionChange,
     handleGetBot,
+    getBots
   } = props
+
+  const availableBots = bots ? bots : getBots()
+
   return (
     <div>
        <FormControl as="select" value={botname} onChange={event => handleGetBot(event.target.value, botversion)}>

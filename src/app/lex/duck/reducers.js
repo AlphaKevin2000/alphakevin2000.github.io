@@ -4,6 +4,7 @@ import {
   REQUEST_DATA,
   RECEIVE_DATA,
   RECEIVE_ERROR,
+  SET_AWS_CREDENTIALS,
   SET_BOTS,
   SET_BOT_NAME,
   SET_BOT_VERSION,
@@ -24,7 +25,8 @@ export const initialState = {
     isFetching: false,
     error: null,
     data: null
-  }
+  },
+  awsCredentials: null
 }
 
 export const apiReducer = ( state = initialState.api, action ) => {
@@ -59,6 +61,11 @@ export default ( state = initialState, action) => {
       return {
         ...state,
         api: apiReducer(state.api, action)
+      }
+    case SET_AWS_CREDENTIALS:
+      return {
+        ...state,
+        awsCredentials: action.payload.awsCredentials
       }
     case SET_BOTS:
       return {

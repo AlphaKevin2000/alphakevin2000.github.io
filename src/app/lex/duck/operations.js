@@ -1,9 +1,9 @@
 import AWS from "aws-sdk"
-import awsCredentials from "./aws-credentials.json"
 import {
   requestData,
   receiveData,
   receiveError,
+  setAWSCredentials,
   setBots,
   setBotName,
   setBotVersion,
@@ -12,6 +12,12 @@ import {
   addIntent
 } from "./actions"
 
+
+export const handleSetAWSCredentials = credentials => {
+  return dispatch => {
+    dispatch(setAWSCredentials(JSON.parse(credentials)))
+  }
+}
 
 export const handleBotNameChange = name => {
   return dispatch => {
@@ -26,8 +32,8 @@ export const handleBotVersionChange = version => {
 }
 
 export const getBots = () => {
-  return dispatch => {
-    AWS.config.credentials = awsCredentials
+  return (dispatch,getState) => {
+    AWS.config.credentials = getState().lex.awsCredentials
     const lexmodelbuildingservice = new AWS.LexModelBuildingService({ region: 'eu-west-1' })
     lexmodelbuildingservice.getBots({}, (err, data) => {
       if (err) {
@@ -101,9 +107,9 @@ export const handleGetIntents = (lexmodelbuildingservice, intents) => {
 }
 
 export const handleGetBot = (name, versionOrAlias) => {
-  return dispatch => {
+  return (dispatch,getState) => {
 
-    AWS.config.credentials = awsCredentials
+    AWS.config.credentials = getState().lex.awsCredentials
 
     const params = { name, versionOrAlias }
     const lexmodelbuildingservice = new AWS.LexModelBuildingService({ region: 'eu-west-1' })

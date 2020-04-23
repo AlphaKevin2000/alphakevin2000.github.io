@@ -1,10 +1,12 @@
 import React from "react"
 import PropTypes from "prop-types"
 import Container from "react-bootstrap/Container"
+import Button from "react-bootstrap/Button"
 import ButtonWithModal from "../widgets/ButtonWithModal"
 import Question from "./components/question/QuestionContainer"
 import NewQuestion from "./components/newquestion/NewQuestionContainer"
 import Fonts from "./my-fonts.json"
+import Select from "../widgets/Select"
 
 export const defaultProps = {
   fonts: Fonts,
@@ -28,20 +30,12 @@ export const QuestionCatalogComponent = props => {
     newQuestion,
     handleToggleNewQuestionModal,
     handleAddQuestion,
-    activeFont,
-    style
+    style,
   } = props
   const { id, showNewQuestionModal } = newQuestion
 
-  /* { fontFamily: `${activeFont.name}, ${activeFont.category}` } */
-
   return (
     <Container style={style}>
-
-      {/* <Button onClick={() => handleChangeFont(fonts[Math.floor(Math.random() * fonts.length)])}>random font</Button>
-      <Select options={fonts.map(f => f.name)} keyPrefix="fonts" value={activeFont.name}
-        onChangeHandler={(event) => handleChangeFont(fonts.find(f => f.name === event.target.value))} /> */}
-
       <ButtonWithModal show={showNewQuestionModal} toggleAction={handleToggleNewQuestionModal}
         toggleButtonText="Add question" actionButtonText="Add" toggleButtonVariant="outline-light"
         actionButtonVariant="outline-light"
@@ -51,8 +45,6 @@ export const QuestionCatalogComponent = props => {
       {questions.map((question,i) =>
         <Question key={question.uuid} uuid={question.uuid} question={question} index={i} />
       )}
-{/*       <link href={`https://fonts.googleapis.com/css?family=${activeFont.name.replace(/ /g, "+")}&display=swap`} rel="stylesheet"></link>
- */}    
     </Container>
   )
 }

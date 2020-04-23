@@ -1,43 +1,25 @@
 import React from "react"
 import Container from "react-bootstrap/Container"
-
-import Button from "react-bootstrap/Button"
-import BotSelectComponent from "./BotSelectComponent"
+import { DndProvider } from 'react-dnd'
+import Backend from 'react-dnd-html5-backend'
+import BotSelectContainer from "./BotSelectContainer"
 import BotComponent from "./BotComponent"
-import StatementComponent from "./StatementComponent"
-import IntentComponent from "./IntentComponent"
+import FileDrop from "./FileDrop"
 
 export const LexComponent = props => {
   const {
-    bots,
     bot,
     intents,
-    error,
-    getBots,
-    botname,
-    botversion,
-    handleNewBot,
-    handleBotNameChange,
-    handleBotVersionChange,
-    handleGetBot,
-    foo
+    awsCredentials,
+    handleSetAWSCredentials,
   } = props
-  console.log("lex", {props})
-
-  const availableBots = bots ? bots : getBots()
-  const bsProps = {
-    availableBots,
-    botname,
-    botversion,
-    handleNewBot,
-    handleBotNameChange,
-    handleBotVersionChange,
-    handleGetBot,
-  }
 
   return (
     <Container>
-      <BotSelectComponent {...bsProps} />
+      <DndProvider backend={Backend}>
+        <div style={{height: "50px", border:"solid black 1px"}}><FileDrop handleSetAWSCredentials={handleSetAWSCredentials}/></div>
+      </DndProvider>
+      { awsCredentials && <BotSelectContainer /> }
       { bot && <BotComponent bot={bot} intents={intents} /> }
     </Container>
   )

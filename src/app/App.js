@@ -14,9 +14,11 @@ const LoginContainer = () => (
   <div><Route exact path="/" component={DemoPageComponent} /></div>
 )
 
+
+
 const DefaultContainer = () => (
   <div className="defaultContainer">
-    <Navbar bg="dark" variant="dark" fixed="top" >
+    <Navbar bg="darkness" variant="darkness" fixed="top" >
       <Link to="/">
         <Navbar.Brand>
           <img alt="" // TODO: add alt
@@ -28,9 +30,9 @@ const DefaultContainer = () => (
           FOO
         </Navbar.Brand>
       </Link>
-      <Link to="/questions"><Button>Questions</Button></Link>
-      <Link to="/statements"><Button>Statements</Button></Link>
-      <Link to="/amazon"><Button>Amazon Connect</Button></Link>
+      <Link to="/questions"><Button variant="outline-light">Questions</Button></Link>
+      <Link to="/statements"><Button variant="outline-light">Statements</Button></Link>
+      <Link to="/amazon"><Button variant="outline-light">Amazon Connect</Button></Link>
     </Navbar>
     <Route exact path="/amazon" component={Creator} />
     <Route exact path="/questions" component={QuestionCatalog} />
