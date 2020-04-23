@@ -3,14 +3,15 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux'
 import configureStore from './store'
 
-import App from './app/App'
+import AppWrapper from './app/AppWrapper'
 //import * as serviceWorker from './serviceWorker';
 
 const store = configureStore();
+const locale = navigator.language.split(/[-_]/)[0];  // language without region code
 
 ReactDOM.render(
     <Provider store={store}>
-      <App />
+      <AppWrapper locale={locale} />
     </Provider>,
     document.getElementById('root')
 );

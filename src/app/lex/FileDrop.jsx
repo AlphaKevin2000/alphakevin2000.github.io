@@ -1,8 +1,6 @@
 import React from 'react'
 import { NativeTypes } from 'react-dnd-html5-backend'
 import { DropTarget } from 'react-dnd'
-import { handleSetAWSCredentials } from "./duck/operations"
-import { setAWSCredentials } from "./duck/actions"
 
 const fileTarget = {
   drop(props, monitor) {

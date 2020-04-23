@@ -1,5 +1,3 @@
-import dumpstate from "./dump.json"
-
 import {
   REQUEST_DATA,
   RECEIVE_DATA,

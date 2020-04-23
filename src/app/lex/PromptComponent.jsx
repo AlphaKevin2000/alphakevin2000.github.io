@@ -4,9 +4,9 @@ import FormControl from "react-bootstrap/FormControl"
 export const PromptComponent = props => {
   const {
     name,
-    maxAttempts,
+    /* maxAttempts, */
     messages,
-    responseCard
+    /* responseCard */
   } = props
   return (
     <div style={{textAlign: "center"}}>

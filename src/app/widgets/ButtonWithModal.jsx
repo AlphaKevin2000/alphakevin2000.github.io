@@ -10,16 +10,7 @@ export const defaultProps = {
   toggleButtonText: "default text",
   actionButtonText: "default text",
   toggleButtonVariant: "success",
-  actionButtonVariant: "success",
-  style: {
-    margin: "25px",
-    padding: "25px",
-    backgroundColor: "#1abc9c",
-    border: "solid #eee 2px",
-    color: "#2c3e50",
-    borderRadius: "25px",
-    cursor: "move"
-  }
+  actionButtonVariant: "success"
 }
 
 export const ButtonWithModalComponent = props => {
@@ -32,8 +23,7 @@ export const ButtonWithModalComponent = props => {
     actionButtonVariant,
     toggleAction,
     action,
-    parentUUID,
-    style
+    parentUUID
   } = props
   return (
     <div style={{ textAlign: "center" }}>

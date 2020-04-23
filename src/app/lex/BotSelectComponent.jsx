@@ -8,7 +8,6 @@ export const BotSelectComponent = props => {
     bot,
     botname,
     botversion,
-    handleBotNameChange,
     handleNewBot,
     handleBotVersionChange,
     handleGetBot,

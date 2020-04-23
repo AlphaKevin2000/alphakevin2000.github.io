@@ -1,6 +1,6 @@
 import { connect } from "react-redux"
 import LexComponent from "./LexComponent"
-import { lexContainerOperations, handleSetAWSCredentials } from "./duck/operations"
+import { handleSetAWSCredentials } from "./duck/operations"
 
 export const mapStateToProps = (state, ownProps) => ({
   error: state.lex.error,
